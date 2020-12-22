@@ -1,43 +1,112 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<html>
+<head>
+<title>Test</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+</head>
+<body>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="mobile_menu" id="mySidebar">
+  <a class="mobile_menu_close" onclick="mobile_close()">X</a>
+  <div class="mobile_menu_container">
+    <a href="#" class="mobile_menu_link"><p class="">New</p></a>
+    <a href="#" class="mobile_menu_link"><p class="">Used</p></a>
+    <a href="#" class="mobile_menu_link"><p class="">Sell</p></a>
+    <a href="#" class="mobile_menu_link"><p class="">About</p></a>
+  </div>
+</nav>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+<!-- TOP MENU BAR -->
+<div class="top_bar">
+  <div class="logo">
+    <a href="#" class="menu_link">ISAAC</a>
+  </div>
+  <!-- right-sided menu links -->
+  <div class="hide-small">
+    <a href="#" class="menu_link">New</a>
+    <a href="#" class="menu_link">Used</a>
+    <a href="#" class="menu_link">Sell</a>
+    <a href="#" class="menu_link">About</a>
+  </div>
 
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
-  </body>
+  <div class="hide-small">
+    <a href="#" class="menu_link">Sign up</a>
+    <a href="#" class="menu_link">Log in</a>
+  </div>
+
+  <!-- menu button that shows on small screens -->
+  <a href="javascript:void(0)" class="menu_open hide-medium hide-large" onclick="mobile_open()">
+    <i class="fa fa-bars"></i>
+  </a>
+</div>
+
+<header>
+  <div>The Car You're Looking For</div>
+</header>
+
+<!-- query what they are looking for -->
+<div class="survey">
+  <p>Whatcha looking for?</p>
+  <div id="react_form">
+
+  </div>
+</div>
+
+<!-- how we work/what we provide -->
+<div class="first_ribbon">
+  <p>Only the best cars. Each one inspected.</p>
+  <p>Test drive for seven days. Don't like it, just return it.</p>
+  <p>Delivered quickly with little extra cost.</p>
+</div>
+
+<!-- "BROWSE BY" WITH NEW AND USED TABS -->
+<div class="browse">
+  <div class="brand">
+    <p>Browse by Brand</p>
+    <ul>
+      <li>Dodge</li>
+      <li>Ram</li>
+    </ul>
+  </div>
+  <div class="type">
+    <p>Browse by Body Type</p>
+    <ul>
+      <li>Sports</li>
+      <li>Truck</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <p>(123) 555-1234</p>
+  <p>Social media icons</p>
+  <p>Shop | Sell | About</p>
+</footer>
+
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script>
+<!-- <script type="module" src="../src/index.js"></script> -->
+<script>
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function mobile_open() {
+  if (mySidebar.style.display === 'flex') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'flex';
+  }
+}
+
+// Close the sidebar with the close button
+function mobile_close() {
+    mySidebar.style.display = "none";
+}
+</script>
+</body>
 </html>
