@@ -154,6 +154,8 @@ header {
 #react_form > form {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
 }
 #react_form .vehicles {
   display: flex;
@@ -173,6 +175,7 @@ header {
   display: flex;
   flex-direction: column;
   align-self: flex-end;
+  width: 100%;
   height: 100%;
 }
 #react_form .tabs > .tab_buttons {
@@ -187,8 +190,33 @@ header {
 #react_form .tabs > .tab_content {
   height: 100%;
 }
-#react_form .tabs > .tab_content input[type=number] {
+#react_form .tabs .tab {
+  display: flex;
+  flex-direction: row;
+}
+#react_form .tabs .tab > div > div {
+  display: flex;
+  flex-direction: row;
+}
+#react_form .tabs .tab label {
+  width: 100%;
+}
+#react_form .tabs .tab input[type=number] {
   width: 5rem;
+}
+#react_form .tabs .tab input[type=range] {
+  width: 100%;
+}
+#react_form .tabs .tab > .leftSlider {
+  width: 50%;
+  margin: 1rem;
+}
+#react_form .tabs .tab > .rightSlider {
+  width: 50%;
+  margin: 1rem;
+}
+#react_form > form > input {
+  margin: 20px;
 }
 
 

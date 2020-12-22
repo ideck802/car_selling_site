@@ -39,30 +39,42 @@ class HomeForm extends React.Component {
     event.preventDefault();
   }
 
-  sliderBundle(slider1, slider2) {
-    return <div>
-      <input
-        name={slider1}
-        type="number"
-        value={this.state[slider1]}
-        onChange={this.handleInputChange} />
-      <input
-        name={slider1}
-        type="range"
-        value={this.state[slider1]}
-        onChange={this.handleInputChange}
-        min="0" max="100" />
-      <input
-        name={slider2}
-        type="range"
-        value={this.state[slider2]}
-        onChange={this.handleInputChange}
-        min="0" max="100" />
-      <input
-        name={slider2}
-        type="number"
-        value={this.state[slider2]}
-        onChange={this.handleInputChange} />
+  sliderBundle(label, slider1, slider2, label1, label2) {
+    return <div label={label} className="tab">
+      <div className="leftSlider">
+        <div>
+          <label htmlFor="price1">{label1}</label>
+          <input
+            name={slider1}
+            type="number"
+            id="price1"
+            value={this.state[slider1]}
+            onChange={this.handleInputChange} />
+        </div>
+        <input
+          name={slider1}
+          type="range"
+          value={this.state[slider1]}
+          onChange={this.handleInputChange}
+          min="0" max="100" />
+      </div>
+      <div className="rightSlider">
+        <div>
+          <label htmlFor="price2">{label2}</label>
+          <input
+            name={slider2}
+            type="number"
+            id="price2"
+            value={this.state[slider2]}
+            onChange={this.handleInputChange} />
+        </div>
+        <input
+          name={slider2}
+          type="range"
+          value={this.state[slider2]}
+          onChange={this.handleInputChange}
+          min="0" max="100" />
+      </div>
     </div>
   }
 
@@ -105,12 +117,8 @@ class HomeForm extends React.Component {
           </div>
         </div>
         <Tabs>
-          <div label="Tab 1">
-            {this.sliderBundle("minPrice", "maxPrice")}
-          </div>
-          <div label="Tab 2">
-            {this.sliderBundle("downFinance", "monthlyFinance")}
-          </div>
+          {this.sliderBundle("Tab 1", "minPrice", "maxPrice", "Min price", "Max Price")}
+          {this.sliderBundle("Tab 2", "downFinance", "monthlyFinance", "Cash Down", "Monthly Payment")}
         </Tabs>
         <input type="submit" value="Submit" />
       </form>
