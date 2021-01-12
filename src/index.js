@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/main.css';
+import './css/home_form.css';
 import Tabs from './components/tabs';
 import reportWebVitals from './reportWebVitals';
+
+import Carousel from 'react-elastic-carousel'
 
 
 class HomeForm extends React.Component {
@@ -10,18 +13,33 @@ class HomeForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      check1: true,
-      check2: false,
-      check3: false,
+      check_suv: false,
+      check_truck: false,
+      check_sedan: false,
+      check_crossover: false,
+      check_coupe: false,
+      check_convertible: false,
+      check_sport: false,
+      check_van: false,
+      check_wagon: false,
       minPrice: 5,
       maxPrice: 5,
       downFinance: 5,
-      monthlyFinance: 5
+      monthlyFinance: 5,
+      breakpoints: [
+        { width: 1, itemsToShow: 1.5, itemsToScroll: 1 },
+        { width: 300, itemsToShow: 2, itemsToScroll: 1 },
+        { width: 350, itemsToShow: 3, itemsToScroll: 2 },
+        { width: 500, itemsToShow: 4, itemsToScroll: 2 },
+        { width: 550, itemsToShow: 5, itemsToScroll: 3 },
+        { width: 600, itemsToShow: 6, itemsToScroll: 3 }
+      ]
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.sliderBundle = this.sliderBundle.bind(this);
+    this.labelCreator = this.labelCreator.bind(this);
   }
 
   handleInputChange(event) {
@@ -44,12 +62,14 @@ class HomeForm extends React.Component {
       <div className="leftSlider">
         <div>
           <label htmlFor="price1">{label1}</label>
+          <span className="inputNumber">$
           <input
             name={slider1}
             type="number"
             id="price1"
             value={this.state[slider1]}
             onChange={this.handleInputChange} />
+          </span>
         </div>
         <input
           name={slider1}
@@ -61,12 +81,14 @@ class HomeForm extends React.Component {
       <div className="rightSlider">
         <div>
           <label htmlFor="price2">{label2}</label>
+          <span className="inputNumber">$
           <input
             name={slider2}
             type="number"
             id="price2"
             value={this.state[slider2]}
             onChange={this.handleInputChange} />
+          </span>
         </div>
         <input
           name={slider2}
@@ -78,47 +100,106 @@ class HomeForm extends React.Component {
     </div>
   }
 
+  labelCreator(forInput, value, fileName) {
+    if(this.state[value] === false) {
+      return <label htmlFor={forInput}><i className="checkmark fas fa-check"></i><p>{fileName}</p><img src={"../../images/"+fileName+".svg"} draggable="false" alt={fileName}/></label>
+    } else {
+      return <label htmlFor={forInput} className="selected"><i className="checkmark fas fa-check"></i><p>{fileName}</p><img src={"../../images/"+fileName+".svg"} draggable="false" alt={fileName}/></label>
+    }
+  }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="vehicles">
           <p>Pick a Type <span>(select all that apply)</span></p>
-          <div className="checkboxes">
-            <input
-              name="check1"
-              type="checkbox"
-              checked={this.state.check1}
-              onChange={this.handleInputChange} />
-            <input
-              name="check2"
-              type="checkbox"
-              checked={this.state.check2}
-              onChange={this.handleInputChange} />
-            <input
-              name="check3"
-              type="checkbox"
-              checked={this.state.check3}
-              onChange={this.handleInputChange} />
-            <input
-              name="check3"
-              type="checkbox"
-              checked={this.state.check3}
-              onChange={this.handleInputChange} />
-            <input
-              name="check3"
-              type="checkbox"
-              checked={this.state.check3}
-              onChange={this.handleInputChange} />
-            <input
-              name="check3"
-              type="checkbox"
-              checked={this.state.check3}
-              onChange={this.handleInputChange} />
-          </div>
+          <Carousel itemsToShow={3} itemsToScroll={1} breakPoints={this.state.breakpoints} pagination={false} className="checkboxes">
+            <div className="slide">
+              {this.labelCreator("check_suv", "check_suv", "SUVs")}
+              <input
+                name="check_suv"
+                type="checkbox"
+                id="check_suv"
+                checked={this.state.check_suv}
+                onChange={this.handleInputChange} />
+            </div>
+            <div className="slide">
+              {this.labelCreator("check_truck", "check_truck", "Pickup Trucks")}
+              <input
+                name="check_truck"
+                type="checkbox"
+                id="check_truck"
+                checked={this.state.check_truck}
+                onChange={this.handleInputChange} />
+            </div>
+            <div className="slide">
+              {this.labelCreator("check_sedan", "check_sedan", "Sedans")}
+              <input
+                name="check_sedan"
+                type="checkbox"
+                id="check_sedan"
+                checked={this.state.check_sedan}
+                onChange={this.handleInputChange} />
+            </div>
+            <div className="slide">
+              {this.labelCreator("check_crossover", "check_crossover", "Crossovers")}
+              <input
+                name="check_crossover"
+                type="checkbox"
+                id="check_crossover"
+                checked={this.state.check_crossover}
+                onChange={this.handleInputChange} />
+            </div>
+            <div className="slide">
+              {this.labelCreator("check_coupe", "check_coupe", "Coupes")}
+              <input
+                name="check_coupe"
+                type="checkbox"
+                id="check_coupe"
+                checked={this.state.check_coupe}
+                onChange={this.handleInputChange} />
+            </div>
+            <div className="slide">
+              {this.labelCreator("check_convertible", "check_convertible", "Convertibles")}
+              <input
+                name="check_convertible"
+                type="checkbox"
+                id="check_convertible"
+                checked={this.state.check_convertible}
+                onChange={this.handleInputChange} />
+            </div>
+            <div className="slide">
+              {this.labelCreator("check_sport", "check_sport", "Sports Cars")}
+              <input
+                name="check_sport"
+                type="checkbox"
+                id="check_sport"
+                checked={this.state.check_sport}
+                onChange={this.handleInputChange} />
+            </div>
+            <div className="slide">
+              {this.labelCreator("check_van", "check_van", "Vans")}
+              <input
+                name="check_van"
+                type="checkbox"
+                id="check_van"
+                checked={this.state.check_van}
+                onChange={this.handleInputChange} />
+            </div>
+            <div className="slide">
+              {this.labelCreator("check_wagon", "check_wagon", "Wagons")}
+              <input
+                name="check_wagon"
+                type="checkbox"
+                id="check_wagon"
+                checked={this.state.check_wagon}
+                onChange={this.handleInputChange} />
+            </div>
+          </Carousel>
         </div>
         <Tabs>
-          {this.sliderBundle("Tab 1", "minPrice", "maxPrice", "Min price", "Max Price")}
-          {this.sliderBundle("Tab 2", "downFinance", "monthlyFinance", "Cash Down", "Monthly Payment")}
+          {this.sliderBundle("Price", "minPrice", "maxPrice", "Min price", "Max Price")}
+          {this.sliderBundle("Finance", "downFinance", "monthlyFinance", "Cash Down", "Monthly Payment")}
         </Tabs>
         <input type="submit" value="Submit" />
       </form>

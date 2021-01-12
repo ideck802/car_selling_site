@@ -9,7 +9,9 @@ $dark_blue: #133d7f;
 html, body {
   height: 100%;
   width: 100%;
-  margin: 0rem;
+  margin: 0px;
+  font-size: 100%;
+  overflow-x: hidden;
 }
 
 @media (max-width:600px) {
@@ -29,10 +31,16 @@ html, body {
 }
 
 .button {
-  margin: 0.5rem;
-  padding: 1.5rem;
+  margin: 5px;
+  padding: 15px;
   border: 1px solid $dark_blue;
-  border-radius: 1rem;
+  border-radius: 10;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0px;
 }
 
 
@@ -41,10 +49,11 @@ html, body {
   flex-direction: row;
   justify-content: space-between;
   position: fixed;
-  top: 0rem;
+  top: 0px;
   width: 100%;
-  height: 5rem;
+  height: 80px;
   border-bottom: 1px solid $dark_blue;
+  z-index: 5;
 
   background: $blue;
 }
@@ -57,8 +66,8 @@ html, body {
   display: flex;
   align-items: center;
   height: 100%;
-  padding-left: 1.3rem;
-  padding-right: 1.3rem;
+  padding-left: 20px;
+  padding-right: 20px;
   text-decoration: none;
   border-bottom: 0px solid $dark_blue;
   transition: all 0.2s ease;
@@ -72,8 +81,8 @@ html, body {
   display: flex;
   align-items: center;
   height: 100%;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 20px;
+  padding-right: 20px;
   text-decoration: none;
 
   color: $dark_blue;
@@ -83,10 +92,10 @@ html, body {
   display: none;
   flex-direction: column;
   position: fixed;
-  top: 0rem;
-  right: 0rem;
+  top: 0px;
+  right: 0px;
   height: 100%;
-  width: 10rem;
+  width: 200px;
   z-index: 10;
 
   background: $dark_blue;
@@ -96,7 +105,7 @@ html, body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 5rem;
+  height: 80px;
   text-decoration: none;
   border: none;
   border-bottom: 0px solid $blue;
@@ -123,100 +132,12 @@ html, body {
 }
 
 header {
-  height: calc(100% - 5rem);
+  height: calc(100% - 80px);
   width: 100%;
-  margin-top: 5rem;
+  margin-top: 80px;
 
   background: $gray;
   color: $dark_blue;
-}
-
-
-.survey {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 100%;
-
-  background: $white;
-}
-.survey > p {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-left: 20%;
-  margin-right: auto;
-}
-#react_form {
-  display: flex;
-  flex-direction: row;
-}
-#react_form > form {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  width: 100%;
-}
-#react_form .vehicles {
-  display: flex;
-  flex-direction: column;
-}
-#react_form .vehicles > .checkboxes {
-  display: flex;
-  flex-direction: column;
-  height: 4rem;
-  overflow-x: hidden;
-  overflow-y: scroll;
-}
-#react_form .vehicles > .checkboxes > input {
-  width: 2rem;
-}
-#react_form .tabs {
-  display: flex;
-  flex-direction: column;
-  align-self: flex-end;
-  width: 100%;
-  height: 100%;
-}
-#react_form .tabs > .tab_buttons {
-  display: flex;
-  flex-direction: row;
-}
-#react_form .tabs > .tab_buttons > .tab_button {
-  width: 50%;
-
-  background: red;
-}
-#react_form .tabs > .tab_content {
-  height: 100%;
-}
-#react_form .tabs .tab {
-  display: flex;
-  flex-direction: row;
-}
-#react_form .tabs .tab > div > div {
-  display: flex;
-  flex-direction: row;
-}
-#react_form .tabs .tab label {
-  width: 100%;
-}
-#react_form .tabs .tab input[type=number] {
-  width: 5rem;
-}
-#react_form .tabs .tab input[type=range] {
-  width: 100%;
-}
-#react_form .tabs .tab > .leftSlider {
-  width: 50%;
-  margin: 1rem;
-}
-#react_form .tabs .tab > .rightSlider {
-  width: 50%;
-  margin: 1rem;
-}
-#react_form > form > input {
-  margin: 20px;
 }
 
 
