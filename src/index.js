@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import './css/main.css';
 import './css/home_form.css';
 import Tabs from './components/tabs';
+import images from './images'
 import reportWebVitals from './reportWebVitals';
 
 import Carousel from 'react-elastic-carousel'
@@ -31,8 +32,11 @@ class HomeForm extends React.Component {
         { width: 300, itemsToShow: 2, itemsToScroll: 1 },
         { width: 350, itemsToShow: 3, itemsToScroll: 2 },
         { width: 500, itemsToShow: 4, itemsToScroll: 2 },
-        { width: 550, itemsToShow: 5, itemsToScroll: 3 },
-        { width: 600, itemsToShow: 6, itemsToScroll: 3 }
+        { width: 600, itemsToShow: 5, itemsToScroll: 3 },
+        { width: 700, itemsToShow: 6, itemsToScroll: 3 },
+        { width: 800, itemsToShow: 7, itemsToScroll: 4 },
+        { width: 900, itemsToShow: 8, itemsToScroll: 4 },
+        { width: 1000, itemsToShow: 9, itemsToScroll: 4 }
       ]
     };
 
@@ -100,11 +104,11 @@ class HomeForm extends React.Component {
     </div>
   }
 
-  labelCreator(forInput, value, fileName) {
-    if(this.state[value] === false) {
-      return <label htmlFor={forInput}><i className="checkmark fas fa-check"></i><p>{fileName}</p><img src={"../../images/"+fileName+".svg"} draggable="false" alt={fileName}/></label>
+  labelCreator(forInput, fileName, value) {
+    if(this.state[forInput] === false) {
+      return <label htmlFor={forInput}><i className="checkmark fas fa-check"></i><p>{value}</p><img src={fileName} draggable="false" alt={fileName}/></label>
     } else {
-      return <label htmlFor={forInput} className="selected"><i className="checkmark fas fa-check"></i><p>{fileName}</p><img src={"../../images/"+fileName+".svg"} draggable="false" alt={fileName}/></label>
+      return <label htmlFor={forInput} className="selected"><i className="checkmark fas fa-check"></i><p>{value}</p><img src={fileName} draggable="false" alt={fileName}/></label>
     }
   }
 
@@ -115,7 +119,7 @@ class HomeForm extends React.Component {
           <p>Pick a Type <span>(select all that apply)</span></p>
           <Carousel itemsToShow={3} itemsToScroll={1} breakPoints={this.state.breakpoints} pagination={false} className="checkboxes">
             <div className="slide">
-              {this.labelCreator("check_suv", "check_suv", "SUVs")}
+              {this.labelCreator("check_suv", images.suv, "SUVs")}
               <input
                 name="check_suv"
                 type="checkbox"
@@ -124,7 +128,7 @@ class HomeForm extends React.Component {
                 onChange={this.handleInputChange} />
             </div>
             <div className="slide">
-              {this.labelCreator("check_truck", "check_truck", "Pickup Trucks")}
+              {this.labelCreator("check_truck", images.pickup, "Pickup Trucks")}
               <input
                 name="check_truck"
                 type="checkbox"
@@ -133,7 +137,7 @@ class HomeForm extends React.Component {
                 onChange={this.handleInputChange} />
             </div>
             <div className="slide">
-              {this.labelCreator("check_sedan", "check_sedan", "Sedans")}
+              {this.labelCreator("check_sedan", images.sedan, "Sedans")}
               <input
                 name="check_sedan"
                 type="checkbox"
@@ -142,7 +146,7 @@ class HomeForm extends React.Component {
                 onChange={this.handleInputChange} />
             </div>
             <div className="slide">
-              {this.labelCreator("check_crossover", "check_crossover", "Crossovers")}
+              {this.labelCreator("check_crossover", images.crossover, "Crossovers")}
               <input
                 name="check_crossover"
                 type="checkbox"
@@ -151,7 +155,7 @@ class HomeForm extends React.Component {
                 onChange={this.handleInputChange} />
             </div>
             <div className="slide">
-              {this.labelCreator("check_coupe", "check_coupe", "Coupes")}
+              {this.labelCreator("check_coupe", images.coupe, "Coupes")}
               <input
                 name="check_coupe"
                 type="checkbox"
@@ -160,7 +164,7 @@ class HomeForm extends React.Component {
                 onChange={this.handleInputChange} />
             </div>
             <div className="slide">
-              {this.labelCreator("check_convertible", "check_convertible", "Convertibles")}
+              {this.labelCreator("check_convertible", images.convertible, "Convertibles")}
               <input
                 name="check_convertible"
                 type="checkbox"
@@ -169,7 +173,7 @@ class HomeForm extends React.Component {
                 onChange={this.handleInputChange} />
             </div>
             <div className="slide">
-              {this.labelCreator("check_sport", "check_sport", "Sports Cars")}
+              {this.labelCreator("check_sport", images.sports, "Sports Cars")}
               <input
                 name="check_sport"
                 type="checkbox"
@@ -178,7 +182,7 @@ class HomeForm extends React.Component {
                 onChange={this.handleInputChange} />
             </div>
             <div className="slide">
-              {this.labelCreator("check_van", "check_van", "Vans")}
+              {this.labelCreator("check_van", images.van, "Vans")}
               <input
                 name="check_van"
                 type="checkbox"
@@ -187,7 +191,7 @@ class HomeForm extends React.Component {
                 onChange={this.handleInputChange} />
             </div>
             <div className="slide">
-              {this.labelCreator("check_wagon", "check_wagon", "Wagons")}
+              {this.labelCreator("check_wagon", images.wagon, "Wagons")}
               <input
                 name="check_wagon"
                 type="checkbox"
@@ -198,10 +202,10 @@ class HomeForm extends React.Component {
           </Carousel>
         </div>
         <Tabs>
-          {this.sliderBundle("Price", "minPrice", "maxPrice", "Min price", "Max Price")}
-          {this.sliderBundle("Finance", "downFinance", "monthlyFinance", "Cash Down", "Monthly Payment")}
+          {this.sliderBundle("PRICE", "minPrice", "maxPrice", "Min price", "Max Price")}
+          {this.sliderBundle("FINANCE", "downFinance", "monthlyFinance", "Cash Down", "Monthly Payment")}
         </Tabs>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="SEE WHAT'S AVAILABLE" className="submitBtn" />
       </form>
     );
   }

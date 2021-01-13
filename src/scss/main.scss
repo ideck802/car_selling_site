@@ -11,7 +11,6 @@ html, body {
   width: 100%;
   margin: 0px;
   font-size: 100%;
-  overflow-x: hidden;
 }
 
 @media (max-width:600px) {
@@ -50,10 +49,11 @@ input[type=number]::-webkit-outer-spin-button {
   justify-content: space-between;
   position: fixed;
   top: 0px;
+  left: 0px;
   width: 100%;
   height: 80px;
   border-bottom: 1px solid $dark_blue;
-  z-index: 5;
+  z-index: 1;
 
   background: $blue;
 }
@@ -132,12 +132,44 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   height: calc(100% - 80px);
   width: 100%;
   margin-top: 80px;
 
-  background: $gray;
+  background-image: url('../images/road1.jpg');
+  background-position: top;
+  background-size: auto 160%;
   color: $dark_blue;
+}
+header h2 {
+  text-align: center;
+  margin: 20px;
+  padding: 30px;
+  border-radius: 10px;
+
+  background: $gray;
+}
+header h4 {
+  text-align: center;
+  margin: 20px;
+  margin-top: 30px;
+  padding: 20px;
+  border-radius: 10px;
+
+  background: $gray;
+}
+header a {
+  margin-top: 40px;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+
+  background: $dark_blue;
+  color: $blue;
 }
 
 
