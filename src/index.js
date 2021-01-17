@@ -4,6 +4,7 @@ import './css/main.css';
 import './css/home_form.css';
 import Tabs from './components/tabs';
 import images from './images'
+import './vehicle_list';
 import reportWebVitals from './reportWebVitals';
 
 import Carousel from 'react-elastic-carousel'
