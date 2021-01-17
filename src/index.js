@@ -7,6 +7,7 @@ import images from './images'
 import reportWebVitals from './reportWebVitals';
 
 import Carousel from 'react-elastic-carousel'
+import 'car-makes-icons/dist/style.css';
 
 
 class HomeForm extends React.Component {

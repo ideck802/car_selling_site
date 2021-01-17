@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Test</title>
+<title>Beep!</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
@@ -22,7 +22,7 @@
 <!-- TOP MENU BAR -->
 <div class="top_bar">
   <div class="logo">
-    <a href="#" class="menu_link">Beep</a>
+    <a href="#" class="menu_link">Beep!</a>
   </div>
   <!-- right-sided menu links -->
   <div class="hide-small">
@@ -46,7 +46,12 @@
 <header>
   <h1>Get The Car You're Looking For!</h1>
   <h3>Try it for a week, or buy it online and have it delivered.</h3>
-  <a href="#">What will it be? <i class="fas fa-arrow-right"></i></a>
+  <a href="#">What will it be?
+    <div class="icons">
+      <i class="fas fa-arrow-right"></i>
+      <i class="fas fa-car-side"></i>
+    </div>
+  </a>
 </header>
 
 <!-- query what they are looking for -->
@@ -59,19 +64,61 @@
 
 <!-- how we work/what we provide -->
 <div class="first_ribbon">
-  <p>Only the best cars. Each one inspected.</p>
-  <p>Test drive for seven days. Don't like it, just return it.</p>
-  <p>Delivered quickly with little extra cost.</p>
+  <div class="hide-small">
+    <div class="one"><h4>The Best Cars</h4><p>Each vehicle is inspected for top quality. Free history reports are available.</p></div>
+    <div class="two"><h4>Try it Out</h4><p>Test drive for seven days. Don't like it, just return it.</p></div>
+    <div class="three"><h4>Speedy Delivery</h4><p>Quick and hassle-free delivery to you for no extra cost.</p></div>
+  </div>
+  <div class="hide-medium hide-large">
+    <div class="one"><h4>The Best Cars</h4><p>Each vehicle is inspected for top quality. Free history reports are available.</p></div>
+    <div class="two"><h4>Try it Out</h4><p>Test drive for seven days. Don't like it, just return it.</p></div>
+    <div class="three"><h4>Speedy Delivery</h4><p>Quick and hassle-free delivery to you for no extra cost.</p></div>
+  </div>
 </div>
 
 <!-- "BROWSE BY" WITH NEW AND USED TABS -->
 <div class="browse">
   <div class="brand">
     <p>Browse by Brand</p>
+    <input id="show-more" type="checkbox">
     <ul>
-      <li>Dodge</li>
-      <li>Ram</li>
+      <li><a href="#"><i class="car-acura"></i>Acura</a></li>
+      <li><a href="#"><i class="car-alfa-romeo"></i>Alfa Romeo</a></li>
+      <li><a href="#"><i class="car-audi"></i>Audi</a></li>
+      <li><a href="#"><i class="car-bmw"></i>BMW</a></li>
+      <li><a href="#"><i class="car-buick"></i>Buick</a></li>
+      <li><a href="#"><i class="car-cadillac"></i>Cadillac</a></li>
+      <li><a href="#"><i class="car-chevrolet"></i>Chevrolet</a></li>
+      <li><a href="#"><i class="car-chrysler"></i>Chysler</a></li>
+      <li><a href="#"><i class="car-dodge"></i>Dodge</a></li>
+      <li><a href="#"><i class="car-fiat"></i>Fiat</a></li>
+      <li><a href="#"><i class="car-ford"></i>Ford</a></li>
+      <li><a href="#"><i class="car-genesis"></i>Gensis</a></li>
+      <li><a href="#"><i class="car-gmc"></i>GMC</a></li>
+      <li><a href="#"><i class="car-honda"></i>Honda</a></li>
+      <li><a href="#"><i class="car-hyundai"></i>Hyundai</a></li>
+      <li><a href="#"><i class="car-infiniti"></i>INFINITI</a></li>
+      <li><a href="#"><i class="car-jaguar"></i>Jaguar</a></li>
+      <li><a href="#"><i class="car-jeep"></i>Jeep</a></li>
+      <li><a href="#"><i class="car-kia"></i>Kia</a></li>
+      <li><a href="#"><i class="car-land-rover"></i>Land Rover</a></li>
+      <li><a href="#"><i class="car-lexus"></i>Lexus</a></li>
+      <li><a href="#"><i class="car-lincoln"></i>Lincoln</a></li>
+      <li><a href="#"><i class="car-lotus"></i>Lotus</a></li>
+      <li><a href="#"><i class="car-maserati"></i>Maserati</a></li>
+      <li><a href="#"><i class="car-mazda"></i>Mazda</a></li>
+      <li><a href="#"><i class="car-mercedes-benz"></i>Mercedes-Benz</a></li>
+      <li><a href="#"><i class="car-mini"></i>MINI</a></li>
+      <li><a href="#"><i class="car-mitsubishi"></i>Mitsubishi</a></li>
+      <li><a href="#"><i class="car-nissan"></i>Nissan</a></li>
+      <li><a href="#"><i class="car-porsche"></i>Porsche</a></li>
+      <li><a href="#"><i class="car-ram"></i>Ram</a></li>
+      <li><a href="#"><i class="car-subaru"></i>Subaru</a></li>
+      <li><a href="#"><i class="car-toyota"></i>Toyota</a></li>
+      <li><a href="#"><i class="car-volkswagen"></i>Volkswagen</a></li>
+      <li><a href="#"><i class="car-volvo"></i>Volvo</a></li>
     </ul>
+    <label class="show-more" for="show-more"></label>
   </div>
   <div class="type">
     <p>Browse by Body Type</p>
