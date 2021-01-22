@@ -249,16 +249,18 @@ header a:hover .icons .fa-car-side {
 
 @media (max-width:600px) { /* small screen sizes */
   .browse .brand ul {
-    height: 330px;
+    height: 350px;
     padding: 0px;
     column-count: 1;
     column-gap: 20px;
   }
   .browse .brand ul li {
     justify-content: flex-start;
+    width: 100% !important;
+    margin-left: 0px !important;
     padding-left: 20px;
-
-    border-bottom: 1px solid $dark_blue;
+    border-bottom: 1px solid $dark_blue !important;
+    border-radius: 0px !important;
   }
   .browse .brand .show-more::after {
       content: "Show More";
@@ -295,14 +297,31 @@ header a:hover .icons .fa-car-side {
   justify-content: center;
   width: 100%;
 }
+.browse .brand h3 {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  border-bottom: 1px solid $dark_blue;
+
+  color: $dark_blue;
+}
 .browse .brand ul {
+  margin: 0px;
+  padding: 0px;
   overflow: hidden;
   list-style-type: none;
 }
 .browse .brand ul li {
   display: inline-flex;
-  width: 100%;
-  height: 4rem;
+  width: 90%;
+  margin: 10px;
+  padding-left: 5px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+}
+.browse .brand ul li:hover {
+  border: 1px solid $dark_blue;
 }
 .browse .brand ul li a {
   display: flex;
@@ -310,6 +329,7 @@ header a:hover .icons .fa-car-side {
   text-decoration: none;
   width: 100%;
   height: 100%;
+  padding: 20px;
 
   color: $dark_blue;
 }
@@ -338,9 +358,11 @@ header a:hover .icons .fa-car-side {
   }
   .browse .type ul li {
     justify-content: flex-start;
+    width: 100% !important;
+    margin-left: 0px !important;
     padding-left: 20px;
-
-    border-bottom: 1px solid $dark_blue;
+    border-bottom: 1px solid $dark_blue !important;
+    border-radius: 0px !important;
   }}
 @media (max-width:992px) and (min-width:601px) { /* medium screen sizes */
   .browse .type ul {
@@ -368,14 +390,31 @@ header a:hover .icons .fa-car-side {
   justify-content: center;
   width: 100%;
 }
+.browse .type h3 {
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  border-bottom: 1px solid $dark_blue;
+
+  color: $dark_blue;
+}
 .browse .type ul {
+  margin: 0px;
+  padding: 0px;
   overflow: hidden;
   list-style-type: none;
 }
 .browse .type ul li {
   display: inline-flex;
-  width: 100%;
-  height: 4rem;
+  width: 90%;
+  margin: 10px;
+  padding-left: 5px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+}
+.browse .type ul li:hover {
+  border: 1px solid $dark_blue;
 }
 .browse .type ul li a {
   display: flex;
@@ -383,19 +422,144 @@ header a:hover .icons .fa-car-side {
   text-decoration: none;
   width: 100%;
   height: 100%;
+  padding: 20px;
 
   color: $dark_blue;
 }
 .browse .type ul li img {
   width: 4rem;
   height: 4rem;
+  margin-top: -20px;
+  margin-bottom: -20px;
   margin-right: 5px;
 }
 
 
 footer {
   display: flex;
+  flex-direction: column;
   width: 100%;
+  margin-top: 20px;
 
   background: $dark_blue;
 }
+footer > p {
+  padding: 10px;
+  text-align: center;
+
+  color: $gray;
+}
+footer > p a {
+  padding-left: 20px;
+  padding-right: 20px;
+  text-decoration: none;
+
+  color: $gray;
+}
+footer > p a:hover {
+  color: $blue;
+}
+footer .social {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border-bottom: 1px solid $light_blue;
+
+  color: $gray;
+}
+footer .social div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33.333%;
+  padding: 20px;
+}
+footer .social div > i {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1.3rem;
+}
+footer .social div a {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1.3rem;
+
+  color: $gray;
+}
+footer .social div a:hover {
+  color: $blue;
+}
+footer .social .number {
+  margin-left: -4%;
+}
+/* small version */
+footer .social-small {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid $light_blue;
+
+  color: $gray;
+}
+footer .social-small div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+footer .social-small div > i {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1.3rem;
+}
+footer .social-small div a {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1.3rem;
+
+  color: $gray;
+}
+footer .social-small div a:hover {
+  color: $blue;
+}
+footer .social-small .number {
+  margin-left: -4%;
+}
+footer .my-plug {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+
+  background: $gray;
+  color: $dark_blue;
+}
+footer .my-plug a {
+  height: 100%;
+  font-weight: bold;
+  text-decoration: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  color: $dark_blue;
+}
+footer .my-plug a:hover {
+  color: $blue;
+}
+footer .my-plug a i {
+  padding: 5px;
+}
+footer .my-plug p {
+  margin: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+@media (max-width:600px) { /* small screen sizes */
+  footer .my-plug p {
+    width: 100%;
+    text-align: center;
+  }}
+@media (min-width:601px) { /* medium screen sizes */
+  footer .my-plug p {
+    text-align: center;
+  }}
