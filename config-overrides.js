@@ -1,6 +1,6 @@
 const multipleEntry = require('react-app-rewire-multiple-entry')([
   {
-    entry: 'src/index.js',
+    entry: 'src/search.js',
     template: 'public/search.html',
     outPath: '/search.html'
   }

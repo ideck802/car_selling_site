@@ -1,0 +1,391 @@
+$black: #000000;
+$white: #ffffff;
+$gray: #c8c8c8;
+$light_blue: #3a85ff;
+$blue: #2778ff;
+$dark_blue: #133d7f;
+
+
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  font-size: 100%;
+}
+
+@media (max-width:600px) {
+  .hide-small {
+    display:none !important;
+  }
+}
+@media (max-width:992px) and (min-width:601px) {
+  .hide-medium {
+    display:none !important;
+  }
+}
+@media (min-width:993px) {
+  .hide-large {
+    display:none !important;
+  }
+}
+
+.button {
+  margin: 5px;
+  padding: 15px;
+  border: 1px solid $dark_blue;
+  border-radius: 10;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0px;
+}
+
+
+.top_bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 80px;
+  border-bottom: 1px solid $dark_blue;
+  z-index: 1;
+
+  background: $blue;
+}
+.top_bar > div {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+}
+.menu_link {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-decoration: none;
+  border-bottom: 0px solid $dark_blue;
+  transition: all 0.2s ease;
+
+  color: $dark_blue;
+}
+.menu_link:hover {
+  border-bottom: 5px solid $dark_blue;
+}
+.menu_open {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-decoration: none;
+
+  color: $dark_blue;
+}
+
+.mobile_menu {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  height: 100%;
+  width: 200px;
+  z-index: 10;
+
+  background: $dark_blue;
+}
+.mobile_menu_close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+  text-decoration: none;
+  border: none;
+  border-bottom: 0px solid $blue;
+  transition: all 0.2s ease;
+
+  color: $blue;
+}
+.mobile_menu_close:hover {
+  border-bottom: 5px solid $blue;
+}
+.mobile_menu_link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-decoration: none;
+  border-bottom: 0px solid $blue;
+  transition: all 0.2s ease;
+
+  color: $blue;
+}
+.mobile_menu_link:hover {
+  border-bottom: 5px solid $blue;
+}
+
+
+
+#search_form {
+  margin-top: 80px;
+}
+#search_form .filters {
+  display: flex;
+  flex-direction: column;
+}
+#search_form .filters .search_box {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  margin: 10px;
+  padding: 5px;
+  font-size: 15px;
+  border: 1px solid $gray;
+  border-radius: 5px;
+}
+#search_form .filters .search_box p {
+  height: 100%;
+  margin: 0px;
+  padding: 8px;
+  padding-right: 0px;
+  font-size: 18px;
+  border-left: 1px solid $gray;
+}
+#search_form .filters .search_box input {
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  border: none;
+}
+#search_form .filters .search_box input[name="zip_code"] {
+  width: 100px;
+}
+#search_form .filters .search_box .drop_down button {
+  height: 100%;
+  padding: 10px;
+  border-top: 0px;
+  border-bottom: 0px;
+  border-left: 1px solid $gray;
+  border-right: 1px solid $gray;
+  white-space: nowrap;
+  cursor: pointer;
+
+  background: $white;
+}
+#search_form .filters .search_box .drop_down .dd_content {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  right: 3px;
+  width: 200px;
+  border: 1px solid $gray;
+  border-top: 1px solid $white;
+  border-bottom: 0px;
+  z-index: 5;
+
+  background: $white;
+}
+#search_form .filters .search_box .drop_down .dd_content a {
+  padding: 10px;
+  text-decoration: none;
+  border-bottom: 1px solid $gray;
+
+  color: $black;
+}
+#search_form .filters .search_box button {
+  height: 100%;
+  padding: 12px;
+  border: 0px;
+  cursor: pointer;
+
+  background: $white;
+}
+#search_form .filters .search_box button i {
+  padding-left: 8px;
+}
+#search_form .filters .drop_downs {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  height: 60px;
+}
+#search_form .filters .drop_downs .drop_down {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 16.6%;
+}
+#search_form .filters .drop_downs .drop_down button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  width: 90%;
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid $gray;
+  border-radius: 5px;
+  cursor: pointer;
+
+  background: $white;
+}
+#search_form .filters .drop_downs .drop_down button i {
+  padding-left: 8px;
+}
+#search_form .filters .drop_downs .drop_down .dd_content {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  left: 0px;
+  width: 100%;
+  border: 1px solid $gray;
+  border-bottom: 0px;
+  z-index: 5;
+
+  background: $white;
+}
+#search_form .filters .drop_downs .drop_down .dd_content a {
+  padding: 10px;
+  border-bottom: 1px solid $gray;
+}
+
+
+footer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 20px;
+
+  background: $dark_blue;
+}
+footer > p {
+  padding: 10px;
+  text-align: center;
+
+  color: $gray;
+}
+footer > p a {
+  padding-left: 20px;
+  padding-right: 20px;
+  text-decoration: none;
+
+  color: $gray;
+}
+footer > p a:hover {
+  color: $blue;
+}
+footer .social {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  border-bottom: 1px solid $light_blue;
+
+  color: $gray;
+}
+footer .social div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33.333%;
+  padding: 20px;
+}
+footer .social div > i {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1.3rem;
+}
+footer .social div a {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1.3rem;
+
+  color: $gray;
+}
+footer .social div a:hover {
+  color: $blue;
+}
+footer .social .number {
+  margin-left: -4%;
+}
+/* small version */
+footer .social-small {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid $light_blue;
+
+  color: $gray;
+}
+footer .social-small div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+footer .social-small div > i {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1.3rem;
+}
+footer .social-small div a {
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 1.3rem;
+
+  color: $gray;
+}
+footer .social-small div a:hover {
+  color: $blue;
+}
+footer .social-small .number {
+  margin-left: -4%;
+}
+footer .my-plug {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+
+  background: $gray;
+  color: $dark_blue;
+}
+footer .my-plug a {
+  height: 100%;
+  font-weight: bold;
+  text-decoration: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+
+  color: $dark_blue;
+}
+footer .my-plug a:hover {
+  color: $blue;
+}
+footer .my-plug a i {
+  padding: 5px;
+}
+footer .my-plug p {
+  margin: 0px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+@media (max-width:600px) { /* small screen sizes */
+  footer .my-plug p {
+    width: 100%;
+    text-align: center;
+  }}
+@media (min-width:601px) { /* medium screen sizes */
+  footer .my-plug p {
+    text-align: center;
+  }}
