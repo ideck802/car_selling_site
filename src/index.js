@@ -9,6 +9,7 @@ import reportWebVitals from './reportWebVitals';
 
 import Carousel from 'react-elastic-carousel'
 import 'car-makes-icons/dist/style.css';
+import { Range } from 'react-range';
 
 
 class HomeForm extends React.Component {
@@ -27,8 +28,12 @@ class HomeForm extends React.Component {
       check_wagon: false,
       minPrice: 5,
       maxPrice: 5,
+      priceBoxes: [10, 20],
+      values: [10, 20],
       downFinance: 5,
       monthlyFinance: 5,
+      typing: false,
+      typingTimeout: 0,
       breakpoints: [
         { width: 1, itemsToShow: 1.5, itemsToScroll: 1 },
         { width: 300, itemsToShow: 2, itemsToScroll: 1 },
@@ -58,9 +63,9 @@ class HomeForm extends React.Component {
     });
   }
 
-  handleSubmit(event) {
+  handleSubmit(e) {
     alert('Your favorite flavor is: ' + this.state.slider);
-    event.preventDefault();
+    e.preventDefault();
   }
 
   sliderBundle(label, slider1, slider2, label1, label2) {
@@ -113,6 +118,63 @@ class HomeForm extends React.Component {
       return <label htmlFor={forInput} className="selected"><i className="checkmark fas fa-check"></i><p>{value}</p><img src={fileName} draggable="false" alt={fileName}/></label>
     }
   }
+
+  onNumberChange(index, e) {
+
+    const self = this;
+
+    var priceBox = self.state.priceBoxes.slice();
+
+    priceBox[index] = e.target.value;
+
+    this.setState({
+      priceBoxes: priceBox
+    });
+
+    if (self.state.typingTimeout) {
+       clearTimeout(self.state.typingTimeout);
+    }
+    self.setState({
+      typing: false,
+      typingTimeout: setTimeout(function () {
+        var prices = self.state.values.slice();
+
+        if (parseInt(e.target.value) < e.target.min) {
+          e.target.value = e.target.min;
+        };
+        if (parseInt(e.target.value) > e.target.max) {
+          e.target.value = e.target.max;
+        };
+
+        prices[index] = e.target.value;
+
+        self.setState({
+          values: prices
+        });
+      }, 1000)
+    });
+  }
+
+  enterPressed(index, e) {
+    var code = e.key || e.which;
+    if(code === 13 || code === "Enter") { //13 is the enter keycode
+      var prices = this.state.values.slice();
+
+      if (parseInt(e.target.value) < e.target.min) {
+        e.target.value = e.target.min;
+      };
+      if (parseInt(e.target.value) > e.target.max) {
+        e.target.value = e.target.max;
+      };
+
+      prices[index] = e.target.value;
+
+      this.setState({
+        values: prices
+      });
+      e.preventDefault();
+    }
+}
 
   render() {
     return (
@@ -204,7 +266,50 @@ class HomeForm extends React.Component {
           </Carousel>
         </div>
         <Tabs>
-          {this.sliderBundle("PRICE", "minPrice", "maxPrice", "Min price", "Max Price")}
+        <div label="PRICE" className="tab">
+          <div className="sliderContent">
+            <div>
+              <label>Price Range</label>
+              <span className="inputNumber">$
+              <input
+                name="minPrice"
+                type="number"
+                id="minPrice"
+                min="0"
+                max={this.state.values[1]}
+                value={this.state.priceBoxes[0]}
+                onChange={this.onNumberChange.bind(this, 0)}
+                onKeyDown={this.enterPressed.bind(this, 0)} />
+              </span>
+              -
+              <span className="inputNumber">$
+              <input
+                name="maxPrice"
+                type="number"
+                id="maxPrice"
+                min={this.state.values[0]}
+                max="100"
+                value={this.state.priceBoxes[1]}
+                onChange={this.onNumberChange.bind(this, 1)}
+                onKeyDown={this.enterPressed.bind(this, 1)} />
+              </span>
+            </div>
+            <Range
+              min={0}
+              max={100}
+              values={this.state.values}
+              onChange={(values) => this.setState({ values: values, priceBoxes: values })}
+              renderTrack={({ props, children }) => (
+                <div {...props} style={{...props.style, height: '6px', width: '100%', backgroundColor: '#ccc'}} >
+                  {children}
+                  </div>
+              )}
+              renderThumb={({ props }) => (
+                <div {...props} style={{ ...props.style, height: '42px', width: '42px', backgroundColor: '#999'}} />
+              )}
+            />
+          </div>
+        </div>
           {this.sliderBundle("FINANCE", "downFinance", "monthlyFinance", "Cash Down", "Monthly Payment")}
         </Tabs>
         <input type="submit" value="SEE WHAT'S AVAILABLE" className="submitBtn" />
