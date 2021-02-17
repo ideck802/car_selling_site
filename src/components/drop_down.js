@@ -50,8 +50,8 @@ class DropDown extends React.Component {
 
   render() {
     return (
-      <div className="drop_down" ref={this.wrapperRef}>
-        <button onClick={this.changeVisible}>{this.props.btnText}<i class="fas fa-caret-down"></i></button>
+      <div className={(this.state.open===true ? ("drop_down dd_open " + this.props.className):("drop_down " + this.props.className))} ref={this.wrapperRef}>
+        <button onClick={this.changeVisible}>{this.props.btnText}<i className="fas fa-caret-down"></i></button>
         {(this.state.open===true ? (<div className="dd_content">
           {this.props.children}
         </div>):(""))}

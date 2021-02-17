@@ -130,7 +130,7 @@ class HomeForm extends React.Component {
       });
       e.preventDefault();
     }
-}
+  }
 
   render() {
     return (

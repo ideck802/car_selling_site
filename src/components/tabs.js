@@ -16,7 +16,7 @@ class Tabs extends React.Component {
 
   _renderContent() {
     return (
-      <div className="tab_content">
+      <div className={"tab_content tab" + this.state.selected + "_selected"}>
         {this.props.children[this.state.selected]}
       </div>
     );
