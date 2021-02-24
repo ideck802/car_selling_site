@@ -3,266 +3,266 @@ import React, { useState } from 'react';
 
 const makesList = [
   {
-    "id": 1,
+    "id": "acura",
     "name": "Acura",
     "models": [
       "ILX", "MDX", "MDX Sport Hybrid", "RDX", "RLX", "RLX Sport Hybrid", "TL", "TLX", "TSX",
     ]
   },
   {
-    "id": 2,
+    "id": "alfa",
     "name": "Alfa Romeo",
     "models": [
       "Giulia", "Stelvio",
     ]
   },
   {
-    "id": 3,
+    "id": "audi",
     "name": "Audi",
     "models": [
       "A3", "A3 Sportback e-tron", "A4", "A4 allroad", "A5", "A6", "A7", "A8", "allroad", "Q3", "Q5", "Q7", "Q8", "RS 5", "S3", "S4", "S5", "S6", "S7", "S8", "SQ5", "TT",
     ]
   },
   {
-    "id": 4,
+    "id": "bmw",
     "name": "BMW",
     "models": [
       "1 Series", "2 Series", "3 Series", "4 Series", "5 Series", "6 Series", "7 Series", "i3", "M2", "M3", "M4", "M5", "M6", "X1", "X2", "X3", "X4", "X5", "X5 M", "X6", "Z4",
     ]
   },
   {
-    "id": 5,
+    "id": "buick",
     "name": "Buick",
     "models": [
       "Cascada", "Enclave", "Encore", "Encore GX", "Envision", "LaCrosse", "Lucerne", "Regal", "Regal Sportback", "Regal TourX", "Verano",
     ]
   },
   {
-    "id": 4,
+    "id": "cadillac",
     "name": "Cadillac",
     "models": [
       "ATS", "ATS-V", "CT4", "CT5", "CT6", "CTS", "DTS", "ELR", "Escalade", "Escalade ESV", "SRX", "XT4", "XT5", "XT6", "XTS",
     ]
   },
   {
-    "id": 4,
+    "id": "chevy",
     "name": "Chevrolet",
     "models": [
       "Avalanche", "Blazer", "Bolt EV", "Camaro", "Captiva Sport", "City Express", "Cobalt", "Colorado Crew Cab", "Colorado Extended Cab", "Corvette", "Cruze", "Cruze Limited", "Equinox", "Impala", "Impala Limited", "Malibu", "Malibu Limited", "Silverado 1500 Crew Cab", "Silverado 1500 Double Cab", "Silverado 1500 Extended Cab", "Silverado 1500 LD Double Cab", "Silverado 1500 Regular Cab", "Silverado 2500 HD Crew Cab", "Silverado 2500 HD Double Cab", "Silverado 2500 HD Extended Cab", "Silverado 3500 HD Crew Cab", "Sonic", "Spark", "Spark EV", "SS", "Suburban", "Suburban 1500", "Tahoe", "Traverse", "Trax", "Volt",
     ]
   },
   {
-    "id": 4,
+    "id": "chrysler",
     "name": "Chrysler",
     "models": [
       "200", "300", "Pacifica", "Pacifica Hybrid", "PT Cruiser", "Town & County", "Voyager",
     ]
   },
   {
-    "id": 4,
+    "id": "dodge",
     "name": "Dodge",
     "models": [
       "Avenger", "Challenger", "Charger", "Dart", "Durango", "Grand Caravan Passenger", "Journey",
     ]
   },
   {
-    "id": 4,
-    "name": "Fiat",
+    "id": "fiat",
+    "name": "FIAT",
     "models": [
       "124 Spider", "500", "500 Abarth", "500c", "500e", "500L", "500X",
     ]
   },
   {
-    "id": 4,
+    "id": "ford",
     "name": "Ford",
     "models": [
       "C-MAX Energi", "C-MAX Hybrid", "E350 Super Duty Passenger", "EcoSport", "Edge", "Escape", "Expedition", "Expedition EL", "Expedition MAX", "Explorer", "F150 Regular Cab", "F150 Super Cab", "F150 SuperCrew Cab", "F250 Super Duty Crew Cab", "F250 Super Duty Regular Cab", "Fiesta", "Flex", "Focus", "Focus ST", "Fusion", "Fusion Energi", "Mustang", "Ranger Regular Cab", "Ranger Super Cab", "Ranger SuperCab", "Ranger SuperCrew", "Taurus", "Transit 250 Van", "Transit 350 Passenger Van", "Transit Connect Cargo", "Transit Connect Passenger",
     ]
   },
   {
-    "id": 4,
+    "id": "genesis",
     "name": "Genesis",
     "models": [
       "G70", "G80", "G90",
     ]
   },
   {
-    "id": 4,
+    "id": "gmc",
     "name": "GMC",
     "models": [
       "Acadia", "Acadia Limited", "Canyon Crew Cab", "Canyon Extended Cab", "Savana 2500 Cargo", "Sierra 1500 Crew Cab", "Sierra 1500 Double Cab", "Sierra 1500 Extended Cab", "Sierra 1500 Limited Double Cab", "Sierra 1500 Regular Cab", "Sierra 2500 HD Crew Cab", "Sierra 2500 HD Double Cab", "Terrain", "Yukon", "Yukon XL", "Yukon XL 1500",
     ]
   },
   {
-    "id": 4,
+    "id": "honda",
     "name": "Honda",
     "models": [
       "Accord", "Accord Crosstour", "Accord Hybrid", "Civic", "Civic Type R", "Clarity Plug-in Hybrid", "CR-V", "CR-Z", "Crosstour", "Element", "Fit", "HR-V", "Insight", "Odyssey", "Passport", "Pilot", "Ridgeline",
     ]
   },
   {
-    "id": 4,
+    "id": "hyundai",
     "name": "Hyundai",
     "models": [
       "Accent", "Azera", "Elantra", "Elantra GT", "Equus", "Genesis", "Genesis Coupe", "Ioniq Electric", "Ioniq Hybrid", "Ioniq Plug-in Hybrid", "Kona", "Kona Electric", "Palisade", "Santa Fe", "Santa Fe Sport", "Santa Fe XL", "Sonata", "Sonata Hybrid", "Sonata Plug-in Hybrid", "Tucson", "Veloster", "Venue", "Veracruz",
     ]
   },
   {
-    "id": 4,
+    "id": "infiniti",
     "name": "INFINITI",
     "models": [
       "EX", "FX", "G", "JX", "M", "Q40", "Q50", "Q60", "Q70", "QX", "QX30", "QX50", "QX60", "QX70", "QX80",
     ]
   },
   {
-    "id": 4,
+    "id": "jaguar",
     "name": "Jaguar",
     "models": [
       "E-PACE", "F-PACE", "F-TYPE", "I-PACE", "XE", "XF", "XJ", "XK",
     ]
   },
   {
-    "id": 4,
+    "id": "jeep",
     "name": "Jeep",
     "models": [
       "Cherokee", "Compass", "Gladiator", "Grand Cherokee", "Liberty", "Patriot", "Renegade", "Wrangler", "Wrangler Unlimited",
     ]
   },
   {
-    "id": 4,
+    "id": "kia",
     "name": "Kia",
     "models": [
       "Cadenza", "Forte", "Forte Koup", "Forte5", "K900", "Niro", "Niro EV", "Niro Plug-in Hybrid", "Optima", "Optima Hybrid", "Optima Plug-in Hybrid", "Rio", "Sedona", "Sorento", "Soul", "Soul EV", "Sportage", "Stinger", "Telluride",
     ]
   },
   {
-    "id": 4,
+    "id": "rover",
     "name": "Land Rover",
     "models": [
       "Discovery", "Discovery Sport", "LR2", "LR4", "Range Rover", "Range Rover Evoque", "Range Rover Sport", "Range Rover Velar",
     ]
   },
   {
-    "id": 4,
+    "id": "lexus",
     "name": "Lexus",
     "models": [
       "CT", "ES", "GS", "GX", "HS", "IS", "LS", "LX", "NX", "RC", "RX", "UX",
     ]
   },
   {
-    "id": 4,
+    "id": "lincoln",
     "name": "Lincoln",
     "models": [
       "Continental", "Corsair", "MKC", "MKS", "MKT", "MKX", "MKZ", "Nautilus", "Navigator", "Navigator L", "Town Car",
     ]
   },
   {
-    "id": 4,
+    "id": "maserati",
     "name": "Maserati",
     "models": [
       "Ghibli", "GranTurismo", "Quattroporte",
     ]
   },
   {
-    "id": 4,
+    "id": "mazda",
     "name": "Mazda",
     "models": [
       "CX-3", "CX-30", "CX-5", "CX-7", "CX-9", "MAZDA2", "MAZDA3", "MAZDA5", "MAZDA6", "MX-5 Miata", "MX-5 Miata RF",
     ]
   },
   {
-    "id": 4,
+    "id": "benz",
     "name": "Mercedes-Benz",
     "models": [
       "A-Class", "B-Class", "C-Class", "CL-Class", "CLA", "CLA-Class", "CLK-Class", "CLS-Class", "E-Class", "GL-Class", "GLA", "GLA-Class", "GLB", "GLC", "GLC Coupe", "GLE", "GLE Coupe", "GLK-Class", "GLS", "M-Class", "Mercedes-AMG C-Class", "Mercedes-AMG CLA", "Mercedes-AMG GLC", "Mercedes-AMG GLE", "Metris Cargo", "Metris Passenger", "R-Class", "S-Class", "SL", "SL-Class", "SLC", "SLK-Class",
     ]
   },
   {
-    "id": 4,
+    "id": "mini",
     "name": "MINI",
     "models": [
       "Clubman", "Convertible", "Countryman", "Coupe", "Hardtop", "Hardtop 2 Door", "Hardtop 4 Door", "Paceman", "Roadster",
     ]
   },
   {
-    "id": 4,
+    "id": "mitsubishi",
     "name": "Mitsubishi",
     "models": [
       "Eclipse Cross", "i-MiEV", "Lancer", "Lancer Evolution", "Mirage", "Mirage G4", "Outlander", "Outlander PHEV", "Outlander Sport",
     ]
   },
   {
-    "id": 4,
+    "id": "nissan",
     "name": "Nissan",
     "models": [
       "370Z", "Altima", "Armada", "cube", "Frontier Crew Cab", "Frontier King Cab", "JUKE", "Kicks", "LEAF", "Maxima", "Murano", "Pathfinder", "Quest", "Rogue", "Rogue Select", "Rogue Sport", "Sentra", "Titan Crew Cab", "Titan King Cab", "TITAN Single Cab", "TITAN XD Crew Cab", "Versa", "Versa Note", "Xterra",
     ]
   },
   {
-    "id": 4,
+    "id": "porsche",
     "name": "Porsche",
     "models": [
       "718 Boxster", "911", "Boxster", "Cayenne", "Cayman", "Macan", "Panamera",
     ]
   },
   {
-    "id": 4,
+    "id": "ram",
     "name": "Ram",
     "models": [
       "1500 Classic Crew Cab", "1500 Classic Quad Cab", "1500 Classic Regular Cab", "1500 Crew Cab", "1500 Quad Cab", "1500 Regular Cab", "2500 Crew Cab", "ProMaster Cargo Van",
     ]
   },
   {
-    "id": 4,
+    "id": "saab",
     "name": "Saab",
     "models": [
       "9-3",
     ]
   },
   {
-    "id": 4,
+    "id": "scion",
     "name": "Scion",
     "models": [
       "FR-S", "iA", "iM", "iQ", "tC", "xB", "xD",
     ]
   },
   {
-    "id": 4,
+    "id": "smart",
     "name": "smart",
     "models": [
       "fortwo", "fortwo electric drive",
     ]
   },
   {
-    "id": 4,
+    "id": "subaru",
     "name": "Subaru",
     "models": [
       "Ascent", "BRZ", "Crosstrek", "Forester", "Impreza", "Legacy", "Outback", "WRX", "XV Crosstrek",
     ]
   },
   {
-    "id": 4,
+    "id": "tesla",
     "name": "Tesla",
     "models": [
       "Model 3", "Model S", "Model X",
     ]
   },
   {
-    "id": 4,
+    "id": "toyota",
     "name": "Toyota",
     "models": [
       "4Runner", "86", "Avalon", "Avalon Hybrid", "C-HR", "Camry", "Camry Hybrid", "Corolla", "Corolla Hatchback", "Corolla Hybrid", "Corolla iM", "FJ Cruiser", "GR Supra", "Highlander", "Highlander Hybrid", "Matrix", "Prius", "Prius c", "Prius Plug-in Hybrid", "Prius Prime", "Prius v", "RAV4", "RAV4 Hybrid", "Sequoia", "Sienna", "Tacoma Access Cab", "Tacoma Double Cab", "Tacoma Regular Cab", "Tundra CrewMax", "Tundra Double Cab", "Venza", "Yaris", "Yaris iA",
     ]
   },
   {
-    "id": 4,
+    "id": "volks",
     "name": "Volkswagen",
     "models": [
       "Arteon", "Atlas", "Atlas Cross Sport", "Beetle", "CC", "e-Golf", "Eos", "Golf", "Golf Alltrack", "Golf GTI", "Golf R", "Golf SportWagen", "GTI", "Jetta", "Jetta GLI", "Jetta SportWagen", "Passat", "Routan", "Tiguan", "Tiguan Limited", "Touareg",
     ]
   },
   {
-    "id": 4,
+    "id": "volvo",
     "name": "Volvo",
     "models": [
       "C30", "C70", "S40", "S60", "S80", "S90", "V60", "V90", "XC40", "XC60", "XC70", "XC90",
@@ -348,6 +348,26 @@ const modelsList = [
   "Volvo C30", "Volvo C70", "Volvo S40", "Volvo S60", "Volvo S80", "Volvo S90", "Volvo V60", "Volvo V90", "Volvo XC40", "Volvo XC60", "Volvo XC70", "Volvo XC90",
 ];
 
+function getIndex(value, arr, prop) {
+  for(var i = 0; i < arr.length; i++) {
+    if(value.toLowerCase().includes(arr[i][prop].toLowerCase())) {
+        return i;
+    }
+  }
+  return -1; //to handle the case where the value doesn't exist
+}
+
+function getModelsIndex(value, arr, prop) {
+  for(var i = 0; i < arr.length; i++) {
+    for(var j = 0; j < arr[i][prop].length; j++) {
+      if(arr[i].name + " " + arr[i][prop][j] === value) {
+        return j;
+      }
+    }
+  }
+  return -1; //to handle the case where the value doesn't exist
+}
+
 class Search extends React.Component {
 
   constructor(props) {
@@ -357,13 +377,30 @@ class Search extends React.Component {
       excludeColumns: ["id", "models"],
       makesSearch: makesList,
       modelsSearch: [],
-      searchText: ""
+      searchText: "",
+      isOpen: "",
+      isClosing: false,
+      acuraModelBoxes: [], alfaModelBoxes: [], audiModelBoxes: [], bmwModelBoxes: [], buickModelBoxes: [], cadillacModelBoxes: [], chevyModelBoxes: [], chryslerModelBoxes: [], dodgeModelBoxes: [], fiatModelBoxes: [], fordModelBoxes: [], genesisModelBoxes: [], gmcModelBoxes: [], hondaModelBoxes: [], hyundaiModelBoxes: [], infinitiModelBoxes: [], jaguarModelBoxes: [], jeepModelBoxes: [], kiaModelBoxes: [], roverModelBoxes: [], lexusModelBoxes: [], lincolnModelBoxes: [], maseratiModelBoxes: [], mazdaModelBoxes: [], benzModelBoxes: [], miniModelBoxes: [], mitsubishiModelBoxes: [], nissanModelBoxes: [], porscheModelBoxes: [], ramModelBoxes: [], saabModelBoxes: [], scionModelBoxes: [], smartModelBoxes: [], subaruModelBoxes: [], teslaModelBoxes: [], toyotaModelBoxes: [], volksModelBoxes: [], volvoModelBoxes: [],
     };
 
+    this.handleModelBoxChange = this.handleModelBoxChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.filterData = this.filterData.bind(this);
   }
 
+  handleModelBoxChange(varName, pos, event) {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    var tempVar = this.state[varName + "ModelBoxes"].slice();
+
+    tempVar[pos] = value;
+
+    this.setState({
+      [varName + "ModelBoxes"]: tempVar
+    });
+  }
 
   // handle change event of search input
   handleChange(event) {
@@ -399,6 +436,25 @@ class Search extends React.Component {
     }
   }
 
+  openMake(make) {
+    if(make === "") {
+      this.setState({
+        isClosing: true
+      });
+      setTimeout(() => {
+        this.setState({
+          isOpen: make,
+          isClosing: false
+        });
+      }, 500);
+    } else {
+      this.setState({
+        isOpen: make,
+        isClosing: false
+      });
+    }
+  }
+
   render() {
     return (
       <div className="search_container">
@@ -413,18 +469,46 @@ class Search extends React.Component {
 
         <div className="box-container">
           <ul>
-            {this.state.makesSearch.map((data, i) => {
-              return <li key={i} className="box">
-                {data.name}
+            {this.state.makesSearch.map((make, i) => {
+              return <li key={i}>
+                <button onClick={this.openMake.bind(this, i)}>
+                  {make.name}
+                </button>
+                {this.state.isOpen === i && <div className={this.state.isClosing === true ? "modelsBar isClosing" : "modelsBar"}>
+                  <button className="leftSpacer" onClick={this.openMake.bind(this, "")}></button>
+                  <div className="container">
+                    <p><button onClick={this.openMake.bind(this, "")}><i className="fas fa-arrow-left"></i>Back to Makes</button></p>
+                    <h3>{make.name}</h3>
+                    <ul>
+                      {make.models.map((model, j) =>
+                        <li key={j}>
+                          <label htmlFor={"modelBox" + j}>{model}</label>
+                          <input
+                            type="checkbox"
+                            name={make.id}
+                            id={"modelBox" + j}
+                            checked={this.state[make.id + "ModelBoxes"][j]}
+                            onChange={(e) => this.handleModelBoxChange(make.id, j, e)} />
+                        </li>
+                      )}
+                    </ul>
+                  </div>
+                </div>}
               </li>
             })}
           </ul>
           {this.state.makesSearch.length === 0 && <span>No records found to display!</span>}
-          {this.state.modelsSearch.length > 0 && <span>models</span>}
+          {this.state.modelsSearch.length > 0 && <p>Models</p>}
           <ul>
-            {this.state.modelsSearch.map((data, i) => {
-              return <li key={i} className="box">
-                {data}
+            {this.state.modelsSearch.map((model, i) => {
+              return <li key={i}>
+                <label htmlFor={"modelBox2" + i}>{model}</label>
+                <input
+                  type="checkbox"
+                  name={model}
+                  id={"modelBox2" + i}
+                  checked={this.state[makesList[getIndex(model, makesList, "name")].id + "ModelBoxes"][getModelsIndex(model, makesList, "models")]}
+                  onChange={(e) => this.handleModelBoxChange(makesList[getIndex(model, makesList, "name")].id, getModelsIndex(model, makesList, "models"), e)} />
               </li>
             })}
           </ul>
