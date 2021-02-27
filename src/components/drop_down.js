@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Range } from 'react-range';
 
@@ -6,8 +6,7 @@ class DropDown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
-      values: [50, 60]
+      open: false
     };
     this.changeVisible = this.changeVisible.bind(this);
     this.closeDropDown = this.closeDropDown.bind(this);
@@ -17,16 +16,16 @@ class DropDown extends React.Component {
   }
 
   componentDidMount() {
-      document.addEventListener('mousedown', this.handleClickOutside);
+    document.addEventListener('mousedown', this.handleClickOutside);
   }
 
   componentWillUnmount() {
-      document.removeEventListener('mousedown', this.handleClickOutside);
+    document.removeEventListener('mousedown', this.handleClickOutside);
   }
 
   handleClickOutside(event) {
     if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
-        this.closeDropDown();
+      this.closeDropDown();
     }
   }
 
@@ -50,11 +49,14 @@ class DropDown extends React.Component {
 
   render() {
     return (
-      <div className={(this.state.open===true ? ("drop_down dd_open " + this.props.className):("drop_down " + this.props.className))} ref={this.wrapperRef}>
-        <button onClick={this.changeVisible}>{this.props.btnText}<i className="fas fa-caret-down"></i></button>
-        {(this.state.open===true ? (<div className="dd_content">
+      <div
+        className={
+          (this.state.open === true ? ('drop-down dd-open ' + this.props.className) :
+            ('drop-down ' + this.props.className))} ref={this.wrapperRef}>
+        <button onClick={this.changeVisible}>{this.props.btnText}<i className='fas fa-caret-down'></i></button>
+        {(this.state.open === true ? (<div className='dd-content'>
           {this.props.children}
-        </div>):(""))}
+        </div>) : (''))}
       </div>
     );
   }
@@ -62,5 +64,5 @@ class DropDown extends React.Component {
 
 DropDown.propTypes = {
     children: PropTypes.element.isRequired,
-};
+  };
 export default DropDown;

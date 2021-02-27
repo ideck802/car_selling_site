@@ -9,36 +9,36 @@
 <body>
 
 <!-- Sidebar on small screens when clicking the menu icon -->
-<nav class="mobile_menu" id="mySidebar">
-  <a class="mobile_menu_close" onclick="mobile_close()">X</a>
-  <div class="mobile_menu_container">
-    <a href="search.html" class="mobile_menu_link"><p class="">New</p></a>
-    <a href="#" class="mobile_menu_link"><p class="">Used</p></a>
-    <a href="#" class="mobile_menu_link"><p class="">Sell</p></a>
-    <a href="#" class="mobile_menu_link"><p class="">About</p></a>
+<nav class="mobile-menu" id="mySidebar">
+  <a class="mobile-menu-close" onclick="mobileClose()">X</a>
+  <div class="mobile-menu_container">
+    <a href="search.html" class="mobile-menu-link"><p class="">New</p></a>
+    <a href="#" class="mobile-menu-link"><p class="">Used</p></a>
+    <a href="#" class="mobile-menu-link"><p class="">Sell</p></a>
+    <a href="#" class="mobile-menu-link"><p class="">About</p></a>
   </div>
 </nav>
 
 <!-- TOP MENU BAR -->
-<div class="top_bar">
+<div class="top-bar">
   <div class="logo">
-    <a href="#" class="menu_link">Beep!</a>
+    <a href="#" class="menu-link">Beep!</a>
   </div>
   <!-- right-sided menu links -->
   <div class="hide-small">
-    <a href="#" class="menu_link">New</a>
-    <a href="#" class="menu_link">Used</a>
-    <a href="#" class="menu_link">Sell</a>
-    <a href="#" class="menu_link">About</a>
+    <a href="#" class="menu-link">New</a>
+    <a href="#" class="menu-link">Used</a>
+    <a href="#" class="menu-link">Sell</a>
+    <a href="#" class="menu-link">About</a>
   </div>
 
   <div class="hide-small">
-    <a href="#" class="menu_link">Sign up</a>
-    <a href="#" class="menu_link">Log in</a>
+    <a href="#" class="menu-link">Sign up</a>
+    <a href="#" class="menu-link">Log in</a>
   </div>
 
   <!-- menu button that shows on small screens -->
-  <a href="javascript:void(0)" class="menu_open hide-medium hide-large" onclick="mobile_open()">
+  <a href="javascript:void(0)" class="menu-open hide-medium hide-large" onclick="mobileOpen()">
     <i class="fa fa-bars"></i>
   </a>
 </div>
@@ -63,7 +63,7 @@
 </div>
 
 <!-- how we work/what we provide -->
-<div class="first_ribbon">
+<div class="first-ribbon">
   <div class="hide-small">
     <div class="one"><h4>The Best Cars</h4><p>Each vehicle is inspected for top quality. Free history reports are available.</p></div>
     <div class="two"><h4>Try it Out</h4><p>Test drive for seven days. Don't like it, just return it.</p></div>
@@ -170,9 +170,9 @@
 <!-- <script type="module" src="../src/index.js"></script> -->
 <script>
 // Toggle between showing and hiding the sidebar when clicking the menu icon
-var mySidebar = document.getElementById("mySidebar");
+var mySidebar = document.getElementById('mySidebar');
 
-function mobile_open() {
+function mobileOpen() {
   if (mySidebar.style.display === 'flex') {
     mySidebar.style.display = 'none';
   } else {
@@ -181,8 +181,8 @@ function mobile_open() {
 }
 
 // Close the sidebar with the close button
-function mobile_close() {
-    mySidebar.style.display = "none";
+function mobileClose() {
+  mySidebar.style.display = 'none';
 }
 </script>
 </body>

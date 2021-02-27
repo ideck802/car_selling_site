@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 class Tabs extends React.Component {
   constructor() {
@@ -16,7 +16,7 @@ class Tabs extends React.Component {
 
   _renderContent() {
     return (
-      <div className={"tab_content tab" + this.state.selected + "_selected"}>
+      <div className={'tab-content tab' + this.state.selected + '-selected'}>
         {this.props.children[this.state.selected]}
       </div>
     );
@@ -24,7 +24,10 @@ class Tabs extends React.Component {
 
   _renderLabels() {
     return this.props.children.map((child, index) => (
-      <div className={"tab_button tab_button" + index + (index===this.state.selected ? (" active"):(""))} key={child.props.label} onClick={() => { this.setTab(index) }}>
+      <div
+          className={'tab-button tab-button' + index + (index === this.state.selected ? (' active') : (''))}
+          key={child.props.label}
+          onClick={() => { this.setTab(index); }}>
         {child.props.label}
       </div>
     ));
@@ -32,8 +35,8 @@ class Tabs extends React.Component {
 
   render() {
     return (
-      <div className="tabs">
-        <div className="tab_buttons">
+      <div className='tabs'>
+        <div className='tab-buttons'>
           {this._renderLabels()}
         </div>
         {this._renderContent()}
