@@ -16,15 +16,8 @@ class HomeForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      check_suv: false,
-      check_truck: false,
-      check_sedan: false,
-      check_crossover: false,
-      check_coupe: false,
-      check_convertible: false,
-      check_sport: false,
-      check_van: false,
-      check_wagon: false,
+      check_suv: false, check_truck: false, check_sedan: false, check_crossover: false,
+      check_coupe: false, check_convertible: false, check_sport: false, check_van: false, check_wagon: false,
       priceBoxes: [0, 100],
       values: [0, 100],
       downFinanceSlider: [5],
@@ -160,7 +153,7 @@ class HomeForm extends React.Component {
                 onChange={this.handleInputChange} />
             </div>
             <div className='slide'>
-              {this.labelCreator('check_truck', images.pickup, 'Pickup Trucks')}
+              {this.labelCreator('check_truck', images.pickup, 'Trucks')}
               <input
                 name='check_truck'
                 type='checkbox'
@@ -202,15 +195,6 @@ class HomeForm extends React.Component {
                 type='checkbox'
                 id='check_convertible'
                 checked={this.state.check_convertible}
-                onChange={this.handleInputChange} />
-            </div>
-            <div className='slide'>
-              {this.labelCreator('check_sport', images.sports, 'Sports Cars')}
-              <input
-                name='check_sport'
-                type='checkbox'
-                id='check_sport'
-                checked={this.state.check_sport}
                 onChange={this.handleInputChange} />
             </div>
             <div className='slide'>

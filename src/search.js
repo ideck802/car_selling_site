@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/search.css';
+import images from './images';
 import DropDown from './components/drop_down';
 import Tabs from './components/tabs';
 import Search from './components/search';
@@ -31,12 +32,15 @@ class SearchForm extends React.Component {
         benzModelBoxes: [], miniModelBoxes: [], mitsubishiModelBoxes: [], nissanModelBoxes: [], porscheModelBoxes: [],
         ramModelBoxes: [], saabModelBoxes: [], scionModelBoxes: [], smartModelBoxes: [], subaruModelBoxes: [],
         teslaModelBoxes: [], toyotaModelBoxes: [], volksModelBoxes: [], volvoModelBoxes: []
-      }
+      },
+      check_suv: false, check_truck: false, check_sedan: false, check_crossover: false,
+      check_coupe: false, check_convertible: false, check_sport: false, check_van: false, check_wagon: false,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleModelBoxChange = this.handleModelBoxChange.bind(this);
+    this.labelCreator = this.labelCreator.bind(this);
   }
 
   handleInputChange(event) {
@@ -111,6 +115,22 @@ class SearchForm extends React.Component {
     }
   }
 
+  labelCreator(forInput, fileName, value) {
+    if (this.state[forInput] === false) {
+      return <label htmlFor={forInput}>
+        <i className='checkmark fas fa-check'></i>
+        <p>{value}</p>
+        <img src={fileName} draggable='false' alt={fileName}/>
+      </label>;
+    } else {
+      return <label htmlFor={forInput} className='selected'>
+        <i className='checkmark fas fa-check'></i>
+        <p>{value}</p>
+        <img src={fileName} draggable='false' alt={fileName}/>
+      </label>;
+    }
+  }
+
   handleModelBoxChange(varName, pos, event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -164,7 +184,7 @@ class SearchForm extends React.Component {
             </button>
           </div>
           <div className='drop-downs'>
-            <DropDown btnText='Price'>
+            <DropDown btnText='Price' className='price'>
               <Tabs>
                 <div label='PRICE' className='tab price-tab'>
                   <div className='slider-content'>
@@ -304,12 +324,78 @@ class SearchForm extends React.Component {
             <DropDown btnText='Make & Model' className='makemodel'>
               <Search value={this.state.modelBoxes} handleBoxChange={this.handleModelBoxChange}/>
             </DropDown>
-            <DropDown btnText='Body Type'>
-              <div>
-                <a>250 Miles</a>
-                <a>500 Miles</a>
-                <a>Nearest Store</a>
-                <a>Nearest City</a>
+            <DropDown btnText='Body Type' className='body-types'>
+              <div className='body'>
+                {this.labelCreator('check_suv', images.suv, 'SUVs')}
+                <input
+                  name='check_suv'
+                  type='checkbox'
+                  id='check_suv'
+                  checked={this.state.check_suv}
+                  onChange={this.handleInputChange} />
+              </div>
+              <div className='body'>
+                {this.labelCreator('check_truck', images.pickup, 'Trucks')}
+                <input
+                  name='check_truck'
+                  type='checkbox'
+                  id='check_truck'
+                  checked={this.state.check_truck}
+                  onChange={this.handleInputChange} />
+              </div>
+              <div className='body'>
+                {this.labelCreator('check_sedan', images.sedan, 'Sedans')}
+                <input
+                  name='check_sedan'
+                  type='checkbox'
+                  id='check_sedan'
+                  checked={this.state.check_sedan}
+                  onChange={this.handleInputChange} />
+              </div>
+              <div className='body'>
+                {this.labelCreator('check_crossover', images.crossover, 'Crossovers')}
+                <input
+                  name='check_crossover'
+                  type='checkbox'
+                  id='check_crossover'
+                  checked={this.state.check_crossover}
+                  onChange={this.handleInputChange} />
+              </div>
+              <div className='body'>
+                {this.labelCreator('check_coupe', images.coupe, 'Coupes')}
+                <input
+                  name='check_coupe'
+                  type='checkbox'
+                  id='check_coupe'
+                  checked={this.state.check_coupe}
+                  onChange={this.handleInputChange} />
+              </div>
+              <div className='body'>
+                {this.labelCreator('check_convertible', images.convertible, 'Convertibles')}
+                <input
+                  name='check_convertible'
+                  type='checkbox'
+                  id='check_convertible'
+                  checked={this.state.check_convertible}
+                  onChange={this.handleInputChange} />
+              </div>
+              <div className='body'>
+                {this.labelCreator('check_van', images.van, 'Vans')}
+                <input
+                  name='check_van'
+                  type='checkbox'
+                  id='check_van'
+                  checked={this.state.check_van}
+                  onChange={this.handleInputChange} />
+              </div>
+              <div className='body'>
+                {this.labelCreator('check_wagon', images.wagon, 'Wagons')}
+                <input
+                  name='check_wagon'
+                  type='checkbox'
+                  id='check_wagon'
+                  checked={this.state.check_wagon}
+                  onChange={this.handleInputChange} />
               </div>
             </DropDown>
             <DropDown btnText='Year & Mileage'>

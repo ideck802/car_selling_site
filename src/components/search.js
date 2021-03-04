@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import SimpleBar from 'simplebar';
 
 import { makesList, modelsList } from './makes_models';
+import 'simplebar/dist/simplebar.min.css';
 
 function getIndex(value, arr, prop) {
   for (var i = 0; i < arr.length; i++) {
@@ -130,11 +132,11 @@ class Search extends React.Component {
                       </button>
                     </p>
                     <h3>{make.name}</h3>
-                    <ul>
+                    <ul data-simplebar>
                       {make.models.map((model, j) =>
                         <li key={j}>
                           <label htmlFor={'modelBox' + j}>
-                            {model}
+                            <p>{model}</p>
                             {this.props.value[make.id + 'ModelBoxes'][j] === true ?
                               <i className='checkmark fas fa-check'></i> : ''}
                           </label>
@@ -158,7 +160,7 @@ class Search extends React.Component {
             {this.state.modelsSearch.map((model, i) => {
               return <li key={i}>
                 <label htmlFor={'modelBox2' + i}>
-                  {model}
+                  <p>{model}</p>
                   {this.props.value[
                     makesList[getIndex(model, makesList, 'name')].id + 'ModelBoxes'
                   ][getModelsIndex(model, makesList, 'models')] ? <i className='checkmark fas fa-check'></i> : ''}
