@@ -17,6 +17,10 @@ class SearchForm extends React.Component {
       zip_code: '',
       priceBoxes: [0, 100],
       values: [0, 100],
+      yearBoxes: [0, 100],
+      yearSlider: [0, 100],
+      mileageBoxes: [0, 100],
+      mileageSlider: [0, 100],
       downFinanceSlider: [5],
       downFinanceBox: [5],
       monthlyFinanceSlider: [5],
@@ -398,12 +402,108 @@ class SearchForm extends React.Component {
                   onChange={this.handleInputChange} />
               </div>
             </DropDown>
-            <DropDown btnText='Year & Mileage'>
-              <div>
-                <a>250 Miles</a>
-                <a>500 Miles</a>
-                <a>Nearest Store</a>
-                <a>Nearest City</a>
+            <DropDown btnText='Year & Mileage' className='year-mile'>
+              <div className='slider-content'>
+                <div className='inputs'>
+                  <label>Year</label>
+                  <span className='input-number'>$
+                    <input
+                      name='minYear'
+                      type='number'
+                      id='minYear'
+                      min='0'
+                      max={this.state.yearSlider[1]}
+                      value={this.state.yearBoxes[0]}
+                      onChange={this.onNumberChange.bind(this, 'yearBoxes', 'yearSlider', 0)}
+                      onKeyDown={this.enterPressed.bind(this, 'yearSlider', 0)} />
+                  </span>
+                  <p>-</p>
+                  <span className='input-number'>$
+                    <input
+                      name='maxYear'
+                      type='number'
+                      id='maxYear'
+                      min={this.state.yearSlider[0]}
+                      max='100'
+                      value={this.state.yearBoxes[1]}
+                      onChange={this.onNumberChange.bind(this, 'yearBoxes', 'yearSlider', 1)}
+                      onKeyDown={this.enterPressed.bind(this, 'yearSlider', 1)} />
+                  </span>
+                </div>
+                <div className='slider-container'>
+                  <Range
+                    step={10}
+                    min={0}
+                    max={100}
+                    values={this.state.yearSlider}
+                    onChange={(values) => this.setState({yearSlider: values, yearBoxes: values})}
+                    renderTrack={({props, children}) => (
+                      <div {...props} style={{...props.style, background:
+                        getTrackBackground({
+                          values: this.state.yearSlider,
+                          colors: ['#133d7f', '#3a85ff', '#133d7f'],
+                          min: 0,
+                          max: 100
+                        })}} >
+                        {children}
+                      </div>
+                    )}
+                    renderThumb={({props}) => (
+                      <div {...props} style={{...props.style}} />
+                    )}
+                  />
+                </div>
+              </div>
+              <div className='slider-content'>
+                <div className='inputs'>
+                  <label>Mileage</label>
+                  <span className='input-number'>$
+                    <input
+                      name='minMileage'
+                      type='number'
+                      id='minMileage'
+                      min='0'
+                      max={this.state.mileageSlider[1]}
+                      value={this.state.mileageBoxes[0]}
+                      onChange={this.onNumberChange.bind(this, 'mileageBoxes', 'mileageSlider', 0)}
+                      onKeyDown={this.enterPressed.bind(this, 'mileageSlider', 0)} />
+                  </span>
+                  <p>-</p>
+                  <span className='input-number'>$
+                    <input
+                      name='maxMileage'
+                      type='number'
+                      id='maxMileage'
+                      min={this.state.mileageSlider[0]}
+                      max='100'
+                      value={this.state.mileageBoxes[1]}
+                      onChange={this.onNumberChange.bind(this, 'mileageBoxes', 'mileageSlider', 1)}
+                      onKeyDown={this.enterPressed.bind(this, 'mileageSlider', 1)} />
+                  </span>
+                </div>
+                <div className='slider-container'>
+                  <Range
+                    step={10}
+                    min={0}
+                    max={100}
+                    values={this.state.mileageSlider}
+                    onChange={(values) => this.setState({mileageSlider: values, mileageBoxes: values})}
+                    renderTrack={({props, children}) => (
+                      <div {...props} style={{...props.style, background:
+                        getTrackBackground({
+                          values: this.state.mileageSlider,
+                          colors: ['#133d7f', '#3a85ff', '#133d7f'],
+                          min: 0,
+                          max: 100
+                        })}} >
+                        {children}
+                      </div>
+                    )}
+                    renderThumb={({props}) => (
+                      <div {...props} style={{...props.style}} />
+                    )}
+                  />
+                </div>
               </div>
             </DropDown>
             <DropDown btnText='Features'>

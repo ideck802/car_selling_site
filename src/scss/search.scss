@@ -964,6 +964,10 @@ input[type='number']::-webkit-outer-spin-button {
   cursor: pointer;
 }
 
+#search_form .body-types .dd-content .body > label.selected {
+  border: 1px solid $blue;
+}
+
 #search_form .body-types .dd-content .body > label p {
   margin: 0;
 }
@@ -973,11 +977,159 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 #search_form .body-types .dd-content .body > label i {
+  align-self: flex-end;
+
+  margin-top: -5px;
+  margin-right: -5px;
+
+  padding: 3px;
+
+  border-radius: 0 0 0 5px;
+
+  background: transparent;
+
   color: transparent;
+
+  font-size: 12px;
 }
 
 #search_form .body-types .dd-content .body > label.selected i {
-  color: $black;
+  background: $blue;
+
+  color: $white;
+}
+
+
+
+#search_form .year-mile .dd-content {
+  display: flex;
+  position: absolute;
+  top: 100%;
+  left: calc((200% - 1px)*-1);
+
+  flex-direction: column;
+
+  width: 400%;
+
+  border: 1px solid $gray;
+  border-radius: 5px;
+
+  background: $white;
+}
+
+#search_form .year-mile .dd-content::after {
+  position: absolute;
+  top: -1px;
+  left: calc(50% - 3px);
+
+  width: calc(25% + 2px);
+  height: 1px;
+
+  background: $white;
+
+  content: '';
+}
+
+#search_form .year-mile .dd-content .slider-content {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  width: calc(100% - 20px);
+  height: 100%;
+
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+#search_form .year-mile .dd-content .slider-content:first-of-type {
+  border-bottom: 1px solid $gray;
+}
+
+#search_form .year-mile .dd-content .slider-content > .inputs {
+  display: flex;
+
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: -10px;
+}
+
+#search_form .year-mile .dd-content .slider-content > .inputs > span {
+  height: 25px;
+}
+
+#search_form .year-mile .dd-content .slider-content > .inputs > p {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+#search_form .year-mile .dd-content .slider-content > .slider-container {
+  display: flex;
+
+  flex-direction: column;
+
+  width: calc(100% - 20px);
+}
+
+#search_form .year-mile .dd-content .slider-content > .slider-container > div {
+  height: 10px;
+
+  border-radius: 5px;
+
+  background-color: $dark-blue;
+}
+
+#search_form .year-mile .dd-content .slider-content > .slider-container > div > div {
+  width: 20px;
+  height: 20px;
+
+  border-radius: 100%;
+
+  background-color: $blue;
+}
+
+#search_form .year-mile .dd-content label {
+  display: flex;
+
+  align-items: center;
+
+  width: 100%;
+}
+
+#search_form .year-mile .dd-content .input-number {
+  display: flex;
+
+  align-items: center;
+
+  height: 25px;
+
+  border: 1px solid $blue;
+  border-radius: 5px;
+
+  background: $white;
+}
+
+#search_form .year-mile .dd-content .input-number input {
+  width: 80px;
+
+  border: 0;
+  border-radius: 5px;
+
+  outline: none;
+
+  background: $white;
+
+  text-align: right;
+
+  -moz-appearance: textfield;
+}
+
+#search_form .year-mile .dd-content .inputs {
+  width: 100%;
 }
 
 
