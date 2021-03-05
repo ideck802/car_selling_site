@@ -888,18 +888,11 @@ input[type='number']::-webkit-outer-spin-button {
 
 
 #search_form .body-types .dd-content {
-  display: flex;
   position: absolute;
   top: 100%;
   left: calc((100% + 1px)*-1);
 
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-
   width: 400%;
-
-  padding: 10px;
 
   border: 1px solid $gray;
   border-radius: 5px;
@@ -910,14 +903,24 @@ input[type='number']::-webkit-outer-spin-button {
 #search_form .body-types .dd-content::after {
   position: absolute;
   top: -1px;
-  left: calc(25% - 6px);
+  left: calc(25% - 1px);
 
-  width: calc(25% - 3px);
+  width: calc(25% + 2px);
   height: 1px;
 
   background: $white;
 
   content: '';
+}
+
+#search_form .body-types .dd-content > div {
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  padding: 10px;
 }
 
 #search_form .body-types .dd-content .body {
@@ -1130,6 +1133,89 @@ input[type='number']::-webkit-outer-spin-button {
 
 #search_form .year-mile .dd-content .inputs {
   width: 100%;
+}
+
+
+#search_form .features .dd-content {
+  position: absolute;
+  top: 100%;
+  left: calc((400% - 1px)*-1);
+
+  width: 600%;
+
+  border: 1px solid $gray;
+  border-radius: 5px;
+
+  background: $white;
+}
+
+#search_form .features .dd-content::after {
+  position: absolute;
+  top: -1px;
+  left: calc(66.66% - 3px);
+
+  width: calc(16.66% + 2px);
+  height: 1px;
+
+  background: $white;
+
+  content: '';
+}
+
+#search_form .features .dd-content > div {
+  display: flex;
+}
+
+#search_form .features .dd-content > div > div {
+  width: 50%;
+}
+
+#search_form .features .dd-content .accordion {
+  display: flex;
+
+  flex-direction: column;
+
+  margin: 10px;
+
+  border-radius: 5px;
+
+  background: $gray;
+}
+
+#search_form .features .dd-content .accordion button {
+  height: 20px;
+
+  padding: 20px;
+
+  border-radius: 5px;
+
+  background: $gray;
+}
+
+#search_form .features .dd-content .accordion-open button {
+  border-bottom: 1px solid $blue;
+  border-radius: 5px 5px 0 0;
+}
+
+#search_form .features .dd-content .accordion-content {
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#search_form .features .dd-content .accordion-content label {
+  width: calc(50% - 20px);
+
+  margin: 5px;
+
+  padding: 5px;
+
+  cursor: pointer;
+}
+
+#search_form .features .dd-content .accordion-content input[type='checkbox'] {
+  display: none;
 }
 
 

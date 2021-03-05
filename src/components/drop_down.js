@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Range } from 'react-range';
 
 class DropDown extends React.Component {
   constructor(props) {
