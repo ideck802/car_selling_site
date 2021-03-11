@@ -844,6 +844,18 @@ input[type='number']::-webkit-outer-spin-button {
   }
 }
 
+#search_form .dd-content .search-container > .box-container li .models-bar > .container > ul .simplebar-content-wrapper {
+  background:
+  linear-gradient($light-blue 33%, rgba(23, 234, 220, 0)),
+  linear-gradient(rgba(23, 234, 220, 0), $light-blue 66%) 0 100%,
+  radial-gradient(farthest-side at 50% 0, rgba(34, 34, 34, .5), rgba(0, 0, 0, 0)),
+  radial-gradient(farthest-side at 50% 100%, rgba(34, 34, 34, .5), rgba(0, 0, 0, 0)) 0 100%;
+  background-attachment: local, local, scroll, scroll;
+  background-color: $light-blue;
+  background-repeat: no-repeat;
+  background-size: 100% 60px, 100% 60px, 100% 20px, 100% 20px;
+}
+
 #search_form .dd-content .search-container > .box-container li .models-bar > .container > ul {
   display: flex;
 
@@ -1205,16 +1217,34 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 #search_form .features .dd-content .accordion-content label {
-  width: calc(50% - 20px);
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+
+  width: calc(50% - 22px);
 
   margin: 5px;
 
   padding: 5px;
 
+  border: 1px solid transparent;
+  border-radius: 5px;
+
   cursor: pointer;
 }
 
-#search_form .features .dd-content .accordion-content input[type='checkbox'] {
+#search_form .features .dd-content .accordion-content label:hover {
+  border: 1px solid $blue;
+}
+
+#search_form .features .dd-content .accordion-content label.checked {
+  border: 1px solid $blue;
+
+  background: $blue;
+}
+
+#search_form .features .dd-content .accordion-content label input[type='checkbox'] {
   display: none;
 }
 
