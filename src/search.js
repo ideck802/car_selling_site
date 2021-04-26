@@ -15,7 +15,9 @@ class SearchForm extends React.Component {
     super(props);
     this.state = {
       search_tag: '',
-      zip_code: '',
+      zipCode: '',
+      distance: 0,
+      financeOrPrice: false,
       priceBoxes: [0, 100],
       values: [0, 100],
       yearBoxes: [0, 100],
@@ -49,6 +51,22 @@ class SearchForm extends React.Component {
       trip_pc: false, turn_mirrors: false, adjust_steering: false, auto_park: false, disability: false,
       heat_mirror: false, power_doors: false, power_trunk: false, rain_sense: false, roof_rack: false, stability: false,
       third_row: false, tire_sense: false, tow_hitch: false,
+
+      exterior_black: false, exterior_silver: false, exterior_white: false, exterior_gray: false, exterior_red: false,
+      exterior_blue: false, exterior_gold: false, exterior_orange: false, exterior_green: false, exterior_brown: false,
+      exterior_other: false,
+
+      interior_black: false, interior_silver: false, interior_white: false, interior_gray: false, interior_red: false,
+      interior_blue: false, interior_gold: false, interior_orange: false, interior_green: false, interior_brown: false,
+      interior_other: false,
+
+      mpgSlider: [5],
+      mpgBox: [5],
+
+      fuelGas: false, fuelHybrid: false, fuelElectric: false, fuelOther: false,
+      frontWheel: false, allWheel: false, rearWheel: false,
+      autoTrans: false, manualTrans: false,
+      fourCylinder: false, sixCylinder: false, eightCylinder: false, otherCylinder: false,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -56,6 +74,9 @@ class SearchForm extends React.Component {
     this.handleModelBoxChange = this.handleModelBoxChange.bind(this);
     this.labelCreator = this.labelCreator.bind(this);
     this.featureCreator = this.featureCreator.bind(this);
+    this.colorCreator = this.colorCreator.bind(this);
+    this.changeTabValue = this.changeTabValue.bind(this);
+    this.changeDistance = this.changeDistance.bind(this);
   }
 
   handleInputChange(event) {
@@ -165,7 +186,7 @@ class SearchForm extends React.Component {
   //<i className='checkmark fas fa-check'></i>
   featureCreator(displayText, value) {
     return <label htmlFor={value} className={(this.state[value] === true ? ('checked') : (''))}>
-      
+
       {displayText}
       <input
         name={value}
@@ -175,6 +196,41 @@ class SearchForm extends React.Component {
         onChange={this.handleInputChange}
         />
     </label>;
+  }
+
+  colorCreator(name, color, value, classname) {
+    return <label htmlFor={value} className={(this.state[value] === true ?
+        ('color checked ' + classname) : ('color ' + classname))}>
+      <div className='color-circle' style={{background: color}}>
+        <i className='checkmark fas fa-check'></i>
+      </div>
+      {name}
+      <input
+        name={value}
+        type='checkbox'
+        id={value}
+        checked={this.state[value]}
+        onChange={this.handleInputChange}
+        />
+    </label>;
+  }
+
+  changeTabValue(value) {
+    if (value === 0) {
+      this.setState({
+        financeOrPrice: false
+      });
+    } else {
+      this.setState({
+        financeOrPrice: true
+      });
+    }
+  }
+
+  changeDistance(value) {
+    this.setState({
+      distance: value
+    });
   }
 
   render() {
@@ -191,22 +247,20 @@ class SearchForm extends React.Component {
             <p>Near: </p>
             <input
               type='text'
-              name='zip_code'
+              name='zipCode'
               placeholder='Zip code'
               maxLength='5'
-              value={this.state.zip_code}
+              value={this.state.zipCode}
               onChange={this.handleInputChange} />
-            <DropDown btnText='Distance'>
-              <div>
-                <a href='#'>25 Miles</a>
-                <a href='#'>50 Miles</a>
-                <a href='#'>75 Miles</a>
-                <a href='#'>100 Miles</a>
-                <a href='#'>250 Miles</a>
-                <a href='#'>500 Miles</a>
-                <a href='#'>Nearest Store</a>
-                <a href='#'>Nearest City</a>
-              </div>
+            <DropDown btnText='Distance' changing={true}>
+              <div className='placeholder' display='Distance'></div>
+              <div display='25 Miles' changeDis={this.changeDistance}></div>
+              <div display='50 Miles' changeDis={this.changeDistance}></div>
+              <div display='75 Miles' changeDis={this.changeDistance}></div>
+              <div display='100 Miles' changeDis={this.changeDistance}></div>
+              <div display='250 Miles' changeDis={this.changeDistance}></div>
+              <div display='500 Miles' changeDis={this.changeDistance}></div>
+              <div display='Unlimited' changeDis={this.changeDistance}></div>
             </DropDown>
             <button>
               <i className='fas fa-search'></i>
@@ -214,8 +268,8 @@ class SearchForm extends React.Component {
           </div>
           <div className='drop-downs'>
             <DropDown btnText='Price' className='price'>
-              <Tabs>
-                <div label='PRICE' className='tab price-tab'>
+              <Tabs changeTabValue={this.changeTabValue}>
+                <div label='Price' className='tab price-tab'>
                   <div className='slider-content'>
                     <div className='inputs'>
                       <label>Price Range</label>
@@ -268,7 +322,7 @@ class SearchForm extends React.Component {
                     </div>
                   </div>
                 </div>
-                <div label='FINANCE' className='tab finance-tab'>
+                <div label='Finance' className='tab finance-tab'>
                   <div className='slider-container'>
                     <div className='inputs'>
                       <label htmlFor='downFinanceBox'>Cash Down</label>
@@ -593,12 +647,140 @@ class SearchForm extends React.Component {
                 </div>
               </div>
             </DropDown>
-            <DropDown btnText='More Filters'>
+            <DropDown btnText='More Filters' className='more-features'>
               <div>
-                <a>250 Miles</a>
-                <a>500 Miles</a>
-                <a>Nearest Store</a>
-                <a>Nearest City</a>
+                <div className='block1'>
+                  <div className='slider-content'>
+                    <div className='inputs'>
+                      <label htmlFor='mpgBox'>Monthly Payment</label>
+                      <span className='input-number'>$
+                        <input
+                          name='mpgBox'
+                          type='number'
+                          id='mpg'
+                          min='0'
+                          max='100'
+                          value={this.state.mpgBox}
+                          onChange={this.onNumberChange.bind(this, 'mpgBox', 'mpgSlider', 0)}
+                          onKeyDown={this.enterPressed.bind(this, 'mpgSlider', 0)} />
+                        </span>
+                    </div>
+                    <div className='slider-container'>
+                      <Range
+                        step={10}
+                        min={0}
+                        max={100}
+                        values={this.state.mpgSlider}
+                        onChange={(values) => this.setState({mpgSlider: values, mpgBox: values})}
+                        renderTrack={({props, children}) => (
+                          <div {...props} style={{...props.style, background:
+                            getTrackBackground({
+                              values: this.state.mpgSlider,
+                              colors: ['#3a85ff', '#133d7f'],
+                              min: 0,
+                              max: 100
+                            })}}>
+                            {children}
+                          </div>
+                        )}
+                        renderThumb={({props}) => (
+                          <div {...props} style={{...props.style}} />
+                        )}
+                      />
+                    </div>
+                  </div>
+                  <div className='fuel-types'>
+                    <p>Fuel Type</p>
+                    <div>
+                      {this.featureCreator('Gas', 'fuelGas')}
+                      {this.featureCreator('Hybrid', 'fuelHybrid')}
+                      {this.featureCreator('Electric', 'fuelElectric')}
+                      {this.featureCreator('Other', 'fuelOther')}
+                    </div>
+                  </div>
+                </div>
+                <div className='block2'>
+                  <div>
+                    <p>Drive Type</p>
+                    <div>
+                      {this.featureCreator('Front', 'frontWheel')}
+                      {this.featureCreator('All', 'allWheel')}
+                      {this.featureCreator('Rear', 'rearWheel')}
+                    </div>
+                  </div>
+                  <div>
+                    <p>Transmission</p>
+                    <div>
+                      {this.featureCreator('Automatic', 'autoTrans')}
+                      {this.featureCreator('Manual', 'manualTrans')}
+                    </div>
+                  </div>
+                  <div>
+                    <p>Cylinders</p>
+                    <div>
+                      {this.featureCreator('4', 'fourCylinder')}
+                      {this.featureCreator('6', 'sixCylinder')}
+                      {this.featureCreator('8', 'eightCylinder')}
+                      {this.featureCreator('Other', 'otherCylinder')}
+                    </div>
+                  </div>
+                </div>
+                <div className='color-block'>
+                  <p>Exterior Color</p>
+                  <div className='colors'>
+                    {this.colorCreator('Black', '#000', 'exterior_black', 'black')}
+                    {this.colorCreator('Silver', '#e0e0e0', 'exterior_silver')}
+                    {this.colorCreator('White', '#fff', 'exterior_white')}
+                    {this.colorCreator('Gray', '#989898', 'exterior_gray')}
+                    {this.colorCreator('Red', '#dc4444', 'exterior_red')}
+                    {this.colorCreator('Blue', '#3f72b0', 'exterior_blue')}
+                    {this.colorCreator('Gold', '#c29050', 'exterior_gold')}
+                    {this.colorCreator('Orange', '#da7938', 'exterior_orange')}
+                    {this.colorCreator('Green', '#748959', 'exterior_green')}
+                    {this.colorCreator('Brown', '#76523c', 'exterior_brown')}
+                    {this.colorCreator('Other', `linear-gradient(
+                      90deg,
+                      rgba(255, 0, 0, 1) 0%,
+                      rgba(255, 154, 0, 1) 10%,
+                      rgba(208, 222, 33, 1) 20%,
+                      rgba(79, 220, 74, 1) 30%,
+                      rgba(63, 218, 216, 1) 40%,
+                      rgba(47, 201, 226, 1) 50%,
+                      rgba(28, 127, 238, 1) 60%,
+                      rgba(95, 21, 242, 1) 70%,
+                      rgba(186, 12, 248, 1) 80%,
+                      rgba(251, 7, 217, 1) 90%,
+                      rgba(255, 0, 0, 1) 100%`, 'exterior_other')}
+                  </div>
+                </div>
+                <div className='color-block'>
+                  <p>Interior Color</p>
+                  <div className='colors'>
+                    {this.colorCreator('Black', '#000', 'interior_black', 'black')}
+                    {this.colorCreator('Silver', '#e0e0e0', 'interior_silver')}
+                    {this.colorCreator('White', '#fff', 'interior_white')}
+                    {this.colorCreator('Gray', '#989898', 'interior_gray')}
+                    {this.colorCreator('Red', '#dc4444', 'interior_red')}
+                    {this.colorCreator('Blue', '#3f72b0', 'interior_blue')}
+                    {this.colorCreator('Gold', '#c29050', 'interior_gold')}
+                    {this.colorCreator('Orange', '#da7938', 'interior_orange')}
+                    {this.colorCreator('Green', '#748959', 'interior_green')}
+                    {this.colorCreator('Brown', '#76523c', 'interior_brown')}
+                    {this.colorCreator('Other', `linear-gradient(
+                      90deg,
+                      rgba(255, 0, 0, 1) 0%,
+                      rgba(255, 154, 0, 1) 10%,
+                      rgba(208, 222, 33, 1) 20%,
+                      rgba(79, 220, 74, 1) 30%,
+                      rgba(63, 218, 216, 1) 40%,
+                      rgba(47, 201, 226, 1) 50%,
+                      rgba(28, 127, 238, 1) 60%,
+                      rgba(95, 21, 242, 1) 70%,
+                      rgba(186, 12, 248, 1) 80%,
+                      rgba(251, 7, 217, 1) 90%,
+                      rgba(255, 0, 0, 1) 100%`, 'interior_other')}
+                  </div>
+                </div>
               </div>
             </DropDown>
           </div>

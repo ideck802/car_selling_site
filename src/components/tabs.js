@@ -6,6 +6,13 @@ class Tabs extends React.Component {
     this.state = {
       selected: 0
     };
+
+    this.setTab = this.setTab.bind(this);
+  }
+
+  changeTabStuff(index) {
+    this.setTab(index);
+    this.props.changeTabValue(index);
   }
 
   setTab(index) {
@@ -27,7 +34,7 @@ class Tabs extends React.Component {
       <div
           className={'tab-button tab-button' + index + (index === this.state.selected ? (' active') : (''))}
           key={child.props.label}
-          onClick={() => { this.setTab(index); }}>
+          onClick={() => { this.changeTabStuff(index); }}>
         {child.props.label}
       </div>
     ));

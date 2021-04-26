@@ -225,7 +225,7 @@ input[type='number']::-webkit-outer-spin-button {
   font-size: 15px;
 }
 
-#search_form .filters .search-box input[name='zip_code'] {
+#search_form .filters .search-box input[name='zipCode'] {
   width: 100px;
 }
 
@@ -246,7 +246,7 @@ input[type='number']::-webkit-outer-spin-button {
   cursor: pointer;
 }
 
-#search_form .filters .search-box .drop-down .dd-content > div {
+#search_form .filters .search-box .drop-down .dd-content {
   display: flex;
   position: absolute;
   top: 100%;
@@ -277,6 +277,10 @@ input[type='number']::-webkit-outer-spin-button {
 
 #search_form .filters .search-box .drop-down .dd-content a:last-of-type {
   border-bottom: 0;
+}
+
+#search_form .filters .search-box .drop-down .dd-content > .placeholder {
+  display: none;
 }
 
 #search_form .filters .search-box button {
@@ -879,7 +883,7 @@ input[type='number']::-webkit-outer-spin-button {
   align-items: center;
 
   width: 100%;
-  height: 100%;
+  height: calc(100% - 2px);
 
   padding: 5px;
   padding-left: 10px;
@@ -1247,6 +1251,327 @@ input[type='number']::-webkit-outer-spin-button {
 #search_form .features .dd-content .accordion-content label input[type='checkbox'] {
   display: none;
 }
+
+
+
+#search_form .more-features .dd-content {
+  position: absolute;
+  top: 100%;
+  right: -1px;
+
+  width: 600%;
+
+  border: 1px solid $gray;
+  border-radius: 5px 0 5px 5px;
+
+  background: $white;
+}
+
+#search_form .more-features .dd-content::after {
+  position: absolute;
+  top: -1px;
+  right: 0;
+
+  width: calc(16.66% + 1px);
+  height: 1px;
+
+  background: $white;
+
+  content: '';
+}
+
+#search_form .more-features .dd-content > div {
+  display: flex;
+
+  flex-direction: column;
+}
+
+#search_form .more-features .dd-content > div > div {
+  border-bottom: 1px solid $gray;
+}
+
+#search_form .more-features .dd-content > div > p {
+  margin-bottom: 0;
+}
+
+#search_form .more-features .dd-content .block1 {
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#search_form .more-features .dd-content .block1 .slider-content {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  width: calc(50% - 32px);
+  height: 100%;
+
+  padding: 10px;
+}
+
+#search_form .more-features .dd-content .block1 .slider-content > .inputs {
+  display: flex;
+
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 5px;
+}
+
+#search_form .more-features .dd-content .block1 .slider-content > .inputs > span {
+  height: 25px;
+}
+
+#search_form .more-features .dd-content .block1 .slider-content > .inputs > p {
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+#search_form .more-features .dd-content .block1 .slider-content > .slider-container {
+  display: flex;
+
+  flex-direction: column;
+
+  width: calc(100% - 20px);
+}
+
+#search_form .more-features .dd-content .block1 .slider-content > .slider-container > div {
+  height: 10px;
+
+  border-radius: 5px;
+
+  background-color: $dark-blue;
+}
+
+#search_form .more-features .dd-content .block1 .slider-content > .slider-container > div > div {
+  width: 20px;
+  height: 20px;
+
+  border-radius: 100%;
+
+  background-color: $blue;
+}
+
+#search_form .more-features .dd-content .block1 .inputs label {
+  display: flex;
+
+  align-items: center;
+
+  width: 100%;
+}
+
+#search_form .more-features .dd-content .block1 .input-number {
+  display: flex;
+
+  align-items: center;
+
+  height: 25px;
+
+  border: 1px solid $blue;
+  border-radius: 5px;
+
+  background: $white;
+}
+
+#search_form .more-features .dd-content .block1 .input-number input {
+  width: 80px;
+
+  border: 0;
+  border-radius: 5px;
+
+  outline: none;
+
+  background: $white;
+
+  text-align: right;
+
+  -moz-appearance: textfield;
+}
+
+#search_form .more-features .dd-content .block1 .inputs {
+  width: 100%;
+
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#search_form .more-features .dd-content .block1 .fuel-types {
+  width: 50%;
+
+  padding-left: 10px;
+
+  border-left: 1px solid $gray;
+}
+
+#search_form .more-features .dd-content .block1 .fuel-types p {
+  margin-bottom: 0;
+}
+
+#search_form .more-features .dd-content .block1 .fuel-types > div {
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#search_form .more-features .dd-content .block1 .fuel-types label {
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+
+  margin: 5px;
+
+  padding: 15px;
+
+  border: 1px solid transparent;
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+
+#search_form .more-features .dd-content .block1 .fuel-types label:hover {
+  border: 1px solid $blue;
+}
+
+#search_form .more-features .dd-content .block1 .fuel-types label.checked {
+  border: 1px solid $blue;
+
+  background: $blue;
+}
+
+#search_form .more-features .dd-content .block1 .fuel-types label input[type='checkbox'] {
+  display: none;
+}
+
+#search_form .more-features .dd-content .block2 {
+  display: flex;
+
+  flex-direction: row;
+}
+
+#search_form .more-features .dd-content .block2 > div {
+  width: 100%;
+
+  padding-left: 10px;
+
+  border-left: 1px solid $gray;
+}
+
+#search_form .more-features .dd-content .block2 > div:first-of-type {
+  border-left: 0;
+}
+
+#search_form .more-features .dd-content .block2 > div p {
+  margin-bottom: 0;
+}
+
+#search_form .more-features .dd-content .block2 > div > div {
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#search_form .more-features .dd-content .block2 > div label {
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+
+  margin: 5px;
+
+  padding: 15px;
+
+  border: 1px solid transparent;
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+
+#search_form .more-features .dd-content .block2 > div label:hover {
+  border: 1px solid $blue;
+}
+
+#search_form .more-features .dd-content .block2 > div label.checked {
+  border: 1px solid $blue;
+
+  background: $blue;
+}
+
+#search_form .more-features .dd-content .block2 > div label input[type='checkbox'] {
+  display: none;
+}
+
+#search_form .more-features .dd-content .colors {
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  width: 100%;
+}
+
+#search_form .more-features .dd-content .color-block {
+  padding-left: 10px;
+}
+
+#search_form .more-features .dd-content .color-block > p {
+  margin-bottom: 0;
+}
+
+#search_form .more-features .dd-content .colors .color {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 15px;
+
+  cursor: pointer;
+}
+
+#search_form .more-features .dd-content .colors .color > .color-circle {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 25px;
+  height: 25px;
+
+  margin-bottom: 5px;
+
+  border: 1px solid $black;
+  border-radius: 100%;
+}
+
+#search_form .more-features .dd-content .colors .color > .color-circle i {
+  color: transparent;
+}
+
+#search_form .more-features .dd-content .colors .color.checked > .color-circle i {
+  color: #000;
+}
+
+#search_form .more-features .dd-content .colors .color.checked.black > .color-circle i {
+  color: #fff;
+}
+
+#search_form .more-features .dd-content .colors .color input {
+  display: none;
+}
+
 
 
 
