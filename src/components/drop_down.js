@@ -55,7 +55,7 @@ class DropDown extends React.Component {
   }
 
   render() {
-    if (this.props.changing === true) {
+    if (this.props.isChanging === true) {
       return (
         <div
           className={
@@ -84,6 +84,11 @@ class DropDown extends React.Component {
               ('drop-down ' + this.props.className))} ref={this.wrapperRef}>
           <button onClick={this.changeVisible}>{this.props.btnText}<i className='fas fa-caret-down'></i></button>
           {(this.state.open === true ? (<div className='dd-content'>
+            {Array.from(Array(this.props.extraModalBtns), (e, i) => {
+              return <div className={'extra-modal-bar' + (i + 1)}>
+                <button onClick={this.changeVisible}></button>
+              </div>;
+            })}
             {this.props.children}
           </div>) : (''))}
         </div>

@@ -252,7 +252,7 @@ class SearchForm extends React.Component {
               maxLength='5'
               value={this.state.zipCode}
               onChange={this.handleInputChange} />
-            <DropDown btnText='Distance' changing={true}>
+            <DropDown btnText='Distance' isChanging={true}>
               <div className='placeholder' display='Distance'></div>
               <div display='25 Miles' changeDis={this.changeDistance}></div>
               <div display='50 Miles' changeDis={this.changeDistance}></div>
@@ -267,7 +267,7 @@ class SearchForm extends React.Component {
             </button>
           </div>
           <div className='drop-downs'>
-            <DropDown btnText='Price' className='price'>
+            <DropDown btnText='Price' className='price' extraModalBtns={1}>
               <Tabs changeTabValue={this.changeTabValue}>
                 <div label='Price' className='tab price-tab'>
                   <div className='slider-content'>
