@@ -404,7 +404,7 @@ class SearchForm extends React.Component {
                 </div>
               </Tabs>
             </DropDown>
-            <DropDown btnText='Make & Model' className='makemodel'>
+            <DropDown btnText='Make & Model' className='makemodel' extraModalBtns={1}>
               <Search value={this.state.modelBoxes} handleBoxChange={this.handleModelBoxChange}/>
             </DropDown>
             <DropDown btnText='Body Type' className='body-types'>

@@ -225,8 +225,15 @@ input[type='number']::-webkit-outer-spin-button {
   font-size: 15px;
 }
 
-#search_form .filters .search-box input[name='zipCode'] {
-  width: 100px;
+@media (max-width: 600px) {
+  #search_form .filters .search-box input[name='zipCode'] {
+    width: 50px;
+  }
+}
+@media (min-width: 601px) {
+  #search_form .filters .search-box input[name='zipCode'] {
+    width: 100px;
+  }
 }
 
 #search_form .filters .search-box .drop-down button {
@@ -312,12 +319,14 @@ input[type='number']::-webkit-outer-spin-button {
   flex-wrap: wrap;
   justify-content: center;
 
-  height: 60px;
+  height: 100px;
 }
 
 @media (min-width: 601px) {
   #search_form .filters .drop-downs {
     position: relative;
+
+    height: 55px;
   }
 }
 
@@ -328,7 +337,7 @@ input[type='number']::-webkit-outer-spin-button {
   align-items: center;
 
   width: calc(33.33% - 12px);
-  height: 80%;
+  height: 45px;
 
   margin: 5px;
 
@@ -427,7 +436,7 @@ input[type='number']::-webkit-outer-spin-button {
 
   #search_form .price .dd-content {
     display: flex;
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
 
@@ -907,321 +916,622 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 
-#search_form .makemodel .dd-content {
-  display: flex;
-  position: absolute;
-  top: 100%;
-
-  border: 1px solid $gray;
-
-  background: $white;
-}
-
-#search_form .makemodel .dd-content::after {
-  position: absolute;
-  top: -1px;
-
-  height: 1px;
-
-  background: $white;
-
-  content: '';
-}
-
 @media (max-width: 600px) {
+  #search_form .makemodel .dd-content .extra-modal-bar1 {
+    display: flex;
+
+    flex-direction: row;
+
+    width: 100%;
+    height: 50px;
+
+    margin-bottom: 5px;
+
+    border-bottom: 1px solid $gray;
+
+    background: $white;
+  }
+
+  #search_form .makemodel .dd-content .extra-modal-bar1::before {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    content: 'Price or Payment';
+  }
+
+  #search_form .makemodel .dd-content .extra-modal-bar1 > button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 35px;
+    height: 35px;
+
+    margin: 5px;
+
+    border: 1px solid $gray;
+  }
+
+  #search_form .makemodel .dd-content .extra-modal-bar1 > button::before {
+    font-size: 20px;
+
+    content: 'x';
+  }
+
   #search_form .makemodel .dd-content {
-    left: -50px;
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
 
-    width: 500%;
+    flex-direction: column;
 
+    width: 100%;
+    height: 100%;
+
+    background: $dark-blue;
+
+    z-index: 2;
+  }
+
+  #search_form .dd-content .search-container {
+    display: flex;
+    position: relative;
+
+    flex-direction: column;
+
+    margin: 10px;
+
+    border: 0;
     border-radius: 5px;
+
+    background: $white;
+
+    overflow: hidden;
   }
 
-  #search_form .makemodel .dd-content::after {
-    left: 48px;
+  #search_form .dd-content .search-container > .searchbox {
+    display: flex;
 
-    width: calc(20% + 2px);
-  }
-}
-@media (max-width: 992px) and (min-width: 601px) {
-  #search_form .makemodel .dd-content {
-    left: -80px;
-
-    width: 550%;
-
-    border-radius: 5px;
+    flex-direction: row;
   }
 
-  #search_form .makemodel .dd-content::after {
-    left: 78px;
+  #search_form .dd-content .search-container > .searchbox input {
+    width: 100%;
+    height: 30px;
 
-    width: calc(18% + 3px);
-  }
-}
-@media (min-width: 993px) {
-  #search_form .makemodel .dd-content {
-    left: -100px;
-
-    width: 500%;
-
-    border-radius: 5px;
+    margin: 10px;
   }
 
-  #search_form .makemodel .dd-content::after {
-    left: 98px;
-
-    width: calc(20% + 2px);
+  #search_form .dd-content .search-container > .box-container {
+    overflow: scroll;
   }
-}
 
-#search_form .dd-content .search-container {
-  display: flex;
-  position: relative;
-
-  flex-direction: column;
-
-  overflow: hidden;
-}
-
-#search_form .dd-content .search-container > .searchbox {
-  display: flex;
-
-  flex-direction: row;
-}
-
-#search_form .dd-content .search-container > .searchbox input {
-  width: 100%;
-  height: 30px;
-
-  margin: 10px;
-}
-
-#search_form .dd-content .search-container > .box-container {
-  padding: 20px;
-}
-
-@media (max-width: 600px) {
   #search_form .dd-content .search-container > .box-container ul {
-    column-count: 3;
-  }
-}
-@media (max-width: 992px) and (min-width: 601px) {
-  #search_form .dd-content .search-container > .box-container ul {
-    column-count: 4;
-  }
-}
-@media (min-width: 993px) {
-  #search_form .dd-content .search-container > .box-container ul {
-    column-count: 5;
-  }
-}
+    margin: 0;
 
-#search_form .dd-content .search-container > .box-container ul {
-  margin: 0;
+    padding: 10px;
 
-  padding: 10px;
+    column-gap: 20px;
 
-  column-gap: 20px;
-
-  list-style: none;
-
-  overflow: hidden;
-}
-
-#search_form .dd-content .search-container > .box-container li {
-  display: inline-flex;
-
-  width: 100%;
-
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-#search_form .dd-content .search-container > .box-container li button {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-
-  border: 1px solid transparent;
-}
-
-#search_form .dd-content .search-container > .box-container li button:hover {
-  border: 1px solid $black;
-}
-
-#search_form .dd-content .search-container > .box-container li label {
-  display: flex;
-
-  flex-direction: row;
-  align-items: center;
-
-  width: 100%;
-  height: 100%;
-
-  padding: 5px;
-  padding-left: 10px;
-
-  border: 1px solid transparent;
-  border-radius: 10px;
-
-  color: $black;
-
-  cursor: pointer;
-}
-
-#search_form .dd-content .search-container > .box-container li label:hover {
-  border: 1px solid $black;
-}
-
-#search_form .dd-content .search-container > .box-container li label > p {
-  width: 100%;
-}
-
-#search_form .dd-content .search-container > .box-container li input[type='checkbox'] {
-  display: none;
-}
-
-#search_form .dd-content .search-container > .box-container li .models-bar {
-  display: flex;
-  position: absolute;
-  top: 0;
-  right: -800px;
-
-  flex-direction: row;
-
-  width: 100%;
-  height: 100%;
-
-  background: transparent;
-
-  overflow: hidden;
-
-  -webkit-animation: slideOut .5s forwards;
-  animation: slideOut .5s forwards;
-}
-
-@-webkit-keyframes slideOut { 100% { right: 0; }}
-@keyframes slideOut { 100% { right: 0; }}
-@-webkit-keyframes slideIn { 100% { right: -800px; }}
-@keyframes slideIn { 100% { right: -800px; }}
-
-#search_form .dd-content .search-container > .box-container li .models-bar.is-closing {
-  right: 0;
-
-  -webkit-animation: slideIn .5s forwards;
-  animation: slideIn .5s forwards;
-}
-
-#search_form .dd-content .search-container > .box-container li .models-bar > .left-spacer {
-  width: 15%;
-
-  background: transparent;
-
-  cursor: default;
-}
-
-#search_form .dd-content .search-container > .box-container li .models-bar > .left-spacer:hover {
-  border: 0;
-}
-
-#search_form .dd-content .search-container > .box-container li .models-bar > .container {
-  display: flex;
-
-  flex-direction: column;
-
-  width: 85%;
-
-  padding: 10px;
-
-  border-radius: 5px;
-
-  background: $light-blue;
-
-  box-shadow: -5px 0 20px #888;
-}
-
-#search_form .dd-content .search-container > .box-container li .models-bar > .container > p {
-  display: flex;
-
-  justify-content: flex-start;
-}
-
-#search_form .dd-content .search-container > .box-container li .models-bar > .container > p > button {
-  width: 125px;
-
-  border: 0;
-
-  background: transparent;
-}
-
-@media (max-width: 600px) {
-  #search_form .dd-content .search-container > .box-container li .models-bar > .container > ul .simplebar-content {
     column-count: 2;
+
+    list-style: none;
+
+    overflow: hidden;
+  }
+
+  #search_form .dd-content .search-container > .box-container li {
+    display: inline-flex;
+
+    width: 100%;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  #search_form .dd-content .search-container > .box-container li button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+
+    border: 1px solid transparent;
+  }
+
+  #search_form .dd-content .search-container > .box-container li button:hover {
+    border: 1px solid $black;
+  }
+
+  #search_form .dd-content .search-container > .box-container li label {
+    display: flex;
+
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 5px;
+    padding-left: 10px;
+
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    color: $black;
+
+    cursor: pointer;
+  }
+
+  #search_form .dd-content .search-container > .box-container li label:hover {
+    border: 1px solid $black;
+  }
+
+  #search_form .dd-content .search-container > .box-container li label > p {
+    width: 100%;
+  }
+
+  #search_form .dd-content .search-container > .box-container li input[type='checkbox'] {
+    display: none;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: -800px;
+
+    flex-direction: row;
+
+    width: 100%;
+    height: 100%;
+
+    background: transparent;
+
+    overflow: hidden;
+
+    -webkit-animation: slideOut .5s forwards;
+    animation: slideOut .5s forwards;
+  }
+
+  @-webkit-keyframes slideOut { 100% { right: 0; }}
+  @keyframes slideOut { 100% { right: 0; }}
+  @-webkit-keyframes slideIn { 100% { right: -800px; }}
+  @keyframes slideIn { 100% { right: -800px; }}
+
+  #search_form .dd-content .search-container > .box-container li .models-bar.is-closing {
+    right: 0;
+
+    -webkit-animation: slideIn .5s forwards;
+    animation: slideIn .5s forwards;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .left-spacer {
+    display: none;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .container {
+    display: flex;
+
+    flex-direction: column;
+
+    width: 100%;
+
+    padding: 10px;
+
+    border-radius: 5px;
+
+    background: $light-blue;
+
+    box-shadow: -5px 0 20px #888;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .container > p {
+    display: flex;
+
+    justify-content: flex-start;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .container > p > button {
+    width: 125px;
+
+    border: 0;
+
+    background: transparent;
+  }
+
+  @media (max-width: 600px) {
+    #search_form .dd-content .search-container > .box-container li .models-bar > .container > ul .simplebar-content {
+      column-count: 2;
+    }
+  }
+  @media (max-width: 992px) and (min-width: 601px) {
+    #search_form .dd-content .search-container > .box-container li .models-bar > .container > ul .simplebar-content {
+      column-count: 3;
+    }
+  }
+  @media (min-width: 993px) {
+    #search_form .dd-content .search-container > .box-container li .models-bar > .container > ul .simplebar-content {
+      column-count: 4;
+    }
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .container > ul .simplebar-content-wrapper {
+    background:
+    linear-gradient($light-blue 33%, rgba(23, 234, 220, 0)),
+    linear-gradient(rgba(23, 234, 220, 0), $light-blue 66%) 0 100%,
+    radial-gradient(farthest-side at 50% 0, rgba(34, 34, 34, .5), rgba(0, 0, 0, 0)),
+    radial-gradient(farthest-side at 50% 100%, rgba(34, 34, 34, .5), rgba(0, 0, 0, 0)) 0 100%;
+    background-attachment: local, local, scroll, scroll;
+    background-color: $light-blue;
+    background-repeat: no-repeat;
+    background-size: 100% 60px, 100% 60px, 100% 20px, 100% 20px;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .container > ul {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    overflow: auto;
+  }
+
+  #search_form .dd-content .search-container .models-bar > .container > ul .simplebar-scrollbar::before {
+    background-color: $dark-blue;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .container li {
+    height: 40px;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .container li label {
+    display: flex;
+
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+    height: calc(100% - 2px);
+
+    padding: 5px;
+    padding-left: 10px;
+
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    color: $black;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .container li label:hover {
+    border: 1px solid $black;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .container li label > p {
+    width: 100%;
   }
 }
-@media (max-width: 992px) and (min-width: 601px) {
-  #search_form .dd-content .search-container > .box-container li .models-bar > .container > ul .simplebar-content {
-    column-count: 3;
+
+@media (min-width: 601px) {
+  #search_form .makemodel .dd-content {
+    display: flex;
+    position: absolute;
+    top: 100%;
+
+    border: 1px solid $gray;
+
+    background: $white;
   }
-}
-@media (min-width: 993px) {
-  #search_form .dd-content .search-container > .box-container li .models-bar > .container > ul .simplebar-content {
-    column-count: 4;
+
+  #search_form .makemodel .dd-content::after {
+    position: absolute;
+    top: -1px;
+
+    height: 1px;
+
+    background: $white;
+
+    content: '';
   }
-}
 
-#search_form .dd-content .search-container > .box-container li .models-bar > .container > ul .simplebar-content-wrapper {
-  background:
-  linear-gradient($light-blue 33%, rgba(23, 234, 220, 0)),
-  linear-gradient(rgba(23, 234, 220, 0), $light-blue 66%) 0 100%,
-  radial-gradient(farthest-side at 50% 0, rgba(34, 34, 34, .5), rgba(0, 0, 0, 0)),
-  radial-gradient(farthest-side at 50% 100%, rgba(34, 34, 34, .5), rgba(0, 0, 0, 0)) 0 100%;
-  background-attachment: local, local, scroll, scroll;
-  background-color: $light-blue;
-  background-repeat: no-repeat;
-  background-size: 100% 60px, 100% 60px, 100% 20px, 100% 20px;
-}
+  @media (max-width: 600px) {
+    #search_form .makemodel .dd-content {
+      left: -50px;
 
-#search_form .dd-content .search-container > .box-container li .models-bar > .container > ul {
-  display: flex;
+      width: 500%;
 
-  flex-wrap: wrap;
+      border-radius: 5px;
+    }
 
-  overflow: auto;
-}
+    #search_form .makemodel .dd-content::after {
+      left: 48px;
 
-#search_form .dd-content .search-container .models-bar > .container > ul .simplebar-scrollbar::before {
-  background-color: $dark-blue;
-}
+      width: calc(20% + 2px);
+    }
+  }
+  @media (max-width: 992px) and (min-width: 601px) {
+    #search_form .makemodel .dd-content {
+      left: -80px;
 
-#search_form .dd-content .search-container > .box-container li .models-bar > .container li {
-  height: 40px;
-}
+      width: 550%;
 
-#search_form .dd-content .search-container > .box-container li .models-bar > .container li label {
-  display: flex;
+      border-radius: 5px;
+    }
 
-  flex-direction: row;
-  align-items: center;
+    #search_form .makemodel .dd-content::after {
+      left: 78px;
 
-  width: 100%;
-  height: calc(100% - 2px);
+      width: calc(18% + 3px);
+    }
+  }
+  @media (min-width: 993px) {
+    #search_form .makemodel .dd-content {
+      left: -100px;
 
-  padding: 5px;
-  padding-left: 10px;
+      width: 500%;
 
-  border: 1px solid transparent;
-  border-radius: 10px;
+      border-radius: 5px;
+    }
 
-  color: $black;
-}
+    #search_form .makemodel .dd-content::after {
+      left: 98px;
 
-#search_form .dd-content .search-container > .box-container li .models-bar > .container li label:hover {
-  border: 1px solid $black;
-}
+      width: calc(20% + 2px);
+    }
+  }
 
-#search_form .dd-content .search-container > .box-container li .models-bar > .container li label > p {
-  width: 100%;
+  #search_form .dd-content .search-container {
+    display: flex;
+    position: relative;
+
+    flex-direction: column;
+
+    overflow: hidden;
+  }
+
+  #search_form .dd-content .search-container > .searchbox {
+    display: flex;
+
+    flex-direction: row;
+  }
+
+  #search_form .dd-content .search-container > .searchbox input {
+    width: 100%;
+    height: 30px;
+
+    margin: 10px;
+  }
+
+  #search_form .dd-content .search-container > .box-container {
+    padding: 20px;
+  }
+
+  @media (max-width: 600px) {
+    #search_form .dd-content .search-container > .box-container ul {
+      column-count: 3;
+    }
+  }
+  @media (max-width: 992px) and (min-width: 601px) {
+    #search_form .dd-content .search-container > .box-container ul {
+      column-count: 4;
+    }
+  }
+  @media (min-width: 993px) {
+    #search_form .dd-content .search-container > .box-container ul {
+      column-count: 5;
+    }
+  }
+
+  #search_form .dd-content .search-container > .box-container ul {
+    margin: 0;
+
+    padding: 10px;
+
+    column-gap: 20px;
+
+    list-style: none;
+
+    overflow: hidden;
+  }
+
+  #search_form .dd-content .search-container > .box-container li {
+    display: inline-flex;
+
+    width: 100%;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  #search_form .dd-content .search-container > .box-container li button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+
+    border: 1px solid transparent;
+  }
+
+  #search_form .dd-content .search-container > .box-container li button:hover {
+    border: 1px solid $black;
+  }
+
+  #search_form .dd-content .search-container > .box-container li label {
+    display: flex;
+
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 5px;
+    padding-left: 10px;
+
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    color: $black;
+
+    cursor: pointer;
+  }
+
+  #search_form .dd-content .search-container > .box-container li label:hover {
+    border: 1px solid $black;
+  }
+
+  #search_form .dd-content .search-container > .box-container li label > p {
+    width: 100%;
+  }
+
+  #search_form .dd-content .search-container > .box-container li input[type='checkbox'] {
+    display: none;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: -800px;
+
+    flex-direction: row;
+
+    width: 100%;
+    height: 100%;
+
+    background: transparent;
+
+    overflow: hidden;
+
+    -webkit-animation: slideOut .5s forwards;
+    animation: slideOut .5s forwards;
+  }
+
+  @-webkit-keyframes slideOut { 100% { right: 0; }}
+  @keyframes slideOut { 100% { right: 0; }}
+  @-webkit-keyframes slideIn { 100% { right: -800px; }}
+  @keyframes slideIn { 100% { right: -800px; }}
+
+  #search_form .dd-content .search-container > .box-container li .models-bar.is-closing {
+    right: 0;
+
+    -webkit-animation: slideIn .5s forwards;
+    animation: slideIn .5s forwards;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .left-spacer {
+    width: 15%;
+
+    background: transparent;
+
+    cursor: default;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .left-spacer:hover {
+    border: 0;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .container {
+    display: flex;
+
+    flex-direction: column;
+
+    width: 85%;
+
+    padding: 10px;
+
+    border-radius: 5px;
+
+    background: $light-blue;
+
+    box-shadow: -5px 0 20px #888;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .container > p {
+    display: flex;
+
+    justify-content: flex-start;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .container > p > button {
+    width: 125px;
+
+    border: 0;
+
+    background: transparent;
+  }
+
+  @media (max-width: 600px) {
+    #search_form .dd-content .search-container > .box-container li .models-bar > .container > ul .simplebar-content {
+      column-count: 2;
+    }
+  }
+  @media (max-width: 992px) and (min-width: 601px) {
+    #search_form .dd-content .search-container > .box-container li .models-bar > .container > ul .simplebar-content {
+      column-count: 3;
+    }
+  }
+  @media (min-width: 993px) {
+    #search_form .dd-content .search-container > .box-container li .models-bar > .container > ul .simplebar-content {
+      column-count: 4;
+    }
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .container > ul .simplebar-content-wrapper {
+    background:
+    linear-gradient($light-blue 33%, rgba(23, 234, 220, 0)),
+    linear-gradient(rgba(23, 234, 220, 0), $light-blue 66%) 0 100%,
+    radial-gradient(farthest-side at 50% 0, rgba(34, 34, 34, .5), rgba(0, 0, 0, 0)),
+    radial-gradient(farthest-side at 50% 100%, rgba(34, 34, 34, .5), rgba(0, 0, 0, 0)) 0 100%;
+    background-attachment: local, local, scroll, scroll;
+    background-color: $light-blue;
+    background-repeat: no-repeat;
+    background-size: 100% 60px, 100% 60px, 100% 20px, 100% 20px;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .container > ul {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    overflow: auto;
+  }
+
+  #search_form .dd-content .search-container .models-bar > .container > ul .simplebar-scrollbar::before {
+    background-color: $dark-blue;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .container li {
+    height: 40px;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .container li label {
+    display: flex;
+
+    flex-direction: row;
+    align-items: center;
+
+    width: 100%;
+    height: calc(100% - 2px);
+
+    padding: 5px;
+    padding-left: 10px;
+
+    border: 1px solid transparent;
+    border-radius: 10px;
+
+    color: $black;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .container li label:hover {
+    border: 1px solid $black;
+  }
+
+  #search_form .dd-content .search-container > .box-container li .models-bar > .container li label > p {
+    width: 100%;
+  }
 }
 
 
