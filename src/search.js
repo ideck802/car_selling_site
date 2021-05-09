@@ -407,8 +407,8 @@ class SearchForm extends React.Component {
             <DropDown btnText='Make & Model' className='makemodel' extraModalBtns={1}>
               <Search value={this.state.modelBoxes} handleBoxChange={this.handleModelBoxChange}/>
             </DropDown>
-            <DropDown btnText='Body Type' className='body-types'>
-              <div>
+            <DropDown btnText='Body Type' className='body-types' extraModalBtns={1}>
+              <div className='container'>
                 <div className='body'>
                   {this.labelCreator('check_suv', images.suv, 'SUVs')}
                   <input
@@ -483,8 +483,8 @@ class SearchForm extends React.Component {
                 </div>
               </div>
             </DropDown>
-            <DropDown btnText='Year & Mileage' className='year-mile'>
-              <div>
+            <DropDown btnText='Year & Mileage' className='year-mile' extraModalBtns={1}>
+              <div className='container'>
                 <div className='slider-content'>
                   <div className='inputs'>
                     <label>Year</label>
@@ -589,8 +589,8 @@ class SearchForm extends React.Component {
                 </div>
               </div>
             </DropDown>
-            <DropDown btnText='Features' className='features'>
-              <div>
+            <DropDown btnText='Features' className='features' extraModalBtns={1}>
+              <div className='container'>
                 <div>
                   <Accordion btnText='Comfort'>
                     {this.featureCreator('Cooled Seats', 'cooled_seats')}
@@ -647,8 +647,8 @@ class SearchForm extends React.Component {
                 </div>
               </div>
             </DropDown>
-            <DropDown btnText='More Filters' className='more-features'>
-              <div>
+            <DropDown btnText='More Filters' className='more-features' extraModalBtns={1}>
+              <div className='container'>
                 <div className='block1'>
                   <div className='slider-content'>
                     <div className='inputs'>

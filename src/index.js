@@ -36,12 +36,14 @@ class HomeForm extends React.Component {
         {width: 800, itemsToShow: 7, itemsToScroll: 4},
         {width: 900, itemsToShow: 8, itemsToScroll: 4},
         {width: 1000, itemsToShow: 9, itemsToScroll: 4}
-      ]
+      ],
+      financeOrPrice: false,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.labelCreator = this.labelCreator.bind(this);
+    this.changeTabValue = this.changeTabValue.bind(this);
   }
 
   handleInputChange(event) {
@@ -132,6 +134,18 @@ class HomeForm extends React.Component {
     }
   }
 
+  changeTabValue(value) {
+    if (value === 0) {
+      this.setState({
+        financeOrPrice: false
+      });
+    } else {
+      this.setState({
+        financeOrPrice: true
+      });
+    }
+  }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
@@ -217,7 +231,7 @@ class HomeForm extends React.Component {
             </div>
           </Carousel>
         </div>
-        <Tabs>
+        <Tabs changeTabValue={this.changeTabValue}>
           <div label='PRICE' className='tab'>
             <div className='slider-content'>
               <label>Price Range</label>

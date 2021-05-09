@@ -386,7 +386,7 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 
-
+//price drop down
 @media (max-width: 600px) {
   #search_form .price .dd-content .extra-modal-bar1 {
     display: flex;
@@ -915,7 +915,7 @@ input[type='number']::-webkit-outer-spin-button {
   }
 }
 
-
+//make and model drop down
 @media (max-width: 600px) {
   #search_form .makemodel .dd-content .extra-modal-bar1 {
     display: flex;
@@ -940,7 +940,7 @@ input[type='number']::-webkit-outer-spin-button {
 
     width: 100%;
 
-    content: 'Price or Payment';
+    content: 'Make and Model';
   }
 
   #search_form .makemodel .dd-content .extra-modal-bar1 > button {
@@ -1214,8 +1214,11 @@ input[type='number']::-webkit-outer-spin-button {
     width: 100%;
   }
 }
-
 @media (min-width: 601px) {
+  #search_form .makemodel .dd-content .extra-modal-bar1 {
+    display: none;
+  }
+
   #search_form .makemodel .dd-content {
     display: flex;
     position: absolute;
@@ -1534,680 +1537,1548 @@ input[type='number']::-webkit-outer-spin-button {
   }
 }
 
+//body type drop down
+@media (max-width: 600px) {
+  #search_form .body-types .dd-content .extra-modal-bar1 {
+    display: flex;
 
-#search_form .body-types .dd-content {
-  position: absolute;
-  top: 100%;
-  left: calc((100% + 1px)*-1);
+    flex-direction: row;
 
-  width: 400%;
+    width: 100%;
+    height: 50px;
 
-  border: 1px solid $gray;
-  border-radius: 5px;
+    margin-bottom: 5px;
 
-  background: $white;
-}
+    border-bottom: 1px solid $gray;
 
-#search_form .body-types .dd-content::after {
-  position: absolute;
-  top: -1px;
-  left: calc(25% - 1px);
+    background: $white;
+  }
 
-  width: calc(25% + 2px);
-  height: 1px;
+  #search_form .body-types .dd-content .extra-modal-bar1::before {
+    display: flex;
 
-  background: $white;
+    align-items: center;
+    justify-content: center;
 
-  content: '';
-}
+    width: 100%;
 
-#search_form .body-types .dd-content > div {
-  display: flex;
+    content: 'Body Type';
+  }
 
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+  #search_form .body-types .dd-content .extra-modal-bar1 > button {
+    display: flex;
 
-  padding: 10px;
-}
+    align-items: center;
+    justify-content: center;
 
-#search_form .body-types .dd-content .body {
-  display: flex;
+    width: 35px;
+    height: 35px;
 
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    margin: 5px;
 
-  width: 80px;
-  height: 125px;
+    border: 1px solid $gray;
+  }
 
-  margin: 10px;
-}
+  #search_form .body-types .dd-content .extra-modal-bar1 > button::before {
+    font-size: 20px;
 
-#search_form .body-types .dd-content .body > div {
-  height: 10px;
+    content: 'x';
+  }
 
-  border-radius: 5px;
+  #search_form .body-types .dd-content {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
 
-  background-color: $dark-blue;
-}
+    flex-direction: column;
 
-#search_form .body-types .dd-content .body > input[type='checkbox'] {
-  display: none;
-}
+    width: 100%;
+    height: 100%;
 
-#search_form .body-types .dd-content .body > label {
-  display: flex;
+    background: $dark-blue;
 
-  flex-direction: column;
-  justify-content: space-between;
+    z-index: 2;
+  }
 
-  width: 100%;
-  height: 100%;
+  #search_form .body-types .dd-content > .container {
+    display: flex;
 
-  padding: 5px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 
-  border: 1px solid $gray;
-  border-radius: 3px;
+    margin: 10px;
 
-  text-align: center;
+    padding: 10px;
 
-  cursor: pointer;
-}
+    border: 0;
+    border-radius: 5px;
 
-#search_form .body-types .dd-content .body > label.selected {
-  border: 1px solid $blue;
-}
+    background: $white;
 
-#search_form .body-types .dd-content .body > label:hover {
-  border: 1px solid $blue;
-}
+    overflow: auto;
+  }
 
-#search_form .body-types .dd-content .body > label p {
-  margin: 0;
-}
+  #search_form .body-types .dd-content .body {
+    display: flex;
 
-#search_form .body-types .dd-content .body > label img {
-  padding-bottom: 10px;
-}
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-#search_form .body-types .dd-content .body > label i {
-  align-self: flex-end;
+    width: 80px;
+    height: 125px;
 
-  margin-top: -5px;
-  margin-right: -5px;
+    margin: 10px;
+  }
 
-  padding: 3px;
+  #search_form .body-types .dd-content .body > div {
+    height: 10px;
 
-  border-radius: 0 0 0 5px;
+    border-radius: 5px;
 
-  background: transparent;
+    background-color: $dark-blue;
+  }
 
-  color: transparent;
+  #search_form .body-types .dd-content .body > input[type='checkbox'] {
+    display: none;
+  }
 
-  font-size: 12px;
-}
+  #search_form .body-types .dd-content .body > label {
+    display: flex;
 
-#search_form .body-types .dd-content .body > label.selected i {
-  background: $blue;
+    flex-direction: column;
+    justify-content: space-between;
 
-  color: $white;
-}
+    width: 100%;
+    height: 100%;
 
+    padding: 5px;
 
+    border: 1px solid $gray;
+    border-radius: 3px;
 
-#search_form .year-mile .dd-content {
-  display: flex;
-  position: absolute;
-  top: 100%;
-  left: calc((200% - 1px)*-1);
+    text-align: center;
 
-  flex-direction: column;
+    cursor: pointer;
+  }
 
-  width: 400%;
+  #search_form .body-types .dd-content .body > label.selected {
+    border: 1px solid $blue;
+  }
 
-  border: 1px solid $gray;
-  border-radius: 5px;
+  #search_form .body-types .dd-content .body > label:hover {
+    border: 1px solid $blue;
+  }
 
-  background: $white;
-}
+  #search_form .body-types .dd-content .body > label p {
+    margin: 0;
+  }
 
-#search_form .year-mile .dd-content::after {
-  position: absolute;
-  top: -1px;
-  left: calc(50% - 3px);
+  #search_form .body-types .dd-content .body > label img {
+    padding-bottom: 10px;
+  }
 
-  width: calc(25% + 2px);
-  height: 1px;
+  #search_form .body-types .dd-content .body > label i {
+    align-self: flex-end;
 
-  background: $white;
+    margin-top: -5px;
+    margin-right: -5px;
 
-  content: '';
-}
+    padding: 3px;
 
-#search_form .year-mile .dd-content .slider-content {
-  display: flex;
+    border-radius: 0 0 0 5px;
 
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+    background: transparent;
 
-  width: calc(100% - 20px);
-  height: 100%;
+    color: transparent;
 
-  padding: 10px;
-  padding-bottom: 20px;
-}
+    font-size: 12px;
+  }
 
-#search_form .year-mile .dd-content .slider-content:first-of-type {
-  border-bottom: 1px solid $gray;
+  #search_form .body-types .dd-content .body > label.selected i {
+    background: $blue;
+
+    color: $white;
+  }
 }
+@media (min-width: 601px) {
+  #search_form .body-types .dd-content .extra-modal-bar1 {
+    display: none;
+  }
 
-#search_form .year-mile .dd-content .slider-content > .inputs {
-  display: flex;
+  #search_form .body-types .dd-content {
+    position: absolute;
+    top: 100%;
+    left: calc((100% + 1px)*-1);
 
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+    width: 400%;
 
-  margin-top: -10px;
-}
+    border: 1px solid $gray;
+    border-radius: 5px;
 
-#search_form .year-mile .dd-content .slider-content > .inputs > span {
-  height: 25px;
-}
+    background: $white;
+  }
 
-#search_form .year-mile .dd-content .slider-content > .inputs > p {
-  margin-right: 5px;
-  margin-left: 5px;
-}
+  #search_form .body-types .dd-content::after {
+    position: absolute;
+    top: -1px;
+    left: calc(25% - 1px);
 
-#search_form .year-mile .dd-content .slider-content > .slider-container {
-  display: flex;
+    width: calc(25% + 2px);
+    height: 1px;
 
-  flex-direction: column;
+    background: $white;
 
-  width: calc(100% - 20px);
-}
+    content: '';
+  }
 
-#search_form .year-mile .dd-content .slider-content > .slider-container > div {
-  height: 10px;
+  #search_form .body-types .dd-content > div {
+    display: flex;
 
-  border-radius: 5px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 
-  background-color: $dark-blue;
-}
+    padding: 10px;
+  }
 
-#search_form .year-mile .dd-content .slider-content > .slider-container > div > div {
-  width: 20px;
-  height: 20px;
+  #search_form .body-types .dd-content .body {
+    display: flex;
 
-  border-radius: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-  background-color: $blue;
-}
+    width: 80px;
+    height: 125px;
 
-#search_form .year-mile .dd-content label {
-  display: flex;
+    margin: 10px;
+  }
 
-  align-items: center;
+  #search_form .body-types .dd-content .body > div {
+    height: 10px;
 
-  width: 100%;
-}
+    border-radius: 5px;
 
-#search_form .year-mile .dd-content .input-number {
-  display: flex;
+    background-color: $dark-blue;
+  }
 
-  align-items: center;
+  #search_form .body-types .dd-content .body > input[type='checkbox'] {
+    display: none;
+  }
 
-  height: 25px;
+  #search_form .body-types .dd-content .body > label {
+    display: flex;
 
-  border: 1px solid $blue;
-  border-radius: 5px;
+    flex-direction: column;
+    justify-content: space-between;
 
-  background: $white;
-}
+    width: 100%;
+    height: 100%;
 
-#search_form .year-mile .dd-content .input-number input {
-  width: 80px;
+    padding: 5px;
 
-  border: 0;
-  border-radius: 5px;
+    border: 1px solid $gray;
+    border-radius: 3px;
 
-  outline: none;
+    text-align: center;
 
-  background: $white;
+    cursor: pointer;
+  }
 
-  text-align: right;
+  #search_form .body-types .dd-content .body > label.selected {
+    border: 1px solid $blue;
+  }
 
-  -moz-appearance: textfield;
-}
+  #search_form .body-types .dd-content .body > label:hover {
+    border: 1px solid $blue;
+  }
 
-#search_form .year-mile .dd-content .inputs {
-  width: 100%;
-}
+  #search_form .body-types .dd-content .body > label p {
+    margin: 0;
+  }
 
+  #search_form .body-types .dd-content .body > label img {
+    padding-bottom: 10px;
+  }
 
-#search_form .features .dd-content {
-  position: absolute;
-  top: 100%;
-  left: calc((400% - 1px)*-1);
+  #search_form .body-types .dd-content .body > label i {
+    align-self: flex-end;
 
-  width: 600%;
+    margin-top: -5px;
+    margin-right: -5px;
 
-  border: 1px solid $gray;
-  border-radius: 5px;
+    padding: 3px;
 
-  background: $white;
-}
+    border-radius: 0 0 0 5px;
 
-#search_form .features .dd-content::after {
-  position: absolute;
-  top: -1px;
-  left: calc(66.66% - 3px);
+    background: transparent;
 
-  width: calc(16.66% + 2px);
-  height: 1px;
+    color: transparent;
 
-  background: $white;
+    font-size: 12px;
+  }
 
-  content: '';
-}
+  #search_form .body-types .dd-content .body > label.selected i {
+    background: $blue;
 
-#search_form .features .dd-content > div {
-  display: flex;
+    color: $white;
+  }
 }
 
-#search_form .features .dd-content > div > div {
-  width: 50%;
-}
+//year and mileage drop down
+@media (max-width: 600px) {
+  #search_form .year-mile .dd-content .extra-modal-bar1 {
+    display: flex;
 
-#search_form .features .dd-content .accordion {
-  display: flex;
+    flex-direction: row;
 
-  flex-direction: column;
+    width: 100%;
+    height: 50px;
 
-  margin: 10px;
+    margin-bottom: 5px;
 
-  border-radius: 5px;
+    border-bottom: 1px solid $gray;
 
-  background: $gray;
-}
+    background: $white;
+  }
 
-#search_form .features .dd-content .accordion button {
-  height: 20px;
+  #search_form .year-mile .dd-content .extra-modal-bar1::before {
+    display: flex;
 
-  padding: 20px;
+    align-items: center;
+    justify-content: center;
 
-  border-radius: 5px;
+    width: 100%;
 
-  background: $gray;
-}
+    content: 'Year and Mileage';
+  }
 
-#search_form .features .dd-content .accordion-open button {
-  border-bottom: 1px solid $blue;
-  border-radius: 5px 5px 0 0;
-}
+  #search_form .year-mile .dd-content .extra-modal-bar1 > button {
+    display: flex;
 
-#search_form .features .dd-content .accordion-content {
-  display: flex;
+    align-items: center;
+    justify-content: center;
 
-  flex-direction: row;
-  flex-wrap: wrap;
-}
+    width: 35px;
+    height: 35px;
 
-#search_form .features .dd-content .accordion-content label {
-  display: flex;
+    margin: 5px;
 
-  flex-direction: column;
-  justify-content: center;
+    border: 1px solid $gray;
+  }
 
-  width: calc(50% - 22px);
+  #search_form .year-mile .dd-content .extra-modal-bar1 > button::before {
+    font-size: 20px;
 
-  margin: 5px;
+    content: 'x';
+  }
 
-  padding: 5px;
+  #search_form .year-mile .dd-content {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
 
-  border: 1px solid transparent;
-  border-radius: 5px;
+    flex-direction: column;
 
-  cursor: pointer;
-}
+    width: 100%;
+    height: 100%;
 
-#search_form .features .dd-content .accordion-content label:hover {
-  border: 1px solid $blue;
-}
+    background: $dark-blue;
 
-#search_form .features .dd-content .accordion-content label.checked {
-  border: 1px solid $blue;
+    z-index: 2;
+  }
 
-  background: $blue;
-}
+  #search_form .year-mile .dd-content > .container {
+    display: flex;
 
-#search_form .features .dd-content .accordion-content label input[type='checkbox'] {
-  display: none;
-}
+    flex-direction: column;
+    justify-content: center;
 
+    margin: 10px;
 
+    border: 0;
+    border-radius: 5px;
 
-#search_form .more-features .dd-content {
-  position: absolute;
-  top: 100%;
-  right: -1px;
+    background: $white;
+  }
 
-  width: 600%;
+  #search_form .year-mile .dd-content .slider-content {
+    display: flex;
 
-  border: 1px solid $gray;
-  border-radius: 5px 0 5px 5px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 
-  background: $white;
-}
+    width: calc(100% - 20px);
+    height: 100%;
 
-#search_form .more-features .dd-content::after {
-  position: absolute;
-  top: -1px;
-  right: 0;
+    padding: 10px;
+    padding-bottom: 20px;
+  }
 
-  width: calc(16.66% + 1px);
-  height: 1px;
+  #search_form .year-mile .dd-content .slider-content:first-of-type {
+    border-bottom: 1px solid $gray;
+  }
 
-  background: $white;
+  #search_form .year-mile .dd-content .slider-content > .inputs {
+    display: flex;
 
-  content: '';
-}
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 
-#search_form .more-features .dd-content > div {
-  display: flex;
+    margin-top: -10px;
+  }
 
-  flex-direction: column;
-}
+  #search_form .year-mile .dd-content .slider-content > .inputs > span {
+    height: 25px;
+  }
 
-#search_form .more-features .dd-content > div > div {
-  border-bottom: 1px solid $gray;
-}
+  #search_form .year-mile .dd-content .slider-content > .inputs > p {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
 
-#search_form .more-features .dd-content > div > p {
-  margin-bottom: 0;
-}
+  #search_form .year-mile .dd-content .slider-content > .slider-container {
+    display: flex;
 
-#search_form .more-features .dd-content .block1 {
-  display: flex;
+    flex-direction: column;
 
-  flex-direction: row;
-  flex-wrap: wrap;
-}
+    width: calc(100% - 20px);
+  }
 
-#search_form .more-features .dd-content .block1 .slider-content {
-  display: flex;
+  #search_form .year-mile .dd-content .slider-content > .slider-container > div {
+    height: 10px;
 
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
+    border-radius: 5px;
 
-  width: calc(50% - 32px);
-  height: 100%;
+    background-color: $dark-blue;
+  }
 
-  padding: 10px;
-}
+  #search_form .year-mile .dd-content .slider-content > .slider-container > div > div {
+    width: 20px;
+    height: 20px;
 
-#search_form .more-features .dd-content .block1 .slider-content > .inputs {
-  display: flex;
+    border-radius: 100%;
 
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+    background-color: $blue;
+  }
 
-  margin-bottom: 5px;
-}
+  #search_form .year-mile .dd-content label {
+    display: flex;
 
-#search_form .more-features .dd-content .block1 .slider-content > .inputs > span {
-  height: 25px;
-}
+    align-items: center;
 
-#search_form .more-features .dd-content .block1 .slider-content > .inputs > p {
-  margin-right: 5px;
-  margin-left: 5px;
-}
+    width: 100%;
+  }
 
-#search_form .more-features .dd-content .block1 .slider-content > .slider-container {
-  display: flex;
+  #search_form .year-mile .dd-content .input-number {
+    display: flex;
 
-  flex-direction: column;
+    align-items: center;
 
-  width: calc(100% - 20px);
-}
+    height: 25px;
 
-#search_form .more-features .dd-content .block1 .slider-content > .slider-container > div {
-  height: 10px;
+    border: 1px solid $blue;
+    border-radius: 5px;
 
-  border-radius: 5px;
+    background: $white;
+  }
 
-  background-color: $dark-blue;
-}
+  #search_form .year-mile .dd-content .input-number input {
+    width: 80px;
 
-#search_form .more-features .dd-content .block1 .slider-content > .slider-container > div > div {
-  width: 20px;
-  height: 20px;
+    border: 0;
+    border-radius: 5px;
 
-  border-radius: 100%;
+    outline: none;
 
-  background-color: $blue;
-}
+    background: $white;
 
-#search_form .more-features .dd-content .block1 .inputs label {
-  display: flex;
+    text-align: right;
 
-  align-items: center;
+    -moz-appearance: textfield;
+  }
 
-  width: 100%;
+  #search_form .year-mile .dd-content .inputs {
+    width: 100%;
+  }
 }
+@media (min-width: 601px) {
+  #search_form .year-mile .dd-content .extra-modal-bar1 {
+    display: none;
+  }
 
-#search_form .more-features .dd-content .block1 .input-number {
-  display: flex;
+  #search_form .year-mile .dd-content {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: calc((200% - 1px)*-1);
 
-  align-items: center;
+    flex-direction: column;
 
-  height: 25px;
+    width: 400%;
 
-  border: 1px solid $blue;
-  border-radius: 5px;
+    border: 1px solid $gray;
+    border-radius: 5px;
 
-  background: $white;
-}
+    background: $white;
+  }
 
-#search_form .more-features .dd-content .block1 .input-number input {
-  width: 80px;
+  #search_form .year-mile .dd-content::after {
+    position: absolute;
+    top: -1px;
+    left: calc(50% - 3px);
 
-  border: 0;
-  border-radius: 5px;
+    width: calc(25% + 2px);
+    height: 1px;
 
-  outline: none;
+    background: $white;
 
-  background: $white;
+    content: '';
+  }
 
-  text-align: right;
+  #search_form .year-mile .dd-content .slider-content {
+    display: flex;
 
-  -moz-appearance: textfield;
-}
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 
-#search_form .more-features .dd-content .block1 .inputs {
-  width: 100%;
+    width: calc(100% - 20px);
+    height: 100%;
 
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
+    padding: 10px;
+    padding-bottom: 20px;
+  }
 
-#search_form .more-features .dd-content .block1 .fuel-types {
-  width: 50%;
+  #search_form .year-mile .dd-content .slider-content:first-of-type {
+    border-bottom: 1px solid $gray;
+  }
 
-  padding-left: 10px;
+  #search_form .year-mile .dd-content .slider-content > .inputs {
+    display: flex;
 
-  border-left: 1px solid $gray;
-}
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 
-#search_form .more-features .dd-content .block1 .fuel-types p {
-  margin-bottom: 0;
-}
+    margin-top: -10px;
+  }
 
-#search_form .more-features .dd-content .block1 .fuel-types > div {
-  display: flex;
+  #search_form .year-mile .dd-content .slider-content > .inputs > span {
+    height: 25px;
+  }
 
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-}
+  #search_form .year-mile .dd-content .slider-content > .inputs > p {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
 
-#search_form .more-features .dd-content .block1 .fuel-types label {
-  display: flex;
+  #search_form .year-mile .dd-content .slider-content > .slider-container {
+    display: flex;
 
-  flex-direction: column;
-  justify-content: center;
+    flex-direction: column;
 
-  margin: 5px;
+    width: calc(100% - 20px);
+  }
 
-  padding: 15px;
+  #search_form .year-mile .dd-content .slider-content > .slider-container > div {
+    height: 10px;
 
-  border: 1px solid transparent;
-  border-radius: 5px;
+    border-radius: 5px;
 
-  cursor: pointer;
-}
+    background-color: $dark-blue;
+  }
 
-#search_form .more-features .dd-content .block1 .fuel-types label:hover {
-  border: 1px solid $blue;
-}
+  #search_form .year-mile .dd-content .slider-content > .slider-container > div > div {
+    width: 20px;
+    height: 20px;
 
-#search_form .more-features .dd-content .block1 .fuel-types label.checked {
-  border: 1px solid $blue;
+    border-radius: 100%;
 
-  background: $blue;
-}
+    background-color: $blue;
+  }
 
-#search_form .more-features .dd-content .block1 .fuel-types label input[type='checkbox'] {
-  display: none;
-}
+  #search_form .year-mile .dd-content label {
+    display: flex;
 
-#search_form .more-features .dd-content .block2 {
-  display: flex;
+    align-items: center;
 
-  flex-direction: row;
-}
+    width: 100%;
+  }
 
-#search_form .more-features .dd-content .block2 > div {
-  width: 100%;
+  #search_form .year-mile .dd-content .input-number {
+    display: flex;
 
-  padding-left: 10px;
+    align-items: center;
 
-  border-left: 1px solid $gray;
-}
+    height: 25px;
 
-#search_form .more-features .dd-content .block2 > div:first-of-type {
-  border-left: 0;
-}
+    border: 1px solid $blue;
+    border-radius: 5px;
 
-#search_form .more-features .dd-content .block2 > div p {
-  margin-bottom: 0;
-}
+    background: $white;
+  }
+
+  #search_form .year-mile .dd-content .input-number input {
+    width: 80px;
 
-#search_form .more-features .dd-content .block2 > div > div {
-  display: flex;
+    border: 0;
+    border-radius: 5px;
 
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+    outline: none;
+
+    background: $white;
+
+    text-align: right;
+
+    -moz-appearance: textfield;
+  }
+
+  #search_form .year-mile .dd-content .inputs {
+    width: 100%;
+  }
 }
 
-#search_form .more-features .dd-content .block2 > div label {
-  display: flex;
+//features drop down
+@media (max-width: 600px) {
+  #search_form .features .dd-content .extra-modal-bar1 {
+    display: flex;
 
-  flex-direction: column;
-  justify-content: center;
+    flex-direction: row;
 
-  margin: 5px;
+    width: 100%;
+    height: 50px;
 
-  padding: 15px;
+    margin-bottom: 5px;
 
-  border: 1px solid transparent;
-  border-radius: 5px;
+    border-bottom: 1px solid $gray;
 
-  cursor: pointer;
-}
+    background: $white;
+  }
 
-#search_form .more-features .dd-content .block2 > div label:hover {
-  border: 1px solid $blue;
-}
+  #search_form .features .dd-content .extra-modal-bar1::before {
+    display: flex;
 
-#search_form .more-features .dd-content .block2 > div label.checked {
-  border: 1px solid $blue;
+    align-items: center;
+    justify-content: center;
 
-  background: $blue;
-}
+    width: 100%;
 
-#search_form .more-features .dd-content .block2 > div label input[type='checkbox'] {
-  display: none;
-}
+    content: 'Features';
+  }
 
-#search_form .more-features .dd-content .colors {
-  display: flex;
+  #search_form .features .dd-content .extra-modal-bar1 > button {
+    display: flex;
 
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+    align-items: center;
+    justify-content: center;
 
-  width: 100%;
-}
+    width: 35px;
+    height: 35px;
 
-#search_form .more-features .dd-content .color-block {
-  padding-left: 10px;
-}
+    margin: 5px;
 
-#search_form .more-features .dd-content .color-block > p {
-  margin-bottom: 0;
-}
+    border: 1px solid $gray;
+  }
 
-#search_form .more-features .dd-content .colors .color {
-  display: flex;
+  #search_form .features .dd-content .extra-modal-bar1 > button::before {
+    font-size: 20px;
 
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    content: 'x';
+  }
 
-  padding: 15px;
+  #search_form .features .dd-content {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
 
-  cursor: pointer;
-}
+    flex-direction: column;
 
-#search_form .more-features .dd-content .colors .color > .color-circle {
-  display: flex;
+    width: 100%;
+    height: 100%;
 
-  align-items: center;
-  justify-content: center;
+    background: $dark-blue;
 
-  width: 25px;
-  height: 25px;
+    z-index: 2;
+  }
 
-  margin-bottom: 5px;
+  #search_form .features .dd-content > .container {
+    display: flex;
 
-  border: 1px solid $black;
-  border-radius: 100%;
-}
+    flex-direction: column;
 
-#search_form .more-features .dd-content .colors .color > .color-circle i {
-  color: transparent;
-}
+    overflow: auto;
+  }
+
+  #search_form .features .dd-content > div > div {
+    width: 100%;
+
+    margin-bottom: -10px;
+  }
+
+  #search_form .features .dd-content .accordion {
+    display: flex;
+
+    flex-direction: column;
+
+    margin: 10px;
+
+    border-radius: 5px;
+
+    background: $gray;
+  }
+
+  #search_form .features .dd-content .accordion button {
+    height: 20px;
 
-#search_form .more-features .dd-content .colors .color.checked > .color-circle i {
-  color: #000;
+    padding: 20px;
+
+    border-radius: 5px;
+
+    background: $gray;
+  }
+
+  #search_form .features .dd-content .accordion-open button {
+    border-bottom: 1px solid $blue;
+    border-radius: 5px 5px 0 0;
+  }
+
+  #search_form .features .dd-content .accordion-content {
+    display: flex;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  #search_form .features .dd-content .accordion-content label {
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+
+    width: calc(50% - 22px);
+
+    margin: 5px;
+
+    padding: 5px;
+
+    border: 1px solid transparent;
+    border-radius: 5px;
+
+    cursor: pointer;
+  }
+
+  #search_form .features .dd-content .accordion-content label:hover {
+    border: 1px solid $blue;
+  }
+
+  #search_form .features .dd-content .accordion-content label.checked {
+    border: 1px solid $blue;
+
+    background: $blue;
+  }
+
+  #search_form .features .dd-content .accordion-content label input[type='checkbox'] {
+    display: none;
+  }
 }
+@media (min-width: 601px) {
+  #search_form .features .dd-content .extra-modal-bar1 {
+    display: none;
+  }
+
+  #search_form .features .dd-content {
+    position: absolute;
+    top: 100%;
+    left: calc((400% - 1px)*-1);
+
+    width: 600%;
+
+    border: 1px solid $gray;
+    border-radius: 5px;
+
+    background: $white;
+  }
+
+  #search_form .features .dd-content::after {
+    position: absolute;
+    top: -1px;
+    left: calc(66.66% - 3px);
+
+    width: calc(16.66% + 2px);
+    height: 1px;
+
+    background: $white;
+
+    content: '';
+  }
+
+  #search_form .features .dd-content > div {
+    display: flex;
+  }
+
+  #search_form .features .dd-content > div > div {
+    width: 50%;
+  }
+
+  #search_form .features .dd-content .accordion {
+    display: flex;
+
+    flex-direction: column;
+
+    margin: 10px;
+
+    border-radius: 5px;
+
+    background: $gray;
+  }
+
+  #search_form .features .dd-content .accordion button {
+    height: 20px;
+
+    padding: 20px;
+
+    border-radius: 5px;
+
+    background: $gray;
+  }
+
+  #search_form .features .dd-content .accordion-open button {
+    border-bottom: 1px solid $blue;
+    border-radius: 5px 5px 0 0;
+  }
+
+  #search_form .features .dd-content .accordion-content {
+    display: flex;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  #search_form .features .dd-content .accordion-content label {
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+
+    width: calc(50% - 22px);
+
+    margin: 5px;
+
+    padding: 5px;
+
+    border: 1px solid transparent;
+    border-radius: 5px;
 
-#search_form .more-features .dd-content .colors .color.checked.black > .color-circle i {
-  color: #fff;
+    cursor: pointer;
+  }
+
+  #search_form .features .dd-content .accordion-content label:hover {
+    border: 1px solid $blue;
+  }
+
+  #search_form .features .dd-content .accordion-content label.checked {
+    border: 1px solid $blue;
+
+    background: $blue;
+  }
+
+  #search_form .features .dd-content .accordion-content label input[type='checkbox'] {
+    display: none;
+  }
 }
+
+//more filters drop down
+@media (max-width: 600px) {
+  #search_form .more-features .dd-content .extra-modal-bar1 {
+    display: flex;
+
+    flex-direction: row;
+
+    width: 100%;
+    height: 50px;
+
+    margin-bottom: 5px;
+
+    border-bottom: 1px solid $gray;
+
+    background: $white;
+  }
+
+  #search_form .more-features .dd-content .extra-modal-bar1::before {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    content: 'More Filters';
+  }
+
+  #search_form .more-features .dd-content .extra-modal-bar1 > button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 35px;
+    height: 35px;
+
+    margin: 5px;
+
+    border: 1px solid $gray;
+  }
+
+  #search_form .more-features .dd-content .extra-modal-bar1 > button::before {
+    font-size: 20px;
+
+    content: 'x';
+  }
+
+  #search_form .more-features .dd-content {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+
+    background: $dark-blue;
+
+    z-index: 2;
+  }
+
+  #search_form .more-features .dd-content > .container {
+    display: flex;
+
+    flex-direction: column;
+
+    margin: 10px;
+
+    border: 0;
+    border-radius: 5px;
+
+    background: $white;
+
+    overflow: auto;
+  }
+
+  #search_form .more-features .dd-content > div > div {
+    border-bottom: 1px solid $gray;
+  }
+
+  #search_form .more-features .dd-content > div > p {
+    margin-bottom: 0;
+  }
+
+  #search_form .more-features .dd-content .block1 {
+    display: flex;
+
+    flex-direction: column;
+  }
+
+  #search_form .more-features .dd-content .block1 .slider-content {
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    height: 100%;
+
+    padding: 10px;
+  }
+
+  #search_form .more-features .dd-content .block1 .slider-content > .inputs {
+    display: flex;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 5px;
+  }
+
+  #search_form .more-features .dd-content .block1 .slider-content > .inputs > span {
+    height: 25px;
+  }
+
+  #search_form .more-features .dd-content .block1 .slider-content > .inputs > p {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
 
-#search_form .more-features .dd-content .colors .color input {
-  display: none;
+  #search_form .more-features .dd-content .block1 .slider-content > .slider-container {
+    display: flex;
+
+    flex-direction: column;
+
+    width: calc(100% - 20px);
+  }
+
+  #search_form .more-features .dd-content .block1 .slider-content > .slider-container > div {
+    height: 10px;
+
+    border-radius: 5px;
+
+    background-color: $dark-blue;
+  }
+
+  #search_form .more-features .dd-content .block1 .slider-content > .slider-container > div > div {
+    width: 20px;
+    height: 20px;
+
+    border-radius: 100%;
+
+    background-color: $blue;
+  }
+
+  #search_form .more-features .dd-content .block1 .inputs label {
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+  }
+
+  #search_form .more-features .dd-content .block1 .input-number {
+    display: flex;
+
+    align-items: center;
+
+    height: 25px;
+
+    border: 1px solid $blue;
+    border-radius: 5px;
+
+    background: $white;
+  }
+
+  #search_form .more-features .dd-content .block1 .input-number input {
+    width: 80px;
+
+    border: 0;
+    border-radius: 5px;
+
+    outline: none;
+
+    background: $white;
+
+    text-align: right;
+
+    -moz-appearance: textfield;
+  }
+
+  #search_form .more-features .dd-content .block1 .inputs {
+    width: 100%;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  #search_form .more-features .dd-content .block1 .fuel-types {
+    padding-left: 10px;
+
+    border-top: 1px solid $gray;
+  }
+
+  #search_form .more-features .dd-content .block1 .fuel-types p {
+    margin-bottom: 0;
+  }
+
+  #search_form .more-features .dd-content .block1 .fuel-types > div {
+    display: flex;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #search_form .more-features .dd-content .block1 .fuel-types label {
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+
+    margin: 5px;
+
+    padding: 15px;
+
+    border: 1px solid transparent;
+    border-radius: 5px;
+
+    cursor: pointer;
+  }
+
+  #search_form .more-features .dd-content .block1 .fuel-types label:hover {
+    border: 1px solid $blue;
+  }
+
+  #search_form .more-features .dd-content .block1 .fuel-types label.checked {
+    border: 1px solid $blue;
+
+    background: $blue;
+  }
+
+  #search_form .more-features .dd-content .block1 .fuel-types label input[type='checkbox'] {
+    display: none;
+  }
+
+  #search_form .more-features .dd-content .block2 {
+    display: flex;
+
+    flex-direction: column;
+  }
+
+  #search_form .more-features .dd-content .block2 > div {
+    width: 100%;
+
+    padding-left: 10px;
+
+    border-top: 1px solid $gray;
+  }
+
+  #search_form .more-features .dd-content .block2 > div:first-of-type {
+    border-top: 0;
+  }
+
+  #search_form .more-features .dd-content .block2 > div p {
+    margin-bottom: 0;
+  }
+
+  #search_form .more-features .dd-content .block2 > div > div {
+    display: flex;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #search_form .more-features .dd-content .block2 > div label {
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+
+    margin: 5px;
+
+    padding: 15px;
+
+    border: 1px solid transparent;
+    border-radius: 5px;
+
+    cursor: pointer;
+  }
+
+  #search_form .more-features .dd-content .block2 > div label:hover {
+    border: 1px solid $blue;
+  }
+
+  #search_form .more-features .dd-content .block2 > div label.checked {
+    border: 1px solid $blue;
+
+    background: $blue;
+  }
+
+  #search_form .more-features .dd-content .block2 > div label input[type='checkbox'] {
+    display: none;
+  }
+
+  #search_form .more-features .dd-content .colors {
+    display: flex;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    width: 100%;
+  }
+
+  #search_form .more-features .dd-content .color-block {
+    padding-left: 10px;
+  }
+
+  #search_form .more-features .dd-content .color-block > p {
+    margin-bottom: 0;
+  }
+
+  #search_form .more-features .dd-content .colors .color {
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 15px;
+
+    cursor: pointer;
+  }
+
+  #search_form .more-features .dd-content .colors .color > .color-circle {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 25px;
+    height: 25px;
+
+    margin-bottom: 5px;
+
+    border: 1px solid $black;
+    border-radius: 100%;
+  }
+
+  #search_form .more-features .dd-content .colors .color > .color-circle i {
+    color: transparent;
+  }
+
+  #search_form .more-features .dd-content .colors .color.checked > .color-circle i {
+    color: #000;
+  }
+
+  #search_form .more-features .dd-content .colors .color.checked.black > .color-circle i {
+    color: #fff;
+  }
+
+  #search_form .more-features .dd-content .colors .color input {
+    display: none;
+  }
 }
+@media (min-width: 601px) {
+  #search_form .more-features .dd-content .extra-modal-bar1 {
+    display: none;
+  }
+
+  #search_form .more-features .dd-content {
+    position: absolute;
+    top: 100%;
+    right: -1px;
+
+    width: 600%;
+
+    border: 1px solid $gray;
+    border-radius: 5px 0 5px 5px;
+
+    background: $white;
+  }
+
+  #search_form .more-features .dd-content::after {
+    position: absolute;
+    top: -1px;
+    right: 0;
+
+    width: calc(16.66% + 1px);
+    height: 1px;
+
+    background: $white;
+
+    content: '';
+  }
+
+  #search_form .more-features .dd-content > div {
+    display: flex;
+
+    flex-direction: column;
+  }
+
+  #search_form .more-features .dd-content > div > div {
+    border-bottom: 1px solid $gray;
+  }
+
+  #search_form .more-features .dd-content > div > p {
+    margin-bottom: 0;
+  }
 
+  #search_form .more-features .dd-content .block1 {
+    display: flex;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  #search_form .more-features .dd-content .block1 .slider-content {
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    width: calc(50% - 32px);
+    height: 100%;
+
+    padding: 10px;
+  }
+
+  #search_form .more-features .dd-content .block1 .slider-content > .inputs {
+    display: flex;
+
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 5px;
+  }
+
+  #search_form .more-features .dd-content .block1 .slider-content > .inputs > span {
+    height: 25px;
+  }
+
+  #search_form .more-features .dd-content .block1 .slider-content > .inputs > p {
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+  #search_form .more-features .dd-content .block1 .slider-content > .slider-container {
+    display: flex;
+
+    flex-direction: column;
+
+    width: calc(100% - 20px);
+  }
+
+  #search_form .more-features .dd-content .block1 .slider-content > .slider-container > div {
+    height: 10px;
+
+    border-radius: 5px;
+
+    background-color: $dark-blue;
+  }
+
+  #search_form .more-features .dd-content .block1 .slider-content > .slider-container > div > div {
+    width: 20px;
+    height: 20px;
+
+    border-radius: 100%;
+
+    background-color: $blue;
+  }
+
+  #search_form .more-features .dd-content .block1 .inputs label {
+    display: flex;
+
+    align-items: center;
+
+    width: 100%;
+  }
+
+  #search_form .more-features .dd-content .block1 .input-number {
+    display: flex;
+
+    align-items: center;
+
+    height: 25px;
+
+    border: 1px solid $blue;
+    border-radius: 5px;
+
+    background: $white;
+  }
+
+  #search_form .more-features .dd-content .block1 .input-number input {
+    width: 80px;
+
+    border: 0;
+    border-radius: 5px;
+
+    outline: none;
+
+    background: $white;
+
+    text-align: right;
+
+    -moz-appearance: textfield;
+  }
+
+  #search_form .more-features .dd-content .block1 .inputs {
+    width: 100%;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  #search_form .more-features .dd-content .block1 .fuel-types {
+    width: 50%;
+
+    padding-left: 10px;
+
+    border-left: 1px solid $gray;
+  }
+
+  #search_form .more-features .dd-content .block1 .fuel-types p {
+    margin-bottom: 0;
+  }
+
+  #search_form .more-features .dd-content .block1 .fuel-types > div {
+    display: flex;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #search_form .more-features .dd-content .block1 .fuel-types label {
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+
+    margin: 5px;
+
+    padding: 15px;
+
+    border: 1px solid transparent;
+    border-radius: 5px;
+
+    cursor: pointer;
+  }
+
+  #search_form .more-features .dd-content .block1 .fuel-types label:hover {
+    border: 1px solid $blue;
+  }
+
+  #search_form .more-features .dd-content .block1 .fuel-types label.checked {
+    border: 1px solid $blue;
+
+    background: $blue;
+  }
+
+  #search_form .more-features .dd-content .block1 .fuel-types label input[type='checkbox'] {
+    display: none;
+  }
+
+  #search_form .more-features .dd-content .block2 {
+    display: flex;
+
+    flex-direction: row;
+  }
+
+  #search_form .more-features .dd-content .block2 > div {
+    width: 100%;
+
+    padding-left: 10px;
+
+    border-left: 1px solid $gray;
+  }
+
+  #search_form .more-features .dd-content .block2 > div:first-of-type {
+    border-left: 0;
+  }
+
+  #search_form .more-features .dd-content .block2 > div p {
+    margin-bottom: 0;
+  }
+
+  #search_form .more-features .dd-content .block2 > div > div {
+    display: flex;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  #search_form .more-features .dd-content .block2 > div label {
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+
+    margin: 5px;
+
+    padding: 15px;
+
+    border: 1px solid transparent;
+    border-radius: 5px;
+
+    cursor: pointer;
+  }
+
+  #search_form .more-features .dd-content .block2 > div label:hover {
+    border: 1px solid $blue;
+  }
+
+  #search_form .more-features .dd-content .block2 > div label.checked {
+    border: 1px solid $blue;
+
+    background: $blue;
+  }
+
+  #search_form .more-features .dd-content .block2 > div label input[type='checkbox'] {
+    display: none;
+  }
+
+  #search_form .more-features .dd-content .colors {
+    display: flex;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    width: 100%;
+  }
+
+  #search_form .more-features .dd-content .color-block {
+    padding-left: 10px;
+  }
+
+  #search_form .more-features .dd-content .color-block > p {
+    margin-bottom: 0;
+  }
+
+  #search_form .more-features .dd-content .colors .color {
+    display: flex;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 15px;
+
+    cursor: pointer;
+  }
+
+  #search_form .more-features .dd-content .colors .color > .color-circle {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 25px;
+    height: 25px;
+
+    margin-bottom: 5px;
+
+    border: 1px solid $black;
+    border-radius: 100%;
+  }
+
+  #search_form .more-features .dd-content .colors .color > .color-circle i {
+    color: transparent;
+  }
+
+  #search_form .more-features .dd-content .colors .color.checked > .color-circle i {
+    color: #000;
+  }
+
+  #search_form .more-features .dd-content .colors .color.checked.black > .color-circle i {
+    color: #fff;
+  }
+
+  #search_form .more-features .dd-content .colors .color input {
+    display: none;
+  }
+}
 
 
 
