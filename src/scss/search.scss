@@ -12,8 +12,6 @@ body {
   height: 100%;
 
   margin: 0;
-
-  font-size: 100%;
 }
 
 @media (max-width: 600px) {
@@ -1627,8 +1625,8 @@ input[type='number']::-webkit-outer-spin-button {
     align-items: center;
     justify-content: center;
 
-    width: 80px;
-    height: 125px;
+    width: 6rem;
+    height: 8rem;
 
     margin: 10px;
   }
@@ -1654,7 +1652,7 @@ input[type='number']::-webkit-outer-spin-button {
     width: 100%;
     height: 100%;
 
-    padding: 5px;
+    padding: 4px;
 
     border: 1px solid $gray;
     border-radius: 3px;
@@ -1688,7 +1686,7 @@ input[type='number']::-webkit-outer-spin-button {
 
     padding: 3px;
 
-    border-radius: 0 0 0 5px;
+    border-radius: 0 3px 0 5px;
 
     background: transparent;
 
@@ -1751,8 +1749,8 @@ input[type='number']::-webkit-outer-spin-button {
     align-items: center;
     justify-content: center;
 
-    width: 80px;
-    height: 125px;
+    width: 6rem;
+    height: 8rem;
 
     margin: 10px;
   }
