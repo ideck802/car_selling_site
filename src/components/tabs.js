@@ -1,10 +1,10 @@
 import React from 'react';
 
 class Tabs extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      selected: 0
+      selected: this.props.startTab
     };
 
     this.setTab = this.setTab.bind(this);

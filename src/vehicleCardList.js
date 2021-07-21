@@ -1,0 +1,48 @@
+
+const vehicles = [
+    {
+      make: 'Acura',
+      model: 'ILX',
+      price: 10000,
+      cashDown: 5000,
+      monthPay: 1000,
+      bodyType: 'sedan',
+      year: 2013,
+      miles: 50000,
+      mpg: 30,
+      fuel: 'gas',
+      driveType: 'front',
+      tranny: 'auto',
+      cylinders: 4,
+      extColor: 'white',
+      intColor: 'gray',
+      location: {
+        latitude: 5000,
+        longitude: 1000,
+      },
+      features: 'heated_seats|android_auto',
+    },
+    {
+      make: 'Acura',
+      model: 'MDX',
+      price: 35000,
+      cashDown: 8000,
+      monthPay: 2000,
+      bodyType: 'coupe',
+      year: 2008,
+      miles: 212,
+      mpg: 26,
+      fuel: 'electric',
+      driveType: 'back',
+      tranny: 'auto',
+      cylinders: 6,
+      extColor: 'black',
+      intColor: 'black',
+      location: {
+        latitude: 8000,
+        longitude: 13000,
+      },
+      features: 'apple_carplay',
+    },
+  ];
+export default vehicles;

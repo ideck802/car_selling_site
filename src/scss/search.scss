@@ -183,132 +183,274 @@ input[type='number']::-webkit-outer-spin-button {
   flex-direction: column;
 }
 
-#search_form .filters .search-box {
-  display: flex;
-  position: relative;
-
-  flex-direction: row;
-  align-items: center;
-
-  margin: 10px;
-
-  padding: 5px;
-
-  border: 1px solid $gray;
-  border-radius: 5px;
-
-  font-size: 15px;
-}
-
-#search_form .filters .search-box p {
-  height: 100%;
-
-  margin: 0;
-
-  padding: 8px;
-  padding-right: 0;
-
-  border-left: 1px solid $gray;
-
-  font-size: 18px;
-}
-
-#search_form .filters .search-box input {
-  width: 100%;
-
-  padding: 10px;
-
-  border: 0;
-
-  font-size: 15px;
-}
-
+//main search box
 @media (max-width: 600px) {
+  #search_form .filters .search-box {
+    display: flex;
+    position: relative;
+
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+
+    margin: 10px;
+
+    padding: 5px;
+
+    border: 1px solid $gray;
+    border-radius: 5px;
+
+    font-size: 15px;
+  }
+
+  #search_form .filters .search-box input {
+    width: 100%;
+
+    padding: 10px;
+
+    border: 0;
+
+    font-size: 16px;
+  }
+
+  #search_form .filters .search-box > input {
+    padding-top: 12px;
+    padding-bottom: 12px;
+
+    font-size: 16px;
+  }
+
+  #search_form .filters .search-box .second-row {
+    display: flex;
+
+    flex-direction: row;
+
+    width: 100%;
+
+    padding-top: 5px;
+
+    border-top: 1px solid $gray;
+  }
+
+  #search_form .filters .search-box p {
+    height: 100%;
+
+    margin: 0;
+
+    padding: 8px;
+    padding-right: 0;
+
+    font-size: 18px;
+  }
+
   #search_form .filters .search-box input[name='zipCode'] {
-    width: 50px;
+    width: 100%;
+  }
+
+  #search_form .filters .search-box .drop-down button {
+    height: 100%;
+
+    padding: 10px;
+
+    border-top: 0;
+    border-right: 1px solid $gray;
+    border-bottom: 0;
+    border-left: 1px solid $gray;
+
+    background: $white;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+  }
+
+  #search_form .filters .search-box .drop-down .dd-content {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    right: 3px;
+
+    flex-direction: column;
+
+    width: 200px;
+
+    border: 1px solid $gray;
+    border-top: 1px solid $white;
+    border-radius: 0 0 5px 5px;
+
+    background: $white;
+
+    z-index: 5;
+  }
+
+  #search_form .filters .search-box .drop-down .dd-content > div {
+    padding: 10px;
+
+    border-bottom: 1px solid $gray;
+
+    color: $black;
+
+    text-decoration: none;
+
+    cursor: pointer;
+  }
+
+  #search_form .filters .search-box .drop-down .dd-content > div:hover {
+    background: $gray;
+  }
+
+  #search_form .filters .search-box .drop-down .dd-content > div:last-of-type {
+    border-bottom: 0;
+  }
+
+  #search_form .filters .search-box .drop-down .dd-content > .placeholder {
+    display: none;
+  }
+
+  #search_form .filters .search-box button {
+    height: 100%;
+
+    padding: 12px;
+
+    border: 0;
+
+    background: $white;
+
+    cursor: pointer;
+  }
+
+  #search_form .filters .search-box button i {
+    padding-left: 8px;
   }
 }
 @media (min-width: 601px) {
+  #search_form .filters .search-box {
+    display: flex;
+    position: relative;
+
+    flex-direction: row;
+    align-items: center;
+
+    margin: 10px;
+
+    padding: 5px;
+
+    border: 1px solid $gray;
+    border-radius: 5px;
+
+    font-size: 15px;
+  }
+
+  #search_form .filters .search-box input {
+    width: 100%;
+
+    padding: 10px;
+
+    border: 0;
+
+    font-size: 15px;
+  }
+
+  #search_form .filters .search-box .second-row {
+    display: flex;
+
+    flex-direction: row;
+  }
+
+  #search_form .filters .search-box p {
+    height: 100%;
+
+    margin: 0;
+
+    padding: 8px;
+    padding-right: 0;
+
+    border-left: 1px solid $gray;
+
+    font-size: 18px;
+  }
+
   #search_form .filters .search-box input[name='zipCode'] {
     width: 100px;
   }
+
+  #search_form .filters .search-box .drop-down button {
+    height: 100%;
+
+    padding: 10px;
+
+    border-top: 0;
+    border-right: 1px solid $gray;
+    border-bottom: 0;
+    border-left: 1px solid $gray;
+
+    background: $white;
+
+    white-space: nowrap;
+
+    cursor: pointer;
+  }
+
+  #search_form .filters .search-box .drop-down .dd-content {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    right: 3px;
+
+    flex-direction: column;
+
+    width: 200px;
+
+    border: 1px solid $gray;
+    border-top: 1px solid $white;
+    border-radius: 0 0 5px 5px;
+
+    background: $white;
+
+    z-index: 5;
+  }
+
+  #search_form .filters .search-box .drop-down .dd-content > div {
+    padding: 10px;
+
+    border-bottom: 1px solid $gray;
+
+    color: $black;
+
+    text-decoration: none;
+
+    cursor: pointer;
+  }
+
+  #search_form .filters .search-box .drop-down .dd-content > div:hover {
+    background: $gray;
+  }
+
+  #search_form .filters .search-box .drop-down .dd-content > div:last-of-type {
+    border-bottom: 0;
+  }
+
+  #search_form .filters .search-box .drop-down .dd-content > .placeholder {
+    display: none;
+  }
+
+  #search_form .filters .search-box button {
+    height: 100%;
+
+    padding: 12px;
+
+    border: 0;
+
+    background: $white;
+
+    cursor: pointer;
+  }
+
+  #search_form .filters .search-box button i {
+    padding-left: 8px;
+  }
 }
 
-#search_form .filters .search-box .drop-down button {
-  height: 100%;
-
-  padding: 10px;
-
-  border-top: 0;
-  border-right: 1px solid $gray;
-  border-bottom: 0;
-  border-left: 1px solid $gray;
-
-  background: $white;
-
-  white-space: nowrap;
-
-  cursor: pointer;
-}
-
-#search_form .filters .search-box .drop-down .dd-content {
-  display: flex;
-  position: absolute;
-  top: 100%;
-  right: 3px;
-
-  flex-direction: column;
-
-  width: 200px;
-
-  border: 1px solid $gray;
-  border-top: 1px solid $white;
-  border-radius: 0 0 5px 5px;
-
-  background: $white;
-
-  z-index: 5;
-}
-
-#search_form .filters .search-box .drop-down .dd-content > div {
-  padding: 10px;
-
-  border-bottom: 1px solid $gray;
-
-  color: $black;
-
-  text-decoration: none;
-
-  cursor: pointer;
-}
-
-#search_form .filters .search-box .drop-down .dd-content > div:hover {
-  background: $gray;
-}
-
-#search_form .filters .search-box .drop-down .dd-content > div:last-of-type {
-  border-bottom: 0;
-}
-
-#search_form .filters .search-box .drop-down .dd-content > .placeholder {
-  display: none;
-}
-
-#search_form .filters .search-box button {
-  height: 100%;
-
-  padding: 12px;
-
-  border: 0;
-
-  background: $white;
-
-  cursor: pointer;
-}
-
-#search_form .filters .search-box button i {
-  padding-left: 8px;
-}
 
 #search_form .filters .drop-downs {
   display: flex;
@@ -549,6 +691,8 @@ input[type='number']::-webkit-outer-spin-button {
     flex-direction: column;
 
     width: calc(100% - 20px);
+
+    margin-top: 10px;
   }
 
   #search_form .price .dd-content .tabs .tab .slider-content > .slider-container > div {
@@ -560,8 +704,8 @@ input[type='number']::-webkit-outer-spin-button {
   }
 
   #search_form .price .dd-content .tabs .tab .slider-content > .slider-container > div > div {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
 
     border-radius: 100%;
 
@@ -656,8 +800,8 @@ input[type='number']::-webkit-outer-spin-button {
   }
 
   #search_form .price .dd-content .tabs .tab .slider > div > div {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
 
     border-radius: 100%;
 
@@ -797,6 +941,8 @@ input[type='number']::-webkit-outer-spin-button {
     flex-direction: column;
 
     width: calc(100% - 20px);
+
+    margin-top: 10px;
   }
 
   #search_form .price .dd-content .tabs .tab .slider-content > .slider-container > div {
@@ -808,8 +954,8 @@ input[type='number']::-webkit-outer-spin-button {
   }
 
   #search_form .price .dd-content .tabs .tab .slider-content > .slider-container > div > div {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
 
     border-radius: 100%;
 
@@ -904,8 +1050,8 @@ input[type='number']::-webkit-outer-spin-button {
   }
 
   #search_form .price .dd-content .tabs .tab .slider > div > div {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
 
     border-radius: 100%;
 
@@ -1958,8 +2104,8 @@ input[type='number']::-webkit-outer-spin-button {
   }
 
   #search_form .year-mile .dd-content .slider-content > .slider-container > div > div {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
 
     border-radius: 100%;
 
@@ -2094,8 +2240,8 @@ input[type='number']::-webkit-outer-spin-button {
   }
 
   #search_form .year-mile .dd-content .slider-content > .slider-container > div > div {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
 
     border-radius: 100%;
 
@@ -2534,8 +2680,8 @@ input[type='number']::-webkit-outer-spin-button {
   }
 
   #search_form .more-features .dd-content .block1 .slider-content > .slider-container > div > div {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
 
     border-radius: 100%;
 
@@ -2855,8 +3001,8 @@ input[type='number']::-webkit-outer-spin-button {
   }
 
   #search_form .more-features .dd-content .block1 .slider-content > .slider-container > div > div {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
 
     border-radius: 100%;
 
@@ -3078,6 +3224,30 @@ input[type='number']::-webkit-outer-spin-button {
   }
 }
 
+
+#search_form .vehicle-cards {
+  display: flex;
+
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  width: 100%;
+  height: 100%;
+
+  margin-top: 10px;
+}
+
+#search_form .vehicle-cards .card {
+  width: calc(33.33% - 40px);
+
+  margin: 10px;
+
+  padding: 10px;
+
+  border-radius: 5px;
+
+  background: $gray;
+}
 
 
 footer {

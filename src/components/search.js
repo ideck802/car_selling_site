@@ -102,6 +102,12 @@ class Search extends React.Component {
     }
   }
 
+  setModelsTrue(event, make) {
+    make.models.map((model, j) =>
+      this.props.handleBoxChange(make.id, j, this.props.history, make.name, model)
+    );
+  }
+
   render() {
     return (
       <div className='search-container'>
@@ -131,7 +137,10 @@ class Search extends React.Component {
                         Back to Makes
                       </button>
                     </p>
-                    <h3>{make.name}</h3>
+                    <h3>
+                      {make.name}
+                      <button onClick={(e) => (this.setModelsTrue(e, make))}>Select All</button>
+                    </h3>
                     <ul data-simplebar>
                       {make.models.map((model, j) =>
                         <li key={j}>
@@ -145,7 +154,9 @@ class Search extends React.Component {
                             name={make.id}
                             id={'modelBox' + j}
                             checked={this.props.value[make.id + 'ModelBoxes'][j] || ''}
-                            onChange={(e) => this.props.handleBoxChange(make.id, j, e)} />
+                            onChange={(e) =>
+                              this.props.handleBoxChange(make.id, j, this.props.history, make.name, model
+                            )} />
                         </li>
                       )}
                     </ul>
@@ -174,7 +185,7 @@ class Search extends React.Component {
                   ][getModelsIndex(model, makesList, 'models')] || ''}
                   onChange={(e) => this.props.handleBoxChange(
                     makesList[getIndex(model, makesList, 'name')].id, getModelsIndex(model, makesList, 'models')
-                    , e)} />
+                    , this.props.history, makesList[getIndex(model, makesList, 'name')].name, model)} />
               </li>;
             })}
           </ul>

@@ -18,5 +18,5 @@ const images = {
     sports,
     van,
     wagon
-};
+  };
 export default images;
