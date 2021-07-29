@@ -18,6 +18,7 @@ class SearchForm extends React.Component {
   constructor(props) {
     var bt = new URLSearchParams(window.location.search).get('btype').toLowerCase();
     var ftr = new URLSearchParams(window.location.search).get('ftr').toLowerCase();
+    var fuel = new URLSearchParams(window.location.search).get('fuel').toLowerCase();
 
     super(props);
     this.state = {
@@ -29,8 +30,8 @@ class SearchForm extends React.Component {
       values: new URLSearchParams(window.location.search).getAll('pr'),
       yearBoxes: new URLSearchParams(window.location.search).getAll('year'),
       yearSlider: new URLSearchParams(window.location.search).getAll('year'),
-      mileageBoxes: new URLSearchParams(window.location.search).getAll('mpg'),
-      mileageSlider: new URLSearchParams(window.location.search).getAll('mpg'),
+      mileageBoxes: new URLSearchParams(window.location.search).getAll('miles'),
+      mileageSlider: new URLSearchParams(window.location.search).getAll('miles'),
       downFinanceSlider: new URLSearchParams(window.location.search).getAll('down'),
       downFinanceBox: new URLSearchParams(window.location.search).getAll('down'),
       monthlyFinanceSlider: new URLSearchParams(window.location.search).getAll('pay'),
@@ -82,10 +83,13 @@ class SearchForm extends React.Component {
       interior_blue: false, interior_gold: false, interior_orange: false, interior_green: false, interior_brown: false,
       interior_other: false,
 
-      mpgSlider: [5],
-      mpgBox: [5],
+      mpgSlider: new URLSearchParams(window.location.search).getAll('mpg'),
+      mpgBox: new URLSearchParams(window.location.search).getAll('mpg'),
 
-      fuelGas: false, fuelHybrid: false, fuelElectric: false, fuelOther: false,
+      fuelType: fuel,
+      fuelGas: fuel.includes('fuelgas'), fuelHybrid: fuel.includes('fuelhybrid'),
+      fuelElectric: fuel.includes('fuelelectric'), fuelOther: fuel.includes('fuelother'),
+
       frontWheel: false, allWheel: false, rearWheel: false,
       autoTrans: false, manualTrans: false,
       fourCylinder: false, sixCylinder: false, eightCylinder: false, otherCylinder: false,
@@ -121,6 +125,7 @@ class SearchForm extends React.Component {
 
   btypeGlobal = new URLSearchParams(window.location.search).get('btype');
   ftrGlobal = new URLSearchParams(window.location.search).get('ftr');
+  fuelGlobal = new URLSearchParams(window.location.search).get('fuel');
 
   handleInputChange(event, history) {
     const target = event.target;
@@ -144,7 +149,7 @@ class SearchForm extends React.Component {
       }, () => {
         this.updateURL(history);
       });
-    } else if (name.includes('feature_')) {
+    } else if (name.includes('feature_') && !name.includes('fuel')) {
       var tempFtrParam = this.ftrGlobal;
       var varName = name.replace('feature_', '');
 
@@ -158,6 +163,23 @@ class SearchForm extends React.Component {
       this.setState({
         [varName]: value,
         features: tempFtrParam
+      }, () => {
+        this.updateURL(history);
+      });
+    } else if (name.includes('feature_fuel')) {
+      var tempfuelParam = this.fuelGlobal;
+      var varName = name.replace('feature_', '');
+
+      if (value === true) {
+        tempfuelParam = tempfuelParam + (varName + '|');
+      } else {
+        tempfuelParam = tempfuelParam.replace(varName + '|', '');
+      }
+
+      this.fuelGlobal = tempfuelParam;
+      this.setState({
+        [varName]: value,
+        fuelType: tempfuelParam
       }, () => {
         this.updateURL(history);
       });
@@ -343,10 +365,12 @@ class SearchForm extends React.Component {
         new RegExp(this.state.modelParam.toLowerCase().slice(0, -1)).test(vehicle.model.toLowerCase()) &&
         new RegExp(this.state.bodyType.toLowerCase().slice(0, -1)).test(vehicle.bodyType.toLowerCase()) &&
         vehicle.year >= this.state.yearSlider[0] && vehicle.year <= this.state.yearSlider[1] &&
-        vehicle.mpg >= this.state.mileageSlider[0] && vehicle.mpg <= this.state.mileageSlider[1] &&
+        vehicle.miles >= this.state.mileageSlider[0] && vehicle.miles <= this.state.mileageSlider[1] &&
         this.state.features.slice(0, -1).split('|').every(
           item => vehicle.features.includes(item) || this.state.features === ''
-        )
+        ) &&
+        vehicle.mpg <= this.state.mpgSlider &&
+        (this.state.fuelType.toLowerCase().includes(vehicle.fuel.toLowerCase()) || this.state.fuelType === '')
       ) {
         if (
           this.state.financeOrPrice &&
@@ -383,8 +407,8 @@ class SearchForm extends React.Component {
   }
 
   setParams({
-    price='', pr=['', ''], down='', pay='', make='',
-    model='', btype='', year=['', ''], mpg=['', ''], ftr=''
+    price='', pr=['', ''], down='', pay='', make='', model='', btype='', year=['', ''], miles=['', ''], ftr='', mpg='',
+    fuel=''
   }) {
     const searchParams = new URLSearchParams();
     searchParams.set('price', price);
@@ -397,9 +421,11 @@ class SearchForm extends React.Component {
     searchParams.set('btype', btype);
     searchParams.set('year', year[0]);
     searchParams.append('year', year[1]);
-    searchParams.set('mpg', mpg[0]);
-    searchParams.append('mpg', mpg[1]);
+    searchParams.set('miles', miles[0]);
+    searchParams.append('miles', miles[1]);
     searchParams.set('ftr', ftr);
+    searchParams.set('mpg', mpg);
+    searchParams.set('fuel', fuel);
     return searchParams.toString();
   }
 
@@ -424,8 +450,10 @@ class SearchForm extends React.Component {
       model: this.state.modelParam,
       btype: this.state.bodyType,
       year: this.state.yearSlider,
-      mpg: this.state.mileageSlider,
-      ftr: this.state.features
+      miles: this.state.mileageSlider,
+      ftr: this.state.features,
+      mpg: this.state.mpgSlider,
+      fuel: this.state.fuelType
     });
     //do not forget the "?" !
     history.push(`?${url}`);

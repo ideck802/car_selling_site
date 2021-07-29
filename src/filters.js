@@ -347,7 +347,7 @@ const Filters = (props) => {
                       type='number'
                       id='maxMileage'
                       min={th.state.mileageSlider[0]}
-                      max='100'
+                      max='200000'
                       value={th.state.mileageBoxes[1]}
                       onChange={th.onNumberChange.bind(th, 'mileageBoxes', 'mileageSlider', 1)}
                       onKeyDown={th.enterPressed.bind(th, 'mileageSlider', 1)} />
@@ -357,7 +357,7 @@ const Filters = (props) => {
                   <Range
                     step={10}
                     min={0}
-                    max={100}
+                    max={200000}
                     values={th.state.mileageSlider}
                     onChange={(values) => th.setState({mileageSlider: values, mileageBoxes: values})}
                     renderTrack={({props, children}) => (
@@ -366,7 +366,7 @@ const Filters = (props) => {
                           values: th.state.mileageSlider,
                           colors: ['#133d7f', '#3a85ff', '#133d7f'],
                           min: 0,
-                          max: 100
+                          max: 200000
                         })}} >
                         {children}
                       </div>
@@ -482,10 +482,10 @@ const Filters = (props) => {
                 <div className='fuel-types'>
                   <p>Fuel Type</p>
                   <div>
-                    {th.featureCreator('Gas', 'fuelGas')}
-                    {th.featureCreator('Hybrid', 'fuelHybrid')}
-                    {th.featureCreator('Electric', 'fuelElectric')}
-                    {th.featureCreator('Other', 'fuelOther')}
+                    {th.featureCreator('Gas', 'fuelGas', history)}
+                    {th.featureCreator('Hybrid', 'fuelHybrid', history)}
+                    {th.featureCreator('Electric', 'fuelElectric', history)}
+                    {th.featureCreator('Other', 'fuelOther', history)}
                   </div>
                 </div>
               </div>
