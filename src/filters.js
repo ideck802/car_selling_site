@@ -493,9 +493,9 @@ const Filters = (props) => {
                 <div>
                   <p>Drive Type</p>
                   <div>
-                    {th.featureCreator('Front', 'frontWheel')}
-                    {th.featureCreator('All', 'allWheel')}
-                    {th.featureCreator('Rear', 'rearWheel')}
+                    {th.featureCreator('Front', 'frontWheel', history)}
+                    {th.featureCreator('All', 'allWheel', history)}
+                    {th.featureCreator('Rear', 'rearWheel', history)}
                   </div>
                 </div>
                 <div>

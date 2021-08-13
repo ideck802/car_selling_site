@@ -33,7 +33,7 @@ const vehicles = [
       miles: 212,
       mpg: 26,
       fuel: 'electric',
-      driveType: 'back',
+      driveType: 'rear',
       tranny: 'auto',
       cylinders: 6,
       extColor: 'black',

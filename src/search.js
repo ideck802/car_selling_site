@@ -19,6 +19,7 @@ class SearchForm extends React.Component {
     var bt = new URLSearchParams(window.location.search).get('btype').toLowerCase();
     var ftr = new URLSearchParams(window.location.search).get('ftr').toLowerCase();
     var fuel = new URLSearchParams(window.location.search).get('fuel').toLowerCase();
+    var drive = new URLSearchParams(window.location.search).get('drive').toLowerCase();
 
     super(props);
     this.state = {
@@ -90,7 +91,10 @@ class SearchForm extends React.Component {
       fuelGas: fuel.includes('fuelgas'), fuelHybrid: fuel.includes('fuelhybrid'),
       fuelElectric: fuel.includes('fuelelectric'), fuelOther: fuel.includes('fuelother'),
 
-      frontWheel: false, allWheel: false, rearWheel: false,
+      driveType: drive,
+      frontWheel: drive.includes('frontwheel'), allWheel: drive.includes('allwheel'),
+      rearWheel: drive.includes('rearwheel'),
+
       autoTrans: false, manualTrans: false,
       fourCylinder: false, sixCylinder: false, eightCylinder: false, otherCylinder: false,
 
@@ -126,6 +130,7 @@ class SearchForm extends React.Component {
   btypeGlobal = new URLSearchParams(window.location.search).get('btype');
   ftrGlobal = new URLSearchParams(window.location.search).get('ftr');
   fuelGlobal = new URLSearchParams(window.location.search).get('fuel');
+  driveGlobal = new URLSearchParams(window.location.search).get('drive');
 
   handleInputChange(event, history) {
     const target = event.target;
@@ -149,7 +154,7 @@ class SearchForm extends React.Component {
       }, () => {
         this.updateURL(history);
       });
-    } else if (name.includes('feature_') && !name.includes('fuel')) {
+    } else if (name.includes('feature_') && !name.includes('fuel') && !name.includes('Wheel')) {
       var tempFtrParam = this.ftrGlobal;
       var varName = name.replace('feature_', '');
 
@@ -180,6 +185,23 @@ class SearchForm extends React.Component {
       this.setState({
         [varName]: value,
         fuelType: tempfuelParam
+      }, () => {
+        this.updateURL(history);
+      });
+    } else if (name.includes('feature_') && name.includes('Wheel')) {
+      var tempDriveParam = this.driveGlobal;
+      var varName = name.replace('feature_', '');
+
+      if (value === true) {
+        tempDriveParam = tempDriveParam + (varName + '|');
+      } else {
+        tempDriveParam = tempDriveParam.replace(varName + '|', '');
+      }
+
+      this.driveGlobal = tempDriveParam;
+      this.setState({
+        [varName]: value,
+        driveType: tempDriveParam
       }, () => {
         this.updateURL(history);
       });
@@ -370,7 +392,8 @@ class SearchForm extends React.Component {
           item => vehicle.features.includes(item) || this.state.features === ''
         ) &&
         vehicle.mpg <= this.state.mpgSlider &&
-        (this.state.fuelType.toLowerCase().includes(vehicle.fuel.toLowerCase()) || this.state.fuelType === '')
+        (this.state.fuelType.toLowerCase().includes(vehicle.fuel.toLowerCase()) || this.state.fuelType === '') &&
+        (this.state.driveType.toLowerCase().includes(vehicle.driveType.toLowerCase()) || this.state.driveType === '')
       ) {
         if (
           this.state.financeOrPrice &&
@@ -408,7 +431,7 @@ class SearchForm extends React.Component {
 
   setParams({
     price='', pr=['', ''], down='', pay='', make='', model='', btype='', year=['', ''], miles=['', ''], ftr='', mpg='',
-    fuel=''
+    fuel='', drive=''
   }) {
     const searchParams = new URLSearchParams();
     searchParams.set('price', price);
@@ -426,6 +449,7 @@ class SearchForm extends React.Component {
     searchParams.set('ftr', ftr);
     searchParams.set('mpg', mpg);
     searchParams.set('fuel', fuel);
+    searchParams.set('drive', drive);
     return searchParams.toString();
   }
 
@@ -453,7 +477,8 @@ class SearchForm extends React.Component {
       miles: this.state.mileageSlider,
       ftr: this.state.features,
       mpg: this.state.mpgSlider,
-      fuel: this.state.fuelType
+      fuel: this.state.fuelType,
+      drive: this.state.driveType
     });
     //do not forget the "?" !
     history.push(`?${url}`);
