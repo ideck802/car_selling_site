@@ -13,7 +13,7 @@ const vehicles = [
       fuel: 'gas',
       driveType: 'front',
       tranny: 'auto',
-      cylinders: 4,
+      cylinders: 'four',
       extColor: 'white',
       intColor: 'gray',
       location: {
@@ -35,7 +35,7 @@ const vehicles = [
       fuel: 'electric',
       driveType: 'rear',
       tranny: 'auto',
-      cylinders: 6,
+      cylinders: 'six',
       extColor: 'black',
       intColor: 'black',
       location: {

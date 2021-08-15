@@ -21,6 +21,7 @@ class SearchForm extends React.Component {
     var fuel = new URLSearchParams(window.location.search).get('fuel').toLowerCase();
     var drive = new URLSearchParams(window.location.search).get('drive').toLowerCase();
     var trans = new URLSearchParams(window.location.search).get('trans').toLowerCase();
+    var cyl = new URLSearchParams(window.location.search).get('cyl').toLowerCase();
 
     super(props);
     this.state = {
@@ -99,7 +100,9 @@ class SearchForm extends React.Component {
       tranny: trans,
       autoTrans: trans.includes('autotrans'), manualTrans: trans.includes('manualtrans'),
 
-      fourCylinder: false, sixCylinder: false, eightCylinder: false, otherCylinder: false,
+      cylCount: cyl,
+      fourCylinder: cyl.includes('fourcylinder'), sixCylinder: cyl.includes('sixcylinder'),
+      eightCylinder: cyl.includes('eightcylinder'), otherCylinder: cyl.includes('othercylinder'),
 
       makeParam: new URLSearchParams(window.location.search).get('make'),
       modelParam: new URLSearchParams(window.location.search).get('model'),
@@ -135,6 +138,7 @@ class SearchForm extends React.Component {
   fuelGlobal = new URLSearchParams(window.location.search).get('fuel');
   driveGlobal = new URLSearchParams(window.location.search).get('drive');
   transGlobal = new URLSearchParams(window.location.search).get('trans');
+  cylGlobal = new URLSearchParams(window.location.search).get('cyl');
 
   handleInputChange(event, history) {
     const target = event.target;
@@ -159,7 +163,7 @@ class SearchForm extends React.Component {
         this.updateURL(history);
       });
     } else if (name.includes('feature_') && !name.includes('fuel') && !name.includes('Wheel') &&
-      !name.includes('Trans')
+      !name.includes('Trans') && !name.includes('Cylinder')
     ) {
       var tempFtrParam = this.ftrGlobal;
       var varName = name.replace('feature_', '');
@@ -225,6 +229,23 @@ class SearchForm extends React.Component {
       this.setState({
         [varName]: value,
         tranny: tempTransParam
+      }, () => {
+        this.updateURL(history);
+      });
+    } else if (name.includes('feature_') && name.includes('Cylinder')) {
+      var tempCylParam = this.cylGlobal;
+      var varName = name.replace('feature_', '');
+
+      if (value === true) {
+        tempCylParam = tempCylParam + (varName + '|');
+      } else {
+        tempCylParam = tempCylParam.replace(varName + '|', '');
+      }
+
+      this.cylGlobal = tempCylParam;
+      this.setState({
+        [varName]: value,
+        cylCount: tempCylParam
       }, () => {
         this.updateURL(history);
       });
@@ -417,7 +438,8 @@ class SearchForm extends React.Component {
         vehicle.mpg <= this.state.mpgSlider &&
         (this.state.fuelType.toLowerCase().includes(vehicle.fuel.toLowerCase()) || this.state.fuelType === '') &&
         (this.state.driveType.toLowerCase().includes(vehicle.driveType.toLowerCase()) || this.state.driveType === '') &&
-        (this.state.tranny.toLowerCase().includes(vehicle.tranny.toLowerCase()) || this.state.tranny === '')
+        (this.state.tranny.toLowerCase().includes(vehicle.tranny.toLowerCase()) || this.state.tranny === '') &&
+        (this.state.cylCount.toLowerCase().includes(vehicle.cylinders.toLowerCase()) || this.state.cylCount === '')
       ) {
         if (
           this.state.financeOrPrice &&
@@ -455,7 +477,7 @@ class SearchForm extends React.Component {
 
   setParams({
     price='', pr=['', ''], down='', pay='', make='', model='', btype='', year=['', ''], miles=['', ''], ftr='', mpg='',
-    fuel='', drive='', trans=''
+    fuel='', drive='', trans='', cyl=''
   }) {
     const searchParams = new URLSearchParams();
     searchParams.set('price', price);
@@ -475,6 +497,7 @@ class SearchForm extends React.Component {
     searchParams.set('fuel', fuel);
     searchParams.set('drive', drive);
     searchParams.set('trans', trans);
+    searchParams.set('cyl', cyl);
     return searchParams.toString();
   }
 
@@ -504,7 +527,8 @@ class SearchForm extends React.Component {
       mpg: this.state.mpgSlider,
       fuel: this.state.fuelType,
       drive: this.state.driveType,
-      trans: this.state.tranny
+      trans: this.state.tranny,
+      cyl: this.state.cylCount
     });
     //do not forget the "?" !
     history.push(`?${url}`);
