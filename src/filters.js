@@ -501,17 +501,17 @@ const Filters = (props) => {
                 <div>
                   <p>Transmission</p>
                   <div>
-                    {th.featureCreator('Automatic', 'autoTrans')}
-                    {th.featureCreator('Manual', 'manualTrans')}
+                    {th.featureCreator('Automatic', 'autoTrans', history)}
+                    {th.featureCreator('Manual', 'manualTrans', history)}
                   </div>
                 </div>
                 <div>
                   <p>Cylinders</p>
                   <div>
-                    {th.featureCreator('4', 'fourCylinder')}
-                    {th.featureCreator('6', 'sixCylinder')}
-                    {th.featureCreator('8', 'eightCylinder')}
-                    {th.featureCreator('Other', 'otherCylinder')}
+                    {th.featureCreator('4', 'fourCylinder', history)}
+                    {th.featureCreator('6', 'sixCylinder', history)}
+                    {th.featureCreator('8', 'eightCylinder', history)}
+                    {th.featureCreator('Other', 'otherCylinder', history)}
                   </div>
                 </div>
               </div>

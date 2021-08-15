@@ -20,6 +20,7 @@ class SearchForm extends React.Component {
     var ftr = new URLSearchParams(window.location.search).get('ftr').toLowerCase();
     var fuel = new URLSearchParams(window.location.search).get('fuel').toLowerCase();
     var drive = new URLSearchParams(window.location.search).get('drive').toLowerCase();
+    var trans = new URLSearchParams(window.location.search).get('trans').toLowerCase();
 
     super(props);
     this.state = {
@@ -95,7 +96,9 @@ class SearchForm extends React.Component {
       frontWheel: drive.includes('frontwheel'), allWheel: drive.includes('allwheel'),
       rearWheel: drive.includes('rearwheel'),
 
-      autoTrans: false, manualTrans: false,
+      tranny: trans,
+      autoTrans: trans.includes('autotrans'), manualTrans: trans.includes('manualtrans'),
+
       fourCylinder: false, sixCylinder: false, eightCylinder: false, otherCylinder: false,
 
       makeParam: new URLSearchParams(window.location.search).get('make'),
@@ -131,6 +134,7 @@ class SearchForm extends React.Component {
   ftrGlobal = new URLSearchParams(window.location.search).get('ftr');
   fuelGlobal = new URLSearchParams(window.location.search).get('fuel');
   driveGlobal = new URLSearchParams(window.location.search).get('drive');
+  transGlobal = new URLSearchParams(window.location.search).get('trans');
 
   handleInputChange(event, history) {
     const target = event.target;
@@ -154,7 +158,9 @@ class SearchForm extends React.Component {
       }, () => {
         this.updateURL(history);
       });
-    } else if (name.includes('feature_') && !name.includes('fuel') && !name.includes('Wheel')) {
+    } else if (name.includes('feature_') && !name.includes('fuel') && !name.includes('Wheel') &&
+      !name.includes('Trans')
+    ) {
       var tempFtrParam = this.ftrGlobal;
       var varName = name.replace('feature_', '');
 
@@ -202,6 +208,23 @@ class SearchForm extends React.Component {
       this.setState({
         [varName]: value,
         driveType: tempDriveParam
+      }, () => {
+        this.updateURL(history);
+      });
+    } else if (name.includes('feature_') && name.includes('Trans')) {
+      var tempTransParam = this.transGlobal;
+      var varName = name.replace('feature_', '');
+
+      if (value === true) {
+        tempTransParam = tempTransParam + (varName + '|');
+      } else {
+        tempTransParam = tempTransParam.replace(varName + '|', '');
+      }
+
+      this.transGlobal = tempTransParam;
+      this.setState({
+        [varName]: value,
+        tranny: tempTransParam
       }, () => {
         this.updateURL(history);
       });
@@ -393,7 +416,8 @@ class SearchForm extends React.Component {
         ) &&
         vehicle.mpg <= this.state.mpgSlider &&
         (this.state.fuelType.toLowerCase().includes(vehicle.fuel.toLowerCase()) || this.state.fuelType === '') &&
-        (this.state.driveType.toLowerCase().includes(vehicle.driveType.toLowerCase()) || this.state.driveType === '')
+        (this.state.driveType.toLowerCase().includes(vehicle.driveType.toLowerCase()) || this.state.driveType === '') &&
+        (this.state.tranny.toLowerCase().includes(vehicle.tranny.toLowerCase()) || this.state.tranny === '')
       ) {
         if (
           this.state.financeOrPrice &&
@@ -431,7 +455,7 @@ class SearchForm extends React.Component {
 
   setParams({
     price='', pr=['', ''], down='', pay='', make='', model='', btype='', year=['', ''], miles=['', ''], ftr='', mpg='',
-    fuel='', drive=''
+    fuel='', drive='', trans=''
   }) {
     const searchParams = new URLSearchParams();
     searchParams.set('price', price);
@@ -450,6 +474,7 @@ class SearchForm extends React.Component {
     searchParams.set('mpg', mpg);
     searchParams.set('fuel', fuel);
     searchParams.set('drive', drive);
+    searchParams.set('trans', trans);
     return searchParams.toString();
   }
 
@@ -478,7 +503,8 @@ class SearchForm extends React.Component {
       ftr: this.state.features,
       mpg: this.state.mpgSlider,
       fuel: this.state.fuelType,
-      drive: this.state.driveType
+      drive: this.state.driveType,
+      trans: this.state.tranny
     });
     //do not forget the "?" !
     history.push(`?${url}`);
