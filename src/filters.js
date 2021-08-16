@@ -518,16 +518,16 @@ const Filters = (props) => {
               <div className='color-block'>
                 <p>Exterior Color</p>
                 <div className='colors'>
-                  {th.colorCreator('Black', '#000', 'exterior_black', 'black')}
-                  {th.colorCreator('Silver', '#e0e0e0', 'exterior_silver')}
-                  {th.colorCreator('White', '#fff', 'exterior_white')}
-                  {th.colorCreator('Gray', '#989898', 'exterior_gray')}
-                  {th.colorCreator('Red', '#dc4444', 'exterior_red')}
-                  {th.colorCreator('Blue', '#3f72b0', 'exterior_blue')}
-                  {th.colorCreator('Gold', '#c29050', 'exterior_gold')}
-                  {th.colorCreator('Orange', '#da7938', 'exterior_orange')}
-                  {th.colorCreator('Green', '#748959', 'exterior_green')}
-                  {th.colorCreator('Brown', '#76523c', 'exterior_brown')}
+                  {th.colorCreator('Black', '#000', 'exterior_black', history, 'black')}
+                  {th.colorCreator('Silver', '#e0e0e0', 'exterior_silver', history)}
+                  {th.colorCreator('White', '#fff', 'exterior_white', history)}
+                  {th.colorCreator('Gray', '#989898', 'exterior_gray', history)}
+                  {th.colorCreator('Red', '#dc4444', 'exterior_red', history)}
+                  {th.colorCreator('Blue', '#3f72b0', 'exterior_blue', history)}
+                  {th.colorCreator('Gold', '#c29050', 'exterior_gold', history)}
+                  {th.colorCreator('Orange', '#da7938', 'exterior_orange', history)}
+                  {th.colorCreator('Green', '#748959', 'exterior_green', history)}
+                  {th.colorCreator('Brown', '#76523c', 'exterior_brown', history)}
                   {th.colorCreator('Other', `linear-gradient(
                     90deg,
                     rgba(255, 0, 0, 1) 0%,
@@ -540,22 +540,22 @@ const Filters = (props) => {
                     rgba(95, 21, 242, 1) 70%,
                     rgba(186, 12, 248, 1) 80%,
                     rgba(251, 7, 217, 1) 90%,
-                    rgba(255, 0, 0, 1) 100%`, 'exterior_other')}
+                    rgba(255, 0, 0, 1) 100%`, 'exterior_other', history)}
                 </div>
               </div>
               <div className='color-block'>
                 <p>Interior Color</p>
                 <div className='colors'>
-                  {th.colorCreator('Black', '#000', 'interior_black', 'black')}
-                  {th.colorCreator('Silver', '#e0e0e0', 'interior_silver')}
-                  {th.colorCreator('White', '#fff', 'interior_white')}
-                  {th.colorCreator('Gray', '#989898', 'interior_gray')}
-                  {th.colorCreator('Red', '#dc4444', 'interior_red')}
-                  {th.colorCreator('Blue', '#3f72b0', 'interior_blue')}
-                  {th.colorCreator('Gold', '#c29050', 'interior_gold')}
-                  {th.colorCreator('Orange', '#da7938', 'interior_orange')}
-                  {th.colorCreator('Green', '#748959', 'interior_green')}
-                  {th.colorCreator('Brown', '#76523c', 'interior_brown')}
+                  {th.colorCreator('Black', '#000', 'interior_black', history, 'black')}
+                  {th.colorCreator('Silver', '#e0e0e0', 'interior_silver', history)}
+                  {th.colorCreator('White', '#fff', 'interior_white', history)}
+                  {th.colorCreator('Gray', '#989898', 'interior_gray', history)}
+                  {th.colorCreator('Red', '#dc4444', 'interior_red', history)}
+                  {th.colorCreator('Blue', '#3f72b0', 'interior_blue', history)}
+                  {th.colorCreator('Gold', '#c29050', 'interior_gold', history)}
+                  {th.colorCreator('Orange', '#da7938', 'interior_orange', history)}
+                  {th.colorCreator('Green', '#748959', 'interior_green', history)}
+                  {th.colorCreator('Brown', '#76523c', 'interior_brown', history)}
                   {th.colorCreator('Other', `linear-gradient(
                     90deg,
                     rgba(255, 0, 0, 1) 0%,
@@ -568,7 +568,7 @@ const Filters = (props) => {
                     rgba(95, 21, 242, 1) 70%,
                     rgba(186, 12, 248, 1) 80%,
                     rgba(251, 7, 217, 1) 90%,
-                    rgba(255, 0, 0, 1) 100%`, 'interior_other')}
+                    rgba(255, 0, 0, 1) 100%`, 'interior_other', history)}
                 </div>
               </div>
             </div>

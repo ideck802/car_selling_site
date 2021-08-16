@@ -22,6 +22,8 @@ class SearchForm extends React.Component {
     var drive = new URLSearchParams(window.location.search).get('drive').toLowerCase();
     var trans = new URLSearchParams(window.location.search).get('trans').toLowerCase();
     var cyl = new URLSearchParams(window.location.search).get('cyl').toLowerCase();
+    var extor = new URLSearchParams(window.location.search).get('extor').toLowerCase();
+    var intor = new URLSearchParams(window.location.search).get('intor').toLowerCase();
 
     super(props);
     this.state = {
@@ -78,13 +80,19 @@ class SearchForm extends React.Component {
       roof_rack: ftr.includes('roof_rack'),stability: ftr.includes('stability'),
       third_row: ftr.includes('third_row'),tire_sense: ftr.includes('tire_sense'),tow_hitch: ftr.includes('tow_hitch'),
 
-      exterior_black: false, exterior_silver: false, exterior_white: false, exterior_gray: false, exterior_red: false,
-      exterior_blue: false, exterior_gold: false, exterior_orange: false, exterior_green: false, exterior_brown: false,
-      exterior_other: false,
+      exterior: extor,
+      exterior_black: extor.includes('black'), exterior_silver: extor.includes('silver'),
+      exterior_white: extor.includes('white'), exterior_gray: extor.includes('gray'),
+      exterior_red: extor.includes('red'), exterior_blue: extor.includes('blue'), exterior_gold: extor.includes('gold'),
+      exterior_orange: extor.includes('orange'), exterior_green: extor.includes('green'),
+      exterior_brown: extor.includes('brown'), exterior_other: extor.includes('other'),
 
-      interior_black: false, interior_silver: false, interior_white: false, interior_gray: false, interior_red: false,
-      interior_blue: false, interior_gold: false, interior_orange: false, interior_green: false, interior_brown: false,
-      interior_other: false,
+      interior: intor,
+      interior_black: intor.includes('black'), interior_silver: intor.includes('silver'),
+      interior_white: intor.includes('white'), interior_gray: intor.includes('gray'),
+      interior_red: intor.includes('red'), interior_blue: intor.includes('blue'), interior_gold: intor.includes('gold'),
+      interior_orange: intor.includes('orange'), interior_green: intor.includes('green'),
+      interior_brown: intor.includes('brown'), interior_other: intor.includes('other'),
 
       mpgSlider: new URLSearchParams(window.location.search).getAll('mpg'),
       mpgBox: new URLSearchParams(window.location.search).getAll('mpg'),
@@ -139,6 +147,8 @@ class SearchForm extends React.Component {
   driveGlobal = new URLSearchParams(window.location.search).get('drive');
   transGlobal = new URLSearchParams(window.location.search).get('trans');
   cylGlobal = new URLSearchParams(window.location.search).get('cyl');
+  extorGlobal = new URLSearchParams(window.location.search).get('extor');
+  intorGlobal = new URLSearchParams(window.location.search).get('intor');
 
   handleInputChange(event, history) {
     const target = event.target;
@@ -163,7 +173,8 @@ class SearchForm extends React.Component {
         this.updateURL(history);
       });
     } else if (name.includes('feature_') && !name.includes('fuel') && !name.includes('Wheel') &&
-      !name.includes('Trans') && !name.includes('Cylinder')
+      !name.includes('Trans') && !name.includes('Cylinder') && !name.includes('exterior_') &&
+      !name.includes('interior_')
     ) {
       var tempFtrParam = this.ftrGlobal;
       var varName = name.replace('feature_', '');
@@ -246,6 +257,40 @@ class SearchForm extends React.Component {
       this.setState({
         [varName]: value,
         cylCount: tempCylParam
+      }, () => {
+        this.updateURL(history);
+      });
+    } else if (name.includes('exterior_')) {
+      var tempExtorParam = this.extorGlobal;
+      var varName = name.replace('exterior_', '');
+
+      if (value === true) {
+        tempExtorParam = tempExtorParam + (varName + '|');
+      } else {
+        tempExtorParam = tempExtorParam.replace(varName + '|', '');
+      }
+
+      this.extorGlobal = tempExtorParam;
+      this.setState({
+        ['exterior_' + varName]: value,
+        exterior: tempExtorParam
+      }, () => {
+        this.updateURL(history);
+      });
+    } else if (name.includes('interior_')) {
+      var tempIntorParam = this.intorGlobal;
+      var varName = name.replace('interior_', '');
+
+      if (value === true) {
+        tempIntorParam = tempIntorParam + (varName + '|');
+      } else {
+        tempIntorParam = tempIntorParam.replace(varName + '|', '');
+      }
+
+      this.intorGlobal = tempIntorParam;
+      this.setState({
+        ['interior_' + varName]: value,
+        interior: tempIntorParam
       }, () => {
         this.updateURL(history);
       });
@@ -389,7 +434,7 @@ class SearchForm extends React.Component {
     </label>;
   }
 
-  colorCreator(name, color, value, classname) {
+  colorCreator(name, color, value, history, classname) {
     return <label htmlFor={value} className={(this.state[value] === true ?
         ('color checked ' + classname) : ('color ' + classname))}>
       <div className='color-circle' style={{background: color}}>
@@ -401,7 +446,7 @@ class SearchForm extends React.Component {
         type='checkbox'
         id={value}
         checked={this.state[value]}
-        onChange={this.handleInputChange}
+        onChange={(e) => this.handleInputChange(e, history)}
         />
     </label>;
   }
@@ -439,7 +484,9 @@ class SearchForm extends React.Component {
         (this.state.fuelType.toLowerCase().includes(vehicle.fuel.toLowerCase()) || this.state.fuelType === '') &&
         (this.state.driveType.toLowerCase().includes(vehicle.driveType.toLowerCase()) || this.state.driveType === '') &&
         (this.state.tranny.toLowerCase().includes(vehicle.tranny.toLowerCase()) || this.state.tranny === '') &&
-        (this.state.cylCount.toLowerCase().includes(vehicle.cylinders.toLowerCase()) || this.state.cylCount === '')
+        (this.state.cylCount.toLowerCase().includes(vehicle.cylinders.toLowerCase()) || this.state.cylCount === '') &&
+        (this.state.exterior.toLowerCase().includes(vehicle.extColor.toLowerCase()) || this.state.exterior === '') &&
+        (this.state.interior.toLowerCase().includes(vehicle.intColor.toLowerCase()) || this.state.interior === '')
       ) {
         if (
           this.state.financeOrPrice &&
@@ -477,7 +524,7 @@ class SearchForm extends React.Component {
 
   setParams({
     price='', pr=['', ''], down='', pay='', make='', model='', btype='', year=['', ''], miles=['', ''], ftr='', mpg='',
-    fuel='', drive='', trans='', cyl=''
+    fuel='', drive='', trans='', cyl='', extor='', intor=''
   }) {
     const searchParams = new URLSearchParams();
     searchParams.set('price', price);
@@ -498,6 +545,8 @@ class SearchForm extends React.Component {
     searchParams.set('drive', drive);
     searchParams.set('trans', trans);
     searchParams.set('cyl', cyl);
+    searchParams.set('extor', extor);
+    searchParams.set('intor', intor);
     return searchParams.toString();
   }
 
@@ -528,7 +577,9 @@ class SearchForm extends React.Component {
       fuel: this.state.fuelType,
       drive: this.state.driveType,
       trans: this.state.tranny,
-      cyl: this.state.cylCount
+      cyl: this.state.cylCount,
+      extor: this.state.exterior,
+      intor: this.state.interior
     });
     //do not forget the "?" !
     history.push(`?${url}`);
