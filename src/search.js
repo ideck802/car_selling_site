@@ -132,7 +132,6 @@ class SearchForm extends React.Component {
   }
 
   init() {
-    console.log(this.state.modelParam);
     makesList.map((make, i) => {
       make.models.map((model, j) =>
         this.state.modelParam.toLowerCase().includes(model.toLowerCase()) ?

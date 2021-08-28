@@ -53,7 +53,7 @@ class Search extends React.Component {
 
   // filter records by search text
   filterData(value) {
-    const lowercasedValue = value.toLowerCase().trim();
+    const lowercasedValue = value.toLowerCase().trim().replace('chevy', 'chevrolet').replace('vw', 'volkswagen');
     if (lowercasedValue === '') {
       this.setState({
         makesSearch: makesList,
@@ -165,7 +165,7 @@ class Search extends React.Component {
               </li>;
             })}
           </ul>
-          {this.state.makesSearch.length === 0 && <span>No records found to display!</span>}
+          {this.state.makesSearch.length === 0 && <span>No matching models to display</span>}
           {this.state.modelsSearch.length > 0 && <p>Models</p>}
           <ul>
             {this.state.modelsSearch.map((model, i) => {

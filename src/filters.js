@@ -7,6 +7,7 @@ import DropDown from './components/drop_down';
 import Tabs from './components/tabs';
 import Accordion from './components/accordion';
 import Search from './components/search';
+import AddTags from './components/tags_search.js';
 import vehicles from './vehicleCardList';
 import { Range, getTrackBackground } from 'react-range';
 import reportWebVitals from './reportWebVitals';
@@ -20,20 +21,16 @@ const Filters = (props) => {
     return (
       <div className='filters'>
         <div className='search-box'>
-          <input
-            type='text'
-            name='search_tag'
-            placeholder='Search by make, model, or tags'
-            onKeyDown={th.updateURL.bind(th, history, true)}
-            value={th.state.modelParam}
-            onChange={th.updateInputValue} />
+          <AddTags modlBoxes={th.state.modelBoxes} handleBoxChange={th.handleModelBoxChange}
+            handleInputChange={th.handleInputChange} th={th} history={history}/>
           <div className='second-row'>
             <p>Near: </p>
             <input
-              type='text'
+              type='test'
               name='zipCode'
               placeholder='Zip code'
               maxLength='5'
+              pattern='\d*'
               onKeyDown={th.updateURL.bind(th, history, true)}
               value={th.state.zipCode}
               onChange={th.handleInputChange} />
