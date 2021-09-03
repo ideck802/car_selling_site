@@ -40,10 +40,19 @@ class AddTags extends React.Component {
         ['Wagons', 'check_wagon'],
       ],
       searchText: '',
+      displayResults: true,
+      renderNumOptns: false,
+      renderYearOptns: false,
+      inputNum: 0
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.filterData = this.filterData.bind(this);
+    this.changeNumbers = this.changeNumbers.bind(this);
+
+    this.wrapperRef = React.createRef();
+    this.textBoxRef = React.createRef();
+    this.handleClickOutside = this.handleClickOutside.bind(this);
   }
 
   // handle change event of search text input
@@ -56,7 +65,9 @@ class AddTags extends React.Component {
 
   // filter records by search text
   filterData(value) {
-    const lowercasedValue = value.toLowerCase().trim().replace('chevy', 'chevrolet').replace('vw', 'volkswagen');
+    const lowercasedValue = value.toLowerCase().trim().replace('chevy', 'chevrolet').replace('vw', 'volkswagen')
+    .replace('caddy', 'cadillac').replace('cadd', 'cadillac').replace('lr', 'land rover')
+    .replace('mbz', 'mercedes-benz');
 
     const filteredModels = modelsList.filter(item =>
       item.toString().toLowerCase().includes(lowercasedValue)
@@ -65,10 +76,89 @@ class AddTags extends React.Component {
       item[0].toString().toLowerCase().includes(lowercasedValue)
     );
 
+    if (!isNaN(lowercasedValue)) {
+      this.setState({
+        renderNumOptns: true,
+        inputNum: lowercasedValue
+      });
+      if (lowercasedValue.length === 4) {
+        this.setState({
+          renderYearOptns: true
+        });
+      } else {
+        this.setState({
+          renderYearOptns: false
+        });
+      }
+    } else {
+      this.setState({
+        renderNumOptns: false,
+        renderYearOptns: false,
+        inputNum: 0
+      });
+    }
+
     this.setState({
       modelsSearch: filteredModels,
       tagsSearch: filteredTags
     });
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClickOutside);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClickOutside);
+  }
+
+  handleClickOutside(event) {
+    if (this.wrapperRef && !this.wrapperRef.current.contains(event.target)) {
+      this.setState({
+        displayResults: false
+      });
+    }
+    if (this.textBoxRef && this.textBoxRef.current.contains(event.target)) {
+      this.setState({
+        displayResults: true
+      });
+    }
+  }
+
+  changeNumbers(isYear=false, down=false, monthly=false, miles=false) {
+    if (isYear) {
+      if (this.state.thst.state.yearSlider.every(e => e === this.state.thst.state.yearSlider[0])) {
+        this.state.thst.setState({
+          yearSlider: [1800, 2090],
+          yearBoxes: [1800, 2090]
+        });
+      } else {
+        this.state.thst.setState({
+          yearSlider: [this.state.inputNum, this.state.inputNum],
+          yearBoxes: [this.state.inputNum, this.state.inputNum]
+        });
+      }
+    } else if (down) {
+      this.state.thst.setState({
+        downFinanceSlider: [this.state.inputNum],
+        downFinanceBox: [this.state.inputNum]
+      });
+    } else if (monthly) {
+      this.state.thst.setState({
+        monthlyFinanceSlider: [this.state.inputNum],
+        monthlyFinanceBox: [this.state.inputNum]
+      });
+    } else if (miles) {
+      this.state.thst.setState({
+        mileageSlider: [this.state.thst.state.mileageSlider[0], this.state.inputNum],
+        mileageBoxes: [this.state.thst.state.mileageBoxes[0], this.state.inputNum]
+      });
+    } else {
+      this.state.thst.setState({
+        values: [this.state.thst.state.values[0], this.state.inputNum],
+        priceBoxes: [this.state.thst.state.priceBoxes[0], this.state.inputNum]
+      });
+    }
   }
 
   render() {
@@ -113,19 +203,33 @@ class AddTags extends React.Component {
     });
 
     return (
-      <div className='search-container'>
+      <div className='search-container' ref={this.wrapperRef}>
         <div className='searchbox'>
           <input
             type='text'
             placeholder='Type to search...'
             value={this.state.searchText}
             onChange={this.handleChange}
+            ref={this.textBoxRef}
           />
         {
           (!modelsToRender.every((item) => {return item === undefined;}) ||
-          !tagsToRender.every((item) => {return item === undefined;})) &&
+          !tagsToRender.every((item) => {return item === undefined;}) ||
+          this.state.thst.state.yearSlider.every(e => e === this.state.thst.state.yearSlider[0])) &&
           <DropDown btnText='Change Tags' isChanging={false} className='tags-dd'>
             <ul>
+              {this.state.thst.state.yearSlider.every(e => e === this.state.thst.state.yearSlider[0]) && <li>
+                <label htmlFor='year'>
+                  <p>{this.state.thst.state.yearSlider[0]}</p>
+                  <i className='fas fa-times'></i>
+                </label>
+                <input
+                  type='checkbox'
+                  name={this.state.thst.state.yearSlider[0]}
+                  id='year'
+                  checked={this.state.thst.state.yearSlider.every(e => e === this.state.thst.state.yearSlider[0]) || ''}
+                  onChange={this.changeNumbers} />
+              </li>}
               {modelsToRender}
               {tagsToRender}
             </ul>
@@ -133,16 +237,49 @@ class AddTags extends React.Component {
         }
         </div>
 
-        {this.state.modelsSearch.length > 0 && this.state.searchText != '' && <div className='box-container'>
-          <p>Models</p>
+        {(this.state.modelsSearch.length > 0 || this.state.tagsSearch.length > 0 || this.state.renderNumOptns) &&
+          this.state.searchText != '' && this.state.displayResults && <div className='box-container'>
           <ul>
+            {this.state.renderNumOptns && <li>
+              <button onClick={(e) => this.changeNumbers()}>
+                <p>Vehicles less than ${this.state.inputNum}</p>
+              </button>
+            </li>}
+            {this.state.renderNumOptns && <li>
+              <button onClick={(e) => this.changeNumbers(false, true)}>
+                <p>Cash down at ${this.state.inputNum}</p>
+              </button>
+            </li>}
+            {this.state.renderNumOptns && <li>
+              <button onClick={(e) => this.changeNumbers(false, false, true)}>
+                <p>Monthly payment at ${this.state.inputNum}</p>
+              </button>
+            </li>}
+            {this.state.renderNumOptns && <li>
+              <button onClick={(e) => this.changeNumbers(false, false, false, true)}>
+                <p>Vehicles with less than {this.state.inputNum} miles</p>
+              </button>
+            </li>}
+            {this.state.renderYearOptns && <li>
+              <label htmlFor='setYear'>
+                {this.state.thst.state.yearSlider.every(e => e === this.state.inputNum) ?
+                  <i className='checkmark fas fa-check'></i> : ''}
+                <p>Vehicles with year {this.state.inputNum}</p>
+              </label>
+              <input
+                type='checkbox'
+                name={this.state.inputNum}
+                id='setYear'
+                checked={this.state.thst.state.yearSlider.every(e => e === this.state.inputNum) || ''}
+                onChange={(e) => this.changeNumbers(true)} />
+            </li>}
             {this.state.modelsSearch.map((model, i) => {
               return <li key={i}>
                 <label htmlFor={'modelBox2' + i}>
-                  <p>{model}</p>
                   {this.props.modlBoxes[
                     makesList[getIndex(model, makesList, 'name')].id + 'ModelBoxes'
                   ][getModelsIndex(model, makesList, 'models')] ? <i className='checkmark fas fa-check'></i> : ''}
+                  <p>{model}</p>
                 </label>
                 <input
                   type='checkbox'
@@ -159,8 +296,8 @@ class AddTags extends React.Component {
             {this.state.tagsSearch.map((tag, i) => {
               return <li key={i}>
                 <label htmlFor={'tag' + i}>
-                  <p>{tag[0]}</p>
                   {this.state.thst.state[tag[1]] ? <i className='checkmark fas fa-check'></i> : ''}
+                  <p>{tag[0]}</p>
                 </label>
                 <input
                   type='checkbox'

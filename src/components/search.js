@@ -53,7 +53,9 @@ class Search extends React.Component {
 
   // filter records by search text
   filterData(value) {
-    const lowercasedValue = value.toLowerCase().trim().replace('chevy', 'chevrolet').replace('vw', 'volkswagen');
+    const lowercasedValue = value.toLowerCase().trim().replace('chevy', 'chevrolet').replace('vw', 'volkswagen')
+    .replace('caddy', 'cadillac').replace('cadd', 'cadillac').replace('lr', 'land rover')
+    .replace('mbz', 'mercedes-benz');
     if (lowercasedValue === '') {
       this.setState({
         makesSearch: makesList,

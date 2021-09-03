@@ -456,7 +456,7 @@ input[type='number']::-webkit-outer-spin-button {
     display: flex;
 
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 
     width: 100%;
   }
@@ -530,6 +530,8 @@ input[type='number']::-webkit-outer-spin-button {
 
     flex-direction: row;
     align-items: center;
+
+    cursor: pointer;
   }
 
   #search_form .filters .search-box .search-container .searchbox .tags-dd .dd-content ul li label p {
@@ -551,6 +553,63 @@ input[type='number']::-webkit-outer-spin-button {
 
   #search_form .filters .search-box .search-container ul input {
     display: none;
+  }
+
+  #search_form .filters .search-box .search-container .box-container {
+    position: absolute;
+
+    top: calc(100% + 5px);
+    left: 0;
+
+    width: calc(100% - 2px);
+
+    border: 1px solid $gray;
+    border-radius: 5px;
+
+    background: $white;
+
+    z-index: 1;
+  }
+
+  #search_form .filters .search-box .search-container .box-container ul {
+    padding-left: 15px;
+
+    column-count: 2;
+
+    list-style: none;
+  }
+
+  #search_form .filters .search-box .search-container .box-container ul button {
+    padding: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  #search_form .filters .search-box .search-container .box-container ul button p {
+    padding: 0;
+    padding-left: 8px;
+
+    font-family: auto;
+    font-size: 16px;
+  }
+
+  #search_form .filters .search-box .search-container .box-container ul li label {
+    display: flex;
+
+    flex-direction: row;
+    align-items: center;
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    cursor: pointer;
+  }
+
+  #search_form .filters .search-box .search-container .box-container ul li label p {
+    padding: 0;
+    padding-left: 8px;
+
+    font-size: 16px;
   }
 
   #search_form .filters .search-box .second-row {
