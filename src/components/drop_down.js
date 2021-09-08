@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 class DropDown extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       open: false,
-      selectedNum: 0
+      selectedNum: this.props.startValue
     };
     this.changeVisible = this.changeVisible.bind(this);
     this.closeDropDown = this.closeDropDown.bind(this);
@@ -14,6 +15,11 @@ class DropDown extends React.Component {
 
     this.wrapperRef = React.createRef();
     this.handleClickOutside = this.handleClickOutside.bind(this);
+
+    if (this.props.isChanging) {
+      //this.changeSelectedNum(this.props.startValue);
+      this.props.children[1].props.changeDis(this.props.startValue);
+    }
   }
 
   componentDidMount() {

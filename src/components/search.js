@@ -139,10 +139,10 @@ class Search extends React.Component {
                         Back to Makes
                       </button>
                     </p>
-                    <h3>
-                      {make.name}
+                    <div>
+                      <h3>{make.name}</h3>
                       <button onClick={(e) => (this.setModelsTrue(e, make))}>Select All</button>
-                    </h3>
+                    </div>
                     <ul data-simplebar>
                       {make.models.map((model, j) =>
                         <li key={j}>

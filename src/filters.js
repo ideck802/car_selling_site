@@ -31,10 +31,10 @@ const Filters = (props) => {
               placeholder='Zip code'
               maxLength='5'
               pattern='\d*'
-              onKeyDown={th.updateURL.bind(th, history, true)}
+              onKeyDown={th.onKeyDownHandler}
               value={th.state.zipCode}
               onChange={th.handleInputChange} />
-            <DropDown btnText='Distance' isChanging={true}>
+            <DropDown btnText='Distance' isChanging={true} startValue={th.state.distance}>
               <div className='placeholder' display='Distance'></div>
               <div display='25 Miles' changeDis={th.changeDistance}></div>
               <div display='50 Miles' changeDis={th.changeDistance}></div>
@@ -44,7 +44,7 @@ const Filters = (props) => {
               <div display='500 Miles' changeDis={th.changeDistance}></div>
               <div display='Unlimited' changeDis={th.changeDistance}></div>
             </DropDown>
-            <button onClick={th.updateURL.bind(th, history)}>
+            <button onClick={th.updateDistance}>
               <i className='fas fa-search'></i>
             </button>
           </div>

@@ -16,31 +16,34 @@ import reportWebVitals from './reportWebVitals';
 class SearchForm extends React.Component {
 
   constructor(props) {
-    var bt = new URLSearchParams(window.location.search).get('btype').toLowerCase();
-    var ftr = new URLSearchParams(window.location.search).get('ftr').toLowerCase();
-    var fuel = new URLSearchParams(window.location.search).get('fuel').toLowerCase();
-    var drive = new URLSearchParams(window.location.search).get('drive').toLowerCase();
-    var trans = new URLSearchParams(window.location.search).get('trans').toLowerCase();
-    var cyl = new URLSearchParams(window.location.search).get('cyl').toLowerCase();
-    var extor = new URLSearchParams(window.location.search).get('extor').toLowerCase();
-    var intor = new URLSearchParams(window.location.search).get('intor').toLowerCase();
+    const searchParam = new URLSearchParams(window.location.search);
+    const distancesArray = ['0', '25', '50', '75', '100', '250', '500', 'unlimited'];
+    var bt = searchParam.get('btype').toLowerCase();
+    var ftr = searchParam.get('ftr').toLowerCase();
+    var fuel = searchParam.get('fuel').toLowerCase();
+    var drive = searchParam.get('drive').toLowerCase();
+    var trans = searchParam.get('trans').toLowerCase();
+    var cyl = searchParam.get('cyl').toLowerCase();
+    var extor = searchParam.get('extor').toLowerCase();
+    var intor = searchParam.get('intor').toLowerCase();
 
     super(props);
     this.state = {
       search_tag: '',
-      zipCode: '',
-      distance: 0,
-      financeOrPrice: new URLSearchParams(window.location.search).getAll('price'),
-      priceBoxes: new URLSearchParams(window.location.search).getAll('pr'),
-      values: new URLSearchParams(window.location.search).getAll('pr'),
-      yearBoxes: new URLSearchParams(window.location.search).getAll('year'),
-      yearSlider: new URLSearchParams(window.location.search).getAll('year'),
-      mileageBoxes: new URLSearchParams(window.location.search).getAll('miles'),
-      mileageSlider: new URLSearchParams(window.location.search).getAll('miles'),
-      downFinanceSlider: new URLSearchParams(window.location.search).getAll('down'),
-      downFinanceBox: new URLSearchParams(window.location.search).getAll('down'),
-      monthlyFinanceSlider: new URLSearchParams(window.location.search).getAll('pay'),
-      monthlyFinanceBox: new URLSearchParams(window.location.search).getAll('pay'),
+      zipCode: searchParam.getAll('zip')[0],
+      distance: distancesArray.indexOf(searchParam.getAll('distance').toString() || '0'),
+      distances: distancesArray,
+      financeOrPrice: searchParam.getAll('price'),
+      priceBoxes: searchParam.getAll('pr'),
+      values: searchParam.getAll('pr'),
+      yearBoxes: searchParam.getAll('year'),
+      yearSlider: searchParam.getAll('year'),
+      mileageBoxes: searchParam.getAll('miles'),
+      mileageSlider: searchParam.getAll('miles'),
+      downFinanceSlider: searchParam.getAll('down'),
+      downFinanceBox: searchParam.getAll('down'),
+      monthlyFinanceSlider: searchParam.getAll('pay'),
+      monthlyFinanceBox: searchParam.getAll('pay'),
       typing: false,
       typingTimeout: 0,
       modelBoxes: {
@@ -94,8 +97,8 @@ class SearchForm extends React.Component {
       interior_orange: intor.includes('orange'), interior_green: intor.includes('green'),
       interior_brown: intor.includes('brown'), interior_other: intor.includes('other'),
 
-      mpgSlider: new URLSearchParams(window.location.search).getAll('mpg'),
-      mpgBox: new URLSearchParams(window.location.search).getAll('mpg'),
+      mpgSlider: searchParam.getAll('mpg'),
+      mpgBox: searchParam.getAll('mpg'),
 
       fuelType: fuel,
       fuelGas: fuel.includes('fuelgas'), fuelHybrid: fuel.includes('fuelhybrid'),
@@ -112,8 +115,11 @@ class SearchForm extends React.Component {
       fourCylinder: cyl.includes('fourcylinder'), sixCylinder: cyl.includes('sixcylinder'),
       eightCylinder: cyl.includes('eightcylinder'), otherCylinder: cyl.includes('othercylinder'),
 
-      makeParam: new URLSearchParams(window.location.search).get('make'),
-      modelParam: new URLSearchParams(window.location.search).get('model'),
+      makeParam: searchParam.get('make'),
+      modelParam: searchParam.get('model'),
+
+      isFetching: false,
+      zips: 'all',
     };
 
     this.init = this.init.bind(this);
@@ -127,16 +133,17 @@ class SearchForm extends React.Component {
     this.changeDistance = this.changeDistance.bind(this);
     this.vehicleCardCreator = this.vehicleCardCreator.bind(this);
     this.getParams = this.getParams.bind(this);
+    this.updateDistance = this.updateDistance.bind(this);
 
     this.init();
   }
 
   init() {
     makesList.map((make, i) => {
-      make.models.map((model, j) =>
-        this.state.modelParam.toLowerCase().includes(model.toLowerCase()) ?
+      make.models.map((model, j) => (
+        ('|' + this.state.modelParam.toLowerCase()).includes('|' + model.toLowerCase() + '|') ?
           this.handleModelBoxChange(make.id, j, this.props.history, make, model, true) : ''
-      );
+      ));
     });
   };
 
@@ -463,16 +470,34 @@ class SearchForm extends React.Component {
   }
 
   changeDistance(value) {
+    if (this.state.zipCode.length === 5 && value !== 7) {
+      //this.fetchZips(this.state.zipCode, this.state.distances[value]);
+    } else {
+      this.setState({
+        zips: 'all'
+      });
+    }
     this.setState({
       distance: value
     });
+  }
+
+  updateDistance() {
+    if (this.state.zipCode.length === 5 && this.state.distance !== 7) {
+      //this.fetchZips(this.state.zipCode, this.state.distances[this.state.distance]);
+    } else {
+      this.setState({
+        zips: 'all'
+      });
+    }
   }
 
   vehicleCardCreator() {
     return vehicles.map((vehicle) => {
       if (
         vehicle.make.toLowerCase().includes(this.state.makeParam.toLowerCase()) &&
-        new RegExp(this.state.modelParam.toLowerCase().slice(0, -1)).test(vehicle.model.toLowerCase()) &&
+        (('|' + this.state.modelParam.toLowerCase()).includes('|' + vehicle.model.toLowerCase() + '|') ||
+        this.state.modelParam === '') &&
         new RegExp(this.state.bodyType.toLowerCase().slice(0, -1)).test(vehicle.bodyType.toLowerCase()) &&
         vehicle.year >= this.state.yearSlider[0] && vehicle.year <= this.state.yearSlider[1] &&
         vehicle.miles >= this.state.mileageSlider[0] && vehicle.miles <= this.state.mileageSlider[1] &&
@@ -485,7 +510,8 @@ class SearchForm extends React.Component {
         (this.state.tranny.toLowerCase().includes(vehicle.tranny.toLowerCase()) || this.state.tranny === '') &&
         (this.state.cylCount.toLowerCase().includes(vehicle.cylinders.toLowerCase()) || this.state.cylCount === '') &&
         (this.state.exterior.toLowerCase().includes(vehicle.extColor.toLowerCase()) || this.state.exterior === '') &&
-        (this.state.interior.toLowerCase().includes(vehicle.intColor.toLowerCase()) || this.state.interior === '')
+        (this.state.interior.toLowerCase().includes(vehicle.intColor.toLowerCase()) || this.state.interior === '') &&
+        (this.state.zips.includes(vehicle.location) || this.state.zips === 'all')
       ) {
         if (
           this.state.financeOrPrice &&
@@ -523,7 +549,7 @@ class SearchForm extends React.Component {
 
   setParams({
     price='', pr=['', ''], down='', pay='', make='', model='', btype='', year=['', ''], miles=['', ''], ftr='', mpg='',
-    fuel='', drive='', trans='', cyl='', extor='', intor=''
+    fuel='', drive='', trans='', cyl='', extor='', intor='', zip='', distance='',
   }) {
     const searchParams = new URLSearchParams();
     searchParams.set('price', price);
@@ -546,6 +572,8 @@ class SearchForm extends React.Component {
     searchParams.set('cyl', cyl);
     searchParams.set('extor', extor);
     searchParams.set('intor', intor);
+    searchParams.set('zip', zip);
+    searchParams.set('distance', distance);
     return searchParams.toString();
   }
 
@@ -578,10 +606,35 @@ class SearchForm extends React.Component {
       trans: this.state.tranny,
       cyl: this.state.cylCount,
       extor: this.state.exterior,
-      intor: this.state.interior
+      intor: this.state.interior,
+      zip: this.state.zipCode,
+      distance: this.state.distances[this.state.distance]
     });
     //do not forget the "?" !
     history.push(`?${url}`);
+  };
+
+  // red api key is only for localhost. must change for builds
+  // red Q6a4aY87oakQI2BA7YMUIwrqHux0j0BtEV6VAk2egIh5gbzooIdBEcLjoOBpLqsY
+  fetchZips = (centerZip, distance) => {
+      this.setState({isFetching: true});
+      fetch('https://www.zipcodeapi.com/rest/' +
+        'js-PM7I8cxEjfxbX05xYqOa46UXb93zWmxX4amPH8agb5IDqnv3LhwcijDk5Tag3nnc/radius.json/' +
+        centerZip + '/' + distance + '/mile?minimal')
+      .then(response => response.json())
+      .then(result => {
+        this.setState({zips: Object.values(result.zip_codes), isFetching: false});
+      })
+      .catch(exception => {
+        console.log(exception);
+        this.setState({isFetching: false});
+      });
+    };
+
+  onKeyDownHandler = e => {
+    if (e.keyCode === 13) {
+      this.updateDistance();
+    }
   };
 
   render() {
@@ -594,6 +647,7 @@ class SearchForm extends React.Component {
             <Filters {...props} th={this} />
           )}/>
         </Router>
+        {this.state.isFetching ? <div className='loading-ani'><i className='fas fa-car-side'></i></div> : ''}
         <div className='vehicle-cards'>
           {this.vehicleCardCreator()}
         </div>

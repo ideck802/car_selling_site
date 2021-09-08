@@ -16,10 +16,7 @@ const vehicles = [
       cylinders: 'four',
       extColor: 'white',
       intColor: 'gray',
-      location: {
-        latitude: 5000,
-        longitude: 1000,
-      },
+      location: '56527',
       features: 'heated_seats|android_auto',
     },
     {
@@ -38,10 +35,7 @@ const vehicles = [
       cylinders: 'six',
       extColor: 'black',
       intColor: 'black',
-      location: {
-        latitude: 8000,
-        longitude: 13000,
-      },
+      location: '66043',
       features: 'apple_carplay',
     },
   ];

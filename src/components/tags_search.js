@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import SimpleBar from 'simplebar';
 
@@ -26,6 +26,52 @@ function getModelsIndex(value, arr, prop) {
   return -1; //to handle the case where the value doesn't exist
 }
 
+function GetZips(props) {
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [zips, setZips] = useState([]);
+
+  console.log('getzips');
+
+  // Note: the empty deps array [] means
+  // this useEffect will run once
+  // similar to componentDidMount()
+
+  // red js-PM......3nnc is the key only for localhost testing. must change for builds
+  // red to Q6a4aY87oakQI2BA7YMUIwrqHux0j0BtEV6VAk2egIh5gbzooIdBEcLjoOBpLqsY
+  useEffect(() => {
+    fetch('https://www.zipcodeapi.com/rest/' +
+    'js-PM7I8cxEjfxbX05xYqOa46UXb93zWmxX4amPH8agb5IDqnv3LhwcijDk5Tag3nnc/radius.json/' +
+    props.centerZip + '/' + props.distance + '/mile?minimal')
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setZips(result);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      );
+  }, []);
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else {
+    console.log(zips.zip_codes);
+    return (
+      <ul>
+      </ul>
+    );
+  }
+}
+
 class AddTags extends React.Component {
 
   constructor(props) {
@@ -43,12 +89,13 @@ class AddTags extends React.Component {
       displayResults: true,
       renderNumOptns: false,
       renderYearOptns: false,
-      inputNum: 0
+      inputNum: 0,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.filterData = this.filterData.bind(this);
     this.changeNumbers = this.changeNumbers.bind(this);
+    this.onKeyDownHandler = this.onKeyDownHandler.bind(this);
 
     this.wrapperRef = React.createRef();
     this.textBoxRef = React.createRef();
@@ -132,34 +179,46 @@ class AddTags extends React.Component {
           yearSlider: [1800, 2090],
           yearBoxes: [1800, 2090]
         });
-      } else {
+      } else if (this.state.inputNum >= 1800 && this.state.inputNum <= 2090) {
         this.state.thst.setState({
           yearSlider: [this.state.inputNum, this.state.inputNum],
           yearBoxes: [this.state.inputNum, this.state.inputNum]
         });
       }
-    } else if (down) {
+    } else if (down && this.state.inputNum >= 100 && this.state.inputNum <= 99990) {
       this.state.thst.setState({
         downFinanceSlider: [this.state.inputNum],
         downFinanceBox: [this.state.inputNum]
       });
-    } else if (monthly) {
+    } else if (monthly && this.state.inputNum >= 100 && this.state.inputNum <= 99990) {
       this.state.thst.setState({
         monthlyFinanceSlider: [this.state.inputNum],
         monthlyFinanceBox: [this.state.inputNum]
       });
-    } else if (miles) {
+    } else if (miles && this.state.inputNum <= 200000) {
       this.state.thst.setState({
-        mileageSlider: [this.state.thst.state.mileageSlider[0], this.state.inputNum],
-        mileageBoxes: [this.state.thst.state.mileageBoxes[0], this.state.inputNum]
+        mileageSlider: [0, this.state.inputNum],
+        mileageBoxes: [0, this.state.inputNum]
       });
     } else {
-      this.state.thst.setState({
-        values: [this.state.thst.state.values[0], this.state.inputNum],
-        priceBoxes: [this.state.thst.state.priceBoxes[0], this.state.inputNum]
-      });
+      if (this.state.inputNum <= 999990) {
+        this.state.thst.setState({
+          values: [100, this.state.inputNum],
+          priceBoxes: [100, this.state.inputNum]
+        });
+      }
     }
   }
+
+  onKeyDownHandler = e => {
+    if (e.keyCode === 13 && this.state.renderNumOptns) {
+      if (this.state.inputNum.length === 4) {
+        this.changeNumbers(true);
+      } else {
+        this.changeNumbers();
+      }
+    }
+  };
 
   render() {
     const modelsToRender = modelsList.map((model, i) => {
@@ -209,6 +268,7 @@ class AddTags extends React.Component {
             type='text'
             placeholder='Type to search...'
             value={this.state.searchText}
+            onKeyDown={this.onKeyDownHandler}
             onChange={this.handleChange}
             ref={this.textBoxRef}
           />
