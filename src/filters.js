@@ -86,7 +86,8 @@ const Filters = (props) => {
                       min={100}
                       max={999990}
                       values={th.state.values}
-                      onChange={(values) => th.setState({values: values, priceBoxes: values})}
+                      onChange={(values) => th.setState({values: values, priceBoxes: values},
+                        th.updateUrlFromTimeout(history))}
                       renderTrack={({props, children}) => (
                         <div {...props} style={{...props.style, background:
                           getTrackBackground({
@@ -127,7 +128,8 @@ const Filters = (props) => {
                       min={100}
                       max={99990}
                       values={th.state.downFinanceSlider}
-                      onChange={(values) => th.setState({downFinanceSlider: values, downFinanceBox: values})}
+                      onChange={(values) => th.setState({downFinanceSlider: values, downFinanceBox: values},
+                        th.updateUrlFromTimeout(history))}
                       renderTrack={({props, children}) => (
                         <div {...props} style={{...props.style, background:
                           getTrackBackground({
@@ -169,7 +171,8 @@ const Filters = (props) => {
                       max={99990}
                       values={th.state.monthlyFinanceSlider}
                       onChange={
-                        (values) => th.setState({monthlyFinanceSlider: values, monthlyFinanceBox: values})
+                        (values) => th.setState({monthlyFinanceSlider: values, monthlyFinanceBox: values},
+                          th.updateUrlFromTimeout(history))
                       }
                       renderTrack={({props, children}) => (
                         <div {...props} style={{...props.style, background:
@@ -305,7 +308,8 @@ const Filters = (props) => {
                     min={1800}
                     max={2090}
                     values={th.state.yearSlider}
-                    onChange={(values) => th.setState({yearSlider: values, yearBoxes: values})}
+                    onChange={(values) => th.setState({yearSlider: values, yearBoxes: values},
+                      th.updateUrlFromTimeout(history))}
                     renderTrack={({props, children}) => (
                       <div {...props} style={{...props.style, background:
                         getTrackBackground({
@@ -356,7 +360,8 @@ const Filters = (props) => {
                     min={0}
                     max={200000}
                     values={th.state.mileageSlider}
-                    onChange={(values) => th.setState({mileageSlider: values, mileageBoxes: values})}
+                    onChange={(values) => th.setState({mileageSlider: values, mileageBoxes: values},
+                      th.updateUrlFromTimeout(history))}
                     renderTrack={({props, children}) => (
                       <div {...props} style={{...props.style, background:
                         getTrackBackground({
@@ -458,7 +463,8 @@ const Filters = (props) => {
                       min={0}
                       max={100}
                       values={th.state.mpgSlider}
-                      onChange={(values) => th.setState({mpgSlider: values, mpgBox: values})}
+                      onChange={(values) => th.setState({mpgSlider: values, mpgBox: values},
+                        th.updateUrlFromTimeout(history))}
                       renderTrack={({props, children}) => (
                         <div {...props} style={{...props.style, background:
                           getTrackBackground({

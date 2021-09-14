@@ -120,6 +120,8 @@ class SearchForm extends React.Component {
 
       isFetching: false,
       zips: 'all',
+
+      updateUrlTimeout: 0
     };
 
     this.init = this.init.bind(this);
@@ -636,6 +638,17 @@ class SearchForm extends React.Component {
       this.updateDistance();
     }
   };
+
+  updateUrlFromTimeout(history) {
+    if (this.state.updateUrlTimeout !== 0) {
+      clearTimeout(this.state.updateUrlTimeout);
+    }
+    this.setState({
+      updateUrlTimeout: setTimeout(() => {
+        this.updateURL(history);
+      }, 1000)
+    });
+  }
 
   render() {
 
