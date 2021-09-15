@@ -35,15 +35,15 @@ class SearchForm extends React.Component {
       distances: distancesArray,
       financeOrPrice: searchParam.getAll('price'),
       priceBoxes: searchParam.getAll('pr'),
-      values: searchParam.getAll('pr'),
+      priceSlider: searchParam.getAll('pr'),
       yearBoxes: searchParam.getAll('year'),
       yearSlider: searchParam.getAll('year'),
       mileageBoxes: searchParam.getAll('miles'),
       mileageSlider: searchParam.getAll('miles'),
       downFinanceSlider: searchParam.getAll('down'),
-      downFinanceBox: searchParam.getAll('down'),
+      downFinanceBoxes: searchParam.getAll('down'),
       monthlyFinanceSlider: searchParam.getAll('pay'),
-      monthlyFinanceBox: searchParam.getAll('pay'),
+      monthlyFinanceBoxes: searchParam.getAll('pay'),
       typing: false,
       typingTimeout: 0,
       modelBoxes: {
@@ -98,7 +98,7 @@ class SearchForm extends React.Component {
       interior_brown: intor.includes('brown'), interior_other: intor.includes('other'),
 
       mpgSlider: searchParam.getAll('mpg'),
-      mpgBox: searchParam.getAll('mpg'),
+      mpgBoxes: searchParam.getAll('mpg'),
 
       fuelType: fuel,
       fuelGas: fuel.includes('fuelgas'), fuelHybrid: fuel.includes('fuelhybrid'),
@@ -126,7 +126,6 @@ class SearchForm extends React.Component {
 
     this.init = this.init.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleModelBoxChange = this.handleModelBoxChange.bind(this);
     this.labelCreator = this.labelCreator.bind(this);
     this.featureCreator = this.featureCreator.bind(this);
@@ -302,6 +301,19 @@ class SearchForm extends React.Component {
       }, () => {
         this.updateURL(history);
       });
+    } else if (name === 'zipCode') {
+      if (this.state.updateUrlTimeout !== 0) {
+        clearTimeout(this.state.updateUrlTimeout);
+      }
+      this.setState({
+        updateUrlTimeout: setTimeout(() => {
+          this.updateDistance(history);
+        }, 1000)
+      });
+
+      this.setState({
+        [name]: value
+      });
     } else {
       this.setState({
         [name]: value
@@ -309,12 +321,7 @@ class SearchForm extends React.Component {
     }
   }
 
-  handleSubmit(event) {
-    alert('Your favorite flavor is: ' + this.state.slider);
-    event.preventDefault();
-  }
-
-  onNumberChange(boxVarName, sliderVarName, index, e) {
+  onNumberChange(boxVarName, sliderVarName, index, history, e) {
 
     const self = this;
 
@@ -344,30 +351,44 @@ class SearchForm extends React.Component {
         finalTempVar[index] = e.target.value;
 
         self.setState({
-          [sliderVarName]: finalTempVar
+          [sliderVarName]: finalTempVar,
+          [sliderVarName.replace('Slider', 'Boxes')]: finalTempVar
         });
+
+        self.updateURL(history);
       }, 1000)
     });
   }
 
-  enterPressed(sliderVarName, index, e) {
+  enterPressed(sliderVarName, index, history, e) {
     var code = e.key || e.which;
     if (code === 13 || code === 'Enter') { //13 is the enter keycode
-      var finalTempVar = this.state[sliderVarName].slice();
+      if (e.target.name === 'zipCode') {
+        this.setState({
+          [sliderVarName]: e.target.value
+        }, () => (
+          this.updateDistance(history)
+        ));
+        e.preventDefault();
+      } else {
+        var finalTempVar = this.state[sliderVarName].slice();
 
-      if (parseInt(e.target.value) < e.target.min) {
-        e.target.value = e.target.min;
-      };
-      if (parseInt(e.target.value) > e.target.max) {
-        e.target.value = e.target.max;
-      };
+        if (parseInt(e.target.value) < e.target.min) {
+          e.target.value = e.target.min;
+        };
+        if (parseInt(e.target.value) > e.target.max) {
+          e.target.value = e.target.max;
+        };
 
-      finalTempVar[index] = e.target.value;
+        finalTempVar[index] = e.target.value;
 
-      this.setState({
-        [sliderVarName]: finalTempVar
-      });
-      e.preventDefault();
+        this.setState({
+          [sliderVarName]: finalTempVar
+        }, () => (
+          this.updateURL(history)
+        ));
+        e.preventDefault();
+      }
     }
   }
 
@@ -471,26 +492,30 @@ class SearchForm extends React.Component {
     }
   }
 
-  changeDistance(value) {
+  changeDistance(value, history) {
     if (this.state.zipCode.length === 5 && value !== 7) {
-      //this.fetchZips(this.state.zipCode, this.state.distances[value]);
+      //this.fetchZips(this.state.zipCode, this.state.distances[value], history);
     } else {
       this.setState({
         zips: 'all'
-      });
+      }, () => (
+        this.updateURL(history)
+      ));
     }
     this.setState({
       distance: value
     });
   }
 
-  updateDistance() {
+  updateDistance(history) {
     if (this.state.zipCode.length === 5 && this.state.distance !== 7) {
-      //this.fetchZips(this.state.zipCode, this.state.distances[this.state.distance]);
+      //this.fetchZips(this.state.zipCode, this.state.distances[this.state.distance], history);
     } else {
       this.setState({
         zips: 'all'
-      });
+      }, () => (
+        this.updateURL(history)
+      ));
     }
   }
 
@@ -517,7 +542,7 @@ class SearchForm extends React.Component {
       ) {
         if (
           this.state.financeOrPrice &&
-          (vehicle.price >= this.state.values[0]) && (vehicle.price <= this.state.values[1])
+          (vehicle.price >= this.state.priceSlider[0]) && (vehicle.price <= this.state.priceSlider[1])
         ) {
           return <div className='card'>
             <i className='checkmark fas fa-check'></i>
@@ -593,7 +618,7 @@ class SearchForm extends React.Component {
 
     const url = this.setParams({
       price: this.state.financeOrPrice,
-      pr: this.state.values,
+      pr: this.state.priceSlider,
       down: this.state.downFinanceSlider,
       pay: this.state.monthlyFinanceSlider,
       make: this.state.makeParam,
@@ -618,26 +643,25 @@ class SearchForm extends React.Component {
 
   // red api key is only for localhost. must change for builds
   // red Q6a4aY87oakQI2BA7YMUIwrqHux0j0BtEV6VAk2egIh5gbzooIdBEcLjoOBpLqsY
-  fetchZips = (centerZip, distance) => {
+  fetchZips = (centerZip, distance, history) => {
       this.setState({isFetching: true});
       fetch('https://www.zipcodeapi.com/rest/' +
         'js-PM7I8cxEjfxbX05xYqOa46UXb93zWmxX4amPH8agb5IDqnv3LhwcijDk5Tag3nnc/radius.json/' +
         centerZip + '/' + distance + '/mile?minimal')
       .then(response => response.json())
       .then(result => {
-        this.setState({zips: Object.values(result.zip_codes), isFetching: false});
+        this.setState({
+          zips: Object.values(result.zip_codes),
+          isFetching: false
+        }, () => (
+          this.updateURL(history)
+        ));
       })
       .catch(exception => {
         console.log(exception);
         this.setState({isFetching: false});
       });
     };
-
-  onKeyDownHandler = e => {
-    if (e.keyCode === 13) {
-      this.updateDistance();
-    }
-  };
 
   updateUrlFromTimeout(history) {
     if (this.state.updateUrlTimeout !== 0) {

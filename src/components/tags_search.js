@@ -178,34 +178,46 @@ class AddTags extends React.Component {
         this.state.thst.setState({
           yearSlider: [1800, 2090],
           yearBoxes: [1800, 2090]
-        });
+        }, () => (
+          this.state.thst.updateURL(this.props.history)
+        ));
       } else if (this.state.inputNum >= 1800 && this.state.inputNum <= 2090) {
         this.state.thst.setState({
           yearSlider: [this.state.inputNum, this.state.inputNum],
           yearBoxes: [this.state.inputNum, this.state.inputNum]
-        });
+        }, () => (
+          this.state.thst.updateURL(this.props.history)
+        ));
       }
     } else if (down && this.state.inputNum >= 100 && this.state.inputNum <= 99990) {
       this.state.thst.setState({
         downFinanceSlider: [this.state.inputNum],
-        downFinanceBox: [this.state.inputNum]
-      });
+        downFinanceBoxes: [this.state.inputNum]
+      }, () => (
+        this.state.thst.updateURL(this.props.history)
+      ));
     } else if (monthly && this.state.inputNum >= 100 && this.state.inputNum <= 99990) {
       this.state.thst.setState({
         monthlyFinanceSlider: [this.state.inputNum],
-        monthlyFinanceBox: [this.state.inputNum]
-      });
+        monthlyFinanceBoxes: [this.state.inputNum]
+      }, () => (
+        this.state.thst.updateURL(this.props.history)
+      ));
     } else if (miles && this.state.inputNum <= 200000) {
       this.state.thst.setState({
         mileageSlider: [0, this.state.inputNum],
         mileageBoxes: [0, this.state.inputNum]
-      });
+      }, () => (
+        this.state.thst.updateURL(this.props.history)
+      ));
     } else {
       if (this.state.inputNum <= 999990) {
         this.state.thst.setState({
           values: [100, this.state.inputNum],
           priceBoxes: [100, this.state.inputNum]
-        });
+        }, () => (
+          this.state.thst.updateURL(this.props.history)
+        ));
       }
     }
   }

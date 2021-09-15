@@ -18,7 +18,7 @@ class DropDown extends React.Component {
 
     if (this.props.isChanging) {
       //this.changeSelectedNum(this.props.startValue);
-      this.props.children[1].props.changeDis(this.props.startValue);
+      this.props.children[1].props.changeDis(this.props.startValue, this.props.his);
     }
   }
 
@@ -75,7 +75,7 @@ class DropDown extends React.Component {
             {this.props.children.map((child, index) =>
               <div
                   className={child.props.className}
-                  onClick={() => { this.changeSelectedNum(index); child.props.changeDis(index); }}>
+                  onClick={() => { this.changeSelectedNum(index); child.props.changeDis(index, this.props.his); }}>
                 {child.props.display}
               </div>
             )}

@@ -33,8 +33,9 @@ const Filters = (props) => {
               pattern='\d*'
               onKeyDown={th.onKeyDownHandler}
               value={th.state.zipCode}
-              onChange={th.handleInputChange} />
-            <DropDown btnText='Distance' isChanging={true} startValue={th.state.distance}>
+              onChange={(e) => th.handleInputChange(e, history)}
+              onKeyDown={th.enterPressed.bind(th, 'zipCode', 0, history)} />
+            <DropDown btnText='Distance' isChanging={true} startValue={th.state.distance} his={history}>
               <div className='placeholder' display='Distance'></div>
               <div display='25 Miles' changeDis={th.changeDistance}></div>
               <div display='50 Miles' changeDis={th.changeDistance}></div>
@@ -44,7 +45,7 @@ const Filters = (props) => {
               <div display='500 Miles' changeDis={th.changeDistance}></div>
               <div display='Unlimited' changeDis={th.changeDistance}></div>
             </DropDown>
-            <button onClick={th.updateDistance}>
+            <button onClick={(e) => th.updateDistance(history)}>
               <i className='fas fa-search'></i>
             </button>
           </div>
@@ -62,10 +63,10 @@ const Filters = (props) => {
                         type='number'
                         id='minPrice'
                         min='100'
-                        max={th.state.values[1]}
+                        max={th.state.priceSlider[1]}
                         value={th.state.priceBoxes[0]}
-                        onChange={th.onNumberChange.bind(th, 'priceBoxes', 'values', 0)}
-                        onKeyDown={th.enterPressed.bind(th, 'values', 0)} />
+                        onChange={th.onNumberChange.bind(th, 'priceBoxes', 'priceSlider', 0, history)}
+                        onKeyDown={th.enterPressed.bind(th, 'priceSlider', 0, history)} />
                     </span>
                     <p>-</p>
                     <span className='input-number'>$
@@ -73,11 +74,11 @@ const Filters = (props) => {
                         name='maxPrice'
                         type='number'
                         id='maxPrice'
-                        min={th.state.values[0]}
+                        min={th.state.priceSlider[0]}
                         max='999990'
                         value={th.state.priceBoxes[1]}
-                        onChange={th.onNumberChange.bind(th, 'priceBoxes', 'values', 1)}
-                        onKeyDown={th.enterPressed.bind(th, 'values', 1)} />
+                        onChange={th.onNumberChange.bind(th, 'priceBoxes', 'priceSlider', 1, history)}
+                        onKeyDown={th.enterPressed.bind(th, 'priceSlider', 1, history)} />
                     </span>
                   </div>
                   <div className='slider-container'>
@@ -85,13 +86,13 @@ const Filters = (props) => {
                       step={10}
                       min={100}
                       max={999990}
-                      values={th.state.values}
-                      onChange={(values) => th.setState({values: values, priceBoxes: values},
+                      values={th.state.priceSlider}
+                      onChange={(values) => th.setState({priceSlider: values, priceBoxes: values},
                         th.updateUrlFromTimeout(history))}
                       renderTrack={({props, children}) => (
                         <div {...props} style={{...props.style, background:
                           getTrackBackground({
-                            values: th.state.values,
+                            values: th.state.priceSlider,
                             colors: ['#133d7f', '#3a85ff', '#133d7f'],
                             min: 100,
                             max: 999990
@@ -109,17 +110,17 @@ const Filters = (props) => {
               <div label='Finance' className='tab finance-tab'>
                 <div className='slider-container'>
                   <div className='inputs'>
-                    <label htmlFor='downFinanceBox'>Cash Down</label>
+                    <label htmlFor='downFinanceBoxes'>Cash Down</label>
                     <span className='input-number'>$
                       <input
-                        name='downFinanceBox'
+                        name='downFinanceBoxes'
                         type='number'
                         id='price1'
                         min='100'
                         max='99990'
-                        value={th.state.downFinanceBox}
-                        onChange={th.onNumberChange.bind(th, 'downFinanceBox', 'downFinanceSlider', 0)}
-                        onKeyDown={th.enterPressed.bind(th, 'downFinanceSlider', 0)} />
+                        value={th.state.downFinanceBoxes}
+                        onChange={th.onNumberChange.bind(th, 'downFinanceBoxes', 'downFinanceSlider', 0, history)}
+                        onKeyDown={th.enterPressed.bind(th, 'downFinanceSlider', 0, history)} />
                     </span>
                   </div>
                   <div className='slider'>
@@ -128,7 +129,7 @@ const Filters = (props) => {
                       min={100}
                       max={99990}
                       values={th.state.downFinanceSlider}
-                      onChange={(values) => th.setState({downFinanceSlider: values, downFinanceBox: values},
+                      onChange={(values) => th.setState({downFinanceSlider: values, downFinanceBoxes: values},
                         th.updateUrlFromTimeout(history))}
                       renderTrack={({props, children}) => (
                         <div {...props} style={{...props.style, background:
@@ -149,19 +150,19 @@ const Filters = (props) => {
                 </div>
                 <div className='slider-container'>
                   <div className='inputs'>
-                    <label htmlFor='monthlyFinanceBox'>Monthly Payment</label>
+                    <label htmlFor='monthlyFinanceBoxes'>Monthly Payment</label>
                     <span className='input-number'>$
                       <input
-                        name='monthlyFinanceBox'
+                        name='monthlyFinanceBoxes'
                         type='number'
                         id='price2'
                         min='100'
                         max='99990'
-                        value={th.state.monthlyFinanceBox}
+                        value={th.state.monthlyFinanceBoxes}
                         onChange={
-                          th.onNumberChange.bind(th, 'monthlyFinanceBox', 'monthlyFinanceSlider', 0)
+                          th.onNumberChange.bind(th, 'monthlyFinanceBoxes', 'monthlyFinanceSlider', 0, history)
                         }
-                        onKeyDown={th.enterPressed.bind(th, 'monthlyFinanceSlider', 0)} />
+                        onKeyDown={th.enterPressed.bind(th, 'monthlyFinanceSlider', 0, history)} />
                     </span>
                   </div>
                   <div className='slider'>
@@ -171,7 +172,7 @@ const Filters = (props) => {
                       max={99990}
                       values={th.state.monthlyFinanceSlider}
                       onChange={
-                        (values) => th.setState({monthlyFinanceSlider: values, monthlyFinanceBox: values},
+                        (values) => th.setState({monthlyFinanceSlider: values, monthlyFinanceBoxes: values},
                           th.updateUrlFromTimeout(history))
                       }
                       renderTrack={({props, children}) => (
@@ -286,8 +287,8 @@ const Filters = (props) => {
                       min='1800'
                       max={th.state.yearSlider[1]}
                       value={th.state.yearBoxes[0]}
-                      onChange={th.onNumberChange.bind(th, 'yearBoxes', 'yearSlider', 0)}
-                      onKeyDown={th.enterPressed.bind(th, 'yearSlider', 0)} />
+                      onChange={th.onNumberChange.bind(th, 'yearBoxes', 'yearSlider', 0, history)}
+                      onKeyDown={th.enterPressed.bind(th, 'yearSlider', 0, history)} />
                   </span>
                   <p>-</p>
                   <span className='input-number'>$
@@ -298,8 +299,8 @@ const Filters = (props) => {
                       min={th.state.yearSlider[0]}
                       max='2090'
                       value={th.state.yearBoxes[1]}
-                      onChange={th.onNumberChange.bind(th, 'yearBoxes', 'yearSlider', 1)}
-                      onKeyDown={th.enterPressed.bind(th, 'yearSlider', 1)} />
+                      onChange={th.onNumberChange.bind(th, 'yearBoxes', 'yearSlider', 1, history)}
+                      onKeyDown={th.enterPressed.bind(th, 'yearSlider', 1, history)} />
                   </span>
                 </div>
                 <div className='slider-container'>
@@ -338,8 +339,8 @@ const Filters = (props) => {
                       min='0'
                       max={th.state.mileageSlider[1]}
                       value={th.state.mileageBoxes[0]}
-                      onChange={th.onNumberChange.bind(th, 'mileageBoxes', 'mileageSlider', 0)}
-                      onKeyDown={th.enterPressed.bind(th, 'mileageSlider', 0)} />
+                      onChange={th.onNumberChange.bind(th, 'mileageBoxes', 'mileageSlider', 0, history)}
+                      onKeyDown={th.enterPressed.bind(th, 'mileageSlider', 0, history)} />
                   </span>
                   <p>-</p>
                   <span className='input-number'>$
@@ -350,8 +351,8 @@ const Filters = (props) => {
                       min={th.state.mileageSlider[0]}
                       max='200000'
                       value={th.state.mileageBoxes[1]}
-                      onChange={th.onNumberChange.bind(th, 'mileageBoxes', 'mileageSlider', 1)}
-                      onKeyDown={th.enterPressed.bind(th, 'mileageSlider', 1)} />
+                      onChange={th.onNumberChange.bind(th, 'mileageBoxes', 'mileageSlider', 1, history)}
+                      onKeyDown={th.enterPressed.bind(th, 'mileageSlider', 1, history)} />
                   </span>
                 </div>
                 <div className='slider-container'>
@@ -444,17 +445,17 @@ const Filters = (props) => {
               <div className='block1'>
                 <div className='slider-content'>
                   <div className='inputs'>
-                    <label htmlFor='mpgBox'>MPG</label>
+                    <label htmlFor='mpgBoxes'>MPG</label>
                     <span className='input-number'>$
                       <input
-                        name='mpgBox'
+                        name='mpgBoxes'
                         type='number'
                         id='mpg'
                         min='0'
                         max='100'
-                        value={th.state.mpgBox}
-                        onChange={th.onNumberChange.bind(th, 'mpgBox', 'mpgSlider', 0)}
-                        onKeyDown={th.enterPressed.bind(th, 'mpgSlider', 0)} />
+                        value={th.state.mpgBoxes}
+                        onChange={th.onNumberChange.bind(th, 'mpgBoxes', 'mpgSlider', 0, history)}
+                        onKeyDown={th.enterPressed.bind(th, 'mpgSlider', 0, history)} />
                       </span>
                   </div>
                   <div className='slider-container'>
@@ -463,7 +464,7 @@ const Filters = (props) => {
                       min={0}
                       max={100}
                       values={th.state.mpgSlider}
-                      onChange={(values) => th.setState({mpgSlider: values, mpgBox: values},
+                      onChange={(values) => th.setState({mpgSlider: values, mpgBoxes: values},
                         th.updateUrlFromTimeout(history))}
                       renderTrack={({props, children}) => (
                         <div {...props} style={{...props.style, background:
