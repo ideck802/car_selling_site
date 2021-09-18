@@ -7,6 +7,8 @@ class DropDown extends React.Component {
 
     this.state = {
       open: false,
+      aniClose: false,
+      aniOpen: false,
       selectedNum: this.props.startValue
     };
     this.changeVisible = this.changeVisible.bind(this);
@@ -37,21 +39,49 @@ class DropDown extends React.Component {
   }
 
   changeVisible() {
+    if (this.state.aniOpen) {
+      this.setState({
+        open: false,
+        aniOpen: false,
+        aniClose: true
+      });
+    }
     if (this.state.open === false) {
       this.setState({
-        open: true
+        open: true,
+        aniClose: false,
+        aniOpen: true
       });
     } else {
       this.setState({
-        open: false
+        aniClose: true,
+        aniOpen: false
       });
+      setTimeout(() => {
+        this.setState({
+          open: false
+        });
+      }, 500);
     }
   }
 
   closeDropDown() {
+    if (this.state.aniOpen) {
+      this.setState({
+        open: false,
+        aniOpen: false,
+        aniClose: true
+      });
+    }
     this.setState({
-      open: false
+      aniClose: true,
+      aniOpen: false
     });
+    setTimeout(() => {
+      this.setState({
+        open: false
+      });
+    }, 500);
   }
 
   changeSelectedNum(index) {
@@ -71,11 +101,19 @@ class DropDown extends React.Component {
             {this.props.children[this.state.selectedNum].props.display}
             <i className='fas fa-caret-down'></i>
           </button>
-          {(this.state.open === true ? (<div className='dd-content' onClick={this.closeDropDown}>
+          {(this.state.open === true ? (<div className={this.state.aniOpen ? 'dd-content opening' :
+            this.state.aniClose ? 'dd-content closing' : 'dd-content'}
+          onAnimationEnd={() => {
+              if (this.state.aniOpen) {this.setState({aniOpen: false});}
+            }}>
             {this.props.children.map((child, index) =>
               <div
                   className={child.props.className}
-                  onClick={() => { this.changeSelectedNum(index); child.props.changeDis(index, this.props.his); }}>
+                  onClick={() => {
+                    this.changeSelectedNum(index);
+                    this.changeVisible();
+                    child.props.changeDis(index, this.props.his);
+                  }}>
                 {child.props.display}
               </div>
             )}
@@ -89,7 +127,11 @@ class DropDown extends React.Component {
             (this.state.open === true ? ('drop-down dd-open ' + this.props.className) :
               ('drop-down ' + this.props.className))} ref={this.wrapperRef}>
           <button onClick={this.changeVisible}>{this.props.btnText}<i className='fas fa-caret-down'></i></button>
-          {(this.state.open === true ? (<div className='dd-content'>
+          {(this.state.open === true ? (<div className={this.state.aniOpen ? 'dd-content opening' :
+            this.state.aniClose ? 'dd-content closing' : 'dd-content'}
+          onAnimationEnd={() => {
+              if (this.state.aniOpen) {this.setState({aniOpen: false});}
+            }}>
             {Array.from(Array(this.props.extraModalBtns), (e, i) => {
               return <div className={'extra-modal-bar' + (i + 1)}>
                 <button onClick={this.changeVisible}></button>
