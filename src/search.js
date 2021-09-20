@@ -548,9 +548,17 @@ class SearchForm extends React.Component {
           vehicle.monthPay <= this.state.monthlyFinanceSlider)
         ) {
           return <div className='card'>
-            <img src={'./images/vehicles/cards/000001/001.jpg'} draggable='false' alt='akt'/>
-            <p>{vehicle.make}</p>
-            <p>{vehicle.model}</p>
+            <div className='image'>
+              <img src={'./images/vehicles/cards/' + vehicle.idNum + '/001.jpg'} draggable='false' alt='akt'/>
+            </div>
+            <div className='name-stuff'>
+              <p>{vehicle.year} {vehicle.make} {vehicle.model}</p>
+              <div className='prices'>
+                ${vehicle.price}
+                <span><hr/>or<hr/></span>
+                ${vehicle.monthPay}/mo
+              </div>
+            </div>
           </div>;
         }
       }

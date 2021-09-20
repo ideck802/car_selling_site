@@ -807,6 +807,10 @@ input[type='number']::-webkit-outer-spin-button {
   border-radius: 5px;
 }
 
+#search_form .filters .drop-downs .drop-down:hover {
+  border: 1px solid $blue;
+}
+
 @media (min-width: 601px) {
   #search_form .filters .drop-downs .drop-down {
     position: relative;
@@ -3706,15 +3710,84 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 #search_form .vehicle-cards .card {
-  width: calc(33.33% - 40px);
+  display: flex;
+
+  flex-direction: column;
+
+  width: calc(33.3% - 20px);
 
   margin: 10px;
-
-  padding: 10px;
 
   border-radius: 5px;
 
   background: $gray;
+}
+
+#search_form .vehicle-cards .card .image {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: calc(100% - 2px);
+  height: 160px;
+
+  border: 1px solid $dark-blue;
+  border-radius: 5px;
+
+  overflow: hidden;
+}
+
+#search_form .vehicle-cards .card .image img {
+  width: 100%;
+}
+
+#search_form .vehicle-cards .card .name-stuff {
+  display: flex;
+
+  flex-direction: row;
+
+  padding: 10px;
+}
+
+#search_form .vehicle-cards .card .name-stuff p {
+  width: 60%;
+
+  font-size: 1.1em;
+}
+
+#search_form .vehicle-cards .card .name-stuff .prices {
+  display: flex;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 40%;
+
+  border: 1px solid $dark-blue;
+  border-radius: 5px;
+
+  background: $white;
+}
+
+#search_form .vehicle-cards .card .name-stuff .prices span {
+  display: flex;
+
+  flex-direction: row;
+
+  width: 100%;
+}
+
+#search_form .vehicle-cards .card .name-stuff .prices span hr {
+  width: 100%;
+  height: 0;
+
+  margin-right: 5px;
+  margin-left: 5px;
+
+  border: 1px solid $blue;
 }
 
 
