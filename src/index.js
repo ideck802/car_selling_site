@@ -231,7 +231,7 @@ class HomeForm extends React.Component {
             </div>
           </Carousel>
         </div>
-        <Tabs changeTabValue={this.changeTabValue}>
+        <Tabs changeTabValue={this.changeTabValue} startTab={0}>
           <div label='PRICE' className='tab'>
             <div className='slider-content'>
               <label>Price Range</label>

@@ -4,20 +4,37 @@ class Accordion extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false
+      open: false,
+      aniClose: false,
+      aniOpen: false
     };
     this.changeVisible = this.changeVisible.bind(this);
   }
 
   changeVisible() {
+    if (this.state.aniOpen) {
+      this.setState({
+        open: false,
+        aniOpen: false,
+        aniClose: true
+      });
+    }
     if (this.state.open === false) {
       this.setState({
-        open: true
+        open: true,
+        aniClose: false,
+        aniOpen: true
       });
     } else {
       this.setState({
-        open: false
+        aniClose: true,
+        aniOpen: false
       });
+      setTimeout(() => {
+        this.setState({
+          open: false
+        });
+      }, 500);
     }
   }
 
@@ -31,7 +48,11 @@ class Accordion extends React.Component {
           {this.props.btnText}
           {(this.state.open === true ? <i className='fas fa-caret-up'></i> : <i className='fas fa-caret-down'></i>)}
         </button>
-        {(this.state.open === true ? (<div className='accordion-content'>
+        {(this.state.open === true ? (<div className={this.state.aniOpen ? 'accordion-content opening' :
+          this.state.aniClose ? 'accordion-content closing' : 'accordion-content'}
+        onAnimationEnd={() => {
+            if (this.state.aniOpen) {this.setState({aniOpen: false});}
+          }}>
           {this.props.children}
         </div>) : (''))}
       </div>

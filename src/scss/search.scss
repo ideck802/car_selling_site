@@ -851,7 +851,7 @@ input[type='number']::-webkit-outer-spin-button {
 #search_form .dd-content {
   max-height: 700px;
 
-  transition: max-height .4s ease-in-out;
+  transition: max-height .4s linear;
 }
 
 #search_form .dd-content.opening {
@@ -874,7 +874,7 @@ input[type='number']::-webkit-outer-spin-button {
   }
 
   to {
-    max-height: calc(auto);
+    max-height: 580px;
 
     overflow: visible;
   }
@@ -2802,6 +2802,21 @@ input[type='number']::-webkit-outer-spin-button {
 
     flex-direction: row;
     flex-wrap: wrap;
+
+    max-height: 280px;
+
+    transition: max-height .4s linear;
+  }
+
+  #search_form .features .dd-content .accordion-content.opening {
+    animation-name: slide-dd;
+    animation-duration: .45s;
+  }
+
+  #search_form .features .dd-content .accordion-content.closing {
+    max-height: 0;
+
+    overflow: hidden;
   }
 
   #search_form .features .dd-content .accordion-content label {
@@ -2907,6 +2922,21 @@ input[type='number']::-webkit-outer-spin-button {
 
     flex-direction: row;
     flex-wrap: wrap;
+
+    max-height: 260px;
+
+    transition: max-height .4s linear;
+  }
+
+  #search_form .features .dd-content .accordion-content.opening {
+    animation-name: slide-dd;
+    animation-duration: .45s;
+  }
+
+  #search_form .features .dd-content .accordion-content.closing {
+    max-height: 0;
+
+    overflow: hidden;
   }
 
   #search_form .features .dd-content .accordion-content label {

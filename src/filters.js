@@ -531,7 +531,7 @@ const Filters = (props) => {
                   {th.colorCreator('Gold', '#c29050', 'exterior_gold', history)}
                   {th.colorCreator('Orange', '#da7938', 'exterior_orange', history)}
                   {th.colorCreator('Green', '#748959', 'exterior_green', history)}
-                  {th.colorCreator('Brown', '#76523c', 'exterior_brown', history)}
+                  {th.colorCreator('Tan', '#f5deb3', 'exterior_tan', history)}
                   {th.colorCreator('Other', `linear-gradient(
                     90deg,
                     rgba(255, 0, 0, 1) 0%,
@@ -559,7 +559,7 @@ const Filters = (props) => {
                   {th.colorCreator('Gold', '#c29050', 'interior_gold', history)}
                   {th.colorCreator('Orange', '#da7938', 'interior_orange', history)}
                   {th.colorCreator('Green', '#748959', 'interior_green', history)}
-                  {th.colorCreator('Brown', '#76523c', 'interior_brown', history)}
+                  {th.colorCreator('Tan', '#f5deb3', 'interior_tan', history)}
                   {th.colorCreator('Other', `linear-gradient(
                     90deg,
                     rgba(255, 0, 0, 1) 0%,

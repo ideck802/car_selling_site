@@ -88,14 +88,14 @@ class SearchForm extends React.Component {
       exterior_white: extor.includes('white'), exterior_gray: extor.includes('gray'),
       exterior_red: extor.includes('red'), exterior_blue: extor.includes('blue'), exterior_gold: extor.includes('gold'),
       exterior_orange: extor.includes('orange'), exterior_green: extor.includes('green'),
-      exterior_brown: extor.includes('brown'), exterior_other: extor.includes('other'),
+      exterior_tan: extor.includes('tan'), exterior_other: extor.includes('other'),
 
       interior: intor,
       interior_black: intor.includes('black'), interior_silver: intor.includes('silver'),
       interior_white: intor.includes('white'), interior_gray: intor.includes('gray'),
       interior_red: intor.includes('red'), interior_blue: intor.includes('blue'), interior_gold: intor.includes('gold'),
       interior_orange: intor.includes('orange'), interior_green: intor.includes('green'),
-      interior_brown: intor.includes('brown'), interior_other: intor.includes('other'),
+      interior_tan: intor.includes('tan'), interior_other: intor.includes('other'),
 
       mpgSlider: searchParam.getAll('mpg'),
       mpgBoxes: searchParam.getAll('mpg'),
@@ -541,25 +541,16 @@ class SearchForm extends React.Component {
         (this.state.zips.includes(vehicle.location) || this.state.zips === 'all')
       ) {
         if (
-          this.state.financeOrPrice &&
-          (vehicle.price >= this.state.priceSlider[0]) && (vehicle.price <= this.state.priceSlider[1])
-        ) {
-          return <div className='card'>
-            <i className='checkmark fas fa-check'></i>
-            <p>{vehicle.make}</p>
-            <p>{vehicle.model}</p>
-            <img src='alt' draggable='false' alt='akt'/>
-          </div>;
-        } else if (
-          !this.state.financeOrPrice &&
+          (this.state.financeOrPrice &&
+          (vehicle.price >= this.state.priceSlider[0]) && (vehicle.price <= this.state.priceSlider[1])) ||
+          (!this.state.financeOrPrice &&
           vehicle.cashDown <= this.state.downFinanceSlider &&
-          vehicle.monthPay <= this.state.monthlyFinanceSlider
+          vehicle.monthPay <= this.state.monthlyFinanceSlider)
         ) {
           return <div className='card'>
-            <i className='checkmark fas fa-check'></i>
+            <img src={'./images/vehicles/cards/000001/001.jpg'} draggable='false' alt='akt'/>
             <p>{vehicle.make}</p>
             <p>{vehicle.model}</p>
-            <img src='alt' draggable='false' alt='akt'/>
           </div>;
         }
       }
