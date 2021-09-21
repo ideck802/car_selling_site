@@ -554,10 +554,22 @@ class SearchForm extends React.Component {
             <div className='name-stuff'>
               <p>{vehicle.year} {vehicle.make} {vehicle.model}</p>
               <div className='prices'>
-                ${vehicle.price}
+                ${vehicle.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                 <span><hr/>or<hr/></span>
-                ${vehicle.monthPay}/mo
+                ${vehicle.monthPay.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}/mo
               </div>
+            </div>
+            <div className='more-info'>
+              <span>
+                <p>{vehicle.miles.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} miles</p>
+                <p>{vehicle.mpg} mpg combined</p>
+              </span>
+              <span>
+                <p>{vehicle.intColor.charAt(0).toUpperCase() + vehicle.intColor.slice(1)} interior</p>
+                <p>{vehicle.owners >= 2 ?
+                    vehicle.owners + ' owners' : vehicle.owners === 1 ?
+                    vehicle.owners + ' owner' : ' New'}</p>
+              </span>
             </div>
           </div>;
         }

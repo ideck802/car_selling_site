@@ -3709,18 +3709,44 @@ input[type='number']::-webkit-outer-spin-button {
   margin-top: 10px;
 }
 
+@media (max-width: 600px) {
+  #search_form .vehicle-cards .card {
+    width: calc(100% - 24px);
+  }
+}
+@media (max-width: 780px) and (min-width: 601px) {
+  #search_form .vehicle-cards .card {
+    width: calc(50% - 24px);
+  }
+}
+@media (max-width: 1080px) and (min-width: 781px) {
+  #search_form .vehicle-cards .card {
+    width: calc(33.3% - 24px);
+  }
+}
+@media (min-width: 1081px) {
+  #search_form .vehicle-cards .card {
+    width: calc(25% - 24px);
+  }
+}
+
 #search_form .vehicle-cards .card {
   display: flex;
 
   flex-direction: column;
 
-  width: calc(33.3% - 20px);
-
   margin: 10px;
 
+  border: 2px solid $white;
   border-radius: 5px;
 
   background: $gray;
+
+  cursor: pointer;
+}
+
+#search_form .vehicle-cards .card:hover {
+  border: 2px solid $blue;
 }
 
 #search_form .vehicle-cards .card .image {
@@ -3731,12 +3757,20 @@ input[type='number']::-webkit-outer-spin-button {
   justify-content: center;
 
   width: calc(100% - 2px);
-  height: 160px;
+  height: 60%;
 
   border: 1px solid $dark-blue;
   border-radius: 5px;
 
   overflow: hidden;
+}
+
+#search_form .vehicle-cards .card:hover .image {
+  width: 100%;
+  height: calc(60% + 1px);
+
+  border: 0;
+  border-bottom: 1px solid $dark-blue;
 }
 
 #search_form .vehicle-cards .card .image img {
@@ -3748,10 +3782,17 @@ input[type='number']::-webkit-outer-spin-button {
 
   flex-direction: row;
 
+  height: 25%;
+
   padding: 10px;
 }
 
 #search_form .vehicle-cards .card .name-stuff p {
+  display: flex;
+
+  flex-direction: row;
+  align-items: center;
+
   width: 60%;
 
   font-size: 1.1em;
@@ -3788,6 +3829,39 @@ input[type='number']::-webkit-outer-spin-button {
   margin-left: 5px;
 
   border: 1px solid $blue;
+}
+
+#search_form .vehicle-cards .card .more-info {
+  display: flex;
+
+  flex-direction: column;
+
+  height: 25%;
+
+  margin-right: 10px;
+  margin-left: 10px;
+
+  padding-top: 15px;
+
+  border-top: 2px solid $blue;
+}
+
+#search_form .vehicle-cards .card .more-info span {
+  display: flex;
+
+  flex-direction: row;
+
+  height: 50%;
+}
+
+#search_form .vehicle-cards .card .more-info span p {
+  width: 100%;
+
+  margin-top: 0;
+  margin-bottom: 15px;
+
+  padding-right: 5px;
+  padding-left: 5px;
 }
 
 
