@@ -3,6 +3,7 @@ const vehicles = [
     {
       idNum: '000001',
       owners: 1,
+      picsNum: 12,
 
       make: 'Acura',
       model: 'ILX',

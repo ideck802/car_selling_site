@@ -33,6 +33,7 @@ class SearchForm extends React.Component {
       zipCode: searchParam.getAll('zip')[0],
       distance: distancesArray.indexOf(searchParam.getAll('distance').toString() || '0'),
       distances: distancesArray,
+      owners: searchParam.getAll('own'),
       financeOrPrice: searchParam.getAll('price'),
       priceBoxes: searchParam.getAll('pr'),
       priceSlider: searchParam.getAll('pr'),
@@ -538,7 +539,8 @@ class SearchForm extends React.Component {
         (this.state.cylCount.toLowerCase().includes(vehicle.cylinders.toLowerCase()) || this.state.cylCount === '') &&
         (this.state.exterior.toLowerCase().includes(vehicle.extColor.toLowerCase()) || this.state.exterior === '') &&
         (this.state.interior.toLowerCase().includes(vehicle.intColor.toLowerCase()) || this.state.interior === '') &&
-        (this.state.zips.includes(vehicle.location) || this.state.zips === 'all')
+        (this.state.zips.includes(vehicle.location) || this.state.zips === 'all') &&
+        ((this.state.owners > 0 && vehicle.owners > 0) || (this.state.owners === 0 && vehicle.owners === 0))
       ) {
         if (
           (this.state.financeOrPrice &&
@@ -547,7 +549,7 @@ class SearchForm extends React.Component {
           vehicle.cashDown <= this.state.downFinanceSlider &&
           vehicle.monthPay <= this.state.monthlyFinanceSlider)
         ) {
-          return <div className='card'>
+          return <a href={'car_page.html?id=' + vehicle.idNum} className='card'>
             <div className='image'>
               <img src={'./images/vehicles/cards/' + vehicle.idNum + '/001.jpg'} draggable='false' alt='akt'/>
             </div>
@@ -571,7 +573,7 @@ class SearchForm extends React.Component {
                     vehicle.owners + ' owner' : ' New'}</p>
               </span>
             </div>
-          </div>;
+          </a>;
         }
       }
     });
@@ -586,10 +588,11 @@ class SearchForm extends React.Component {
   }
 
   setParams({
-    price='', pr=['', ''], down='', pay='', make='', model='', btype='', year=['', ''], miles=['', ''], ftr='', mpg='',
-    fuel='', drive='', trans='', cyl='', extor='', intor='', zip='', distance='',
+    owners='', price='', pr=['', ''], down='', pay='', make='', model='', btype='', year=['', ''], miles=['', ''],
+    ftr='', mpg='', fuel='', drive='', trans='', cyl='', extor='', intor='', zip='', distance='',
   }) {
     const searchParams = new URLSearchParams();
+    searchParams.set('own', owners);
     searchParams.set('price', price);
     searchParams.set('pr', pr[0]);
     searchParams.append('pr', pr[1]);
@@ -628,6 +631,7 @@ class SearchForm extends React.Component {
     //}
 
     const url = this.setParams({
+      owners: this.state.owners,
       price: this.state.financeOrPrice,
       pr: this.state.priceSlider,
       down: this.state.downFinanceSlider,
