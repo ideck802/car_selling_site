@@ -9,14 +9,14 @@ import van from './images/vehicles/bodies/van.svg';
 import wagon from './images/vehicles/bodies/wagon.svg';
 
 const images = {
-    suv,
-    pickup,
-    sedan,
-    crossover,
-    coupe,
-    convertible,
-    sports,
-    van,
-    wagon
-  };
+  suv,
+  pickup,
+  sedan,
+  crossover,
+  coupe,
+  convertible,
+  sports,
+  van,
+  wagon
+};
 export default images;

@@ -1,11 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/car_page.css';
-import images from './images';
-import DropDown from './components/drop_down';
-import Tabs from './components/tabs';
-import Accordion from './components/accordion';
-import { makesList } from './components/makes_models';
 import vehicles from './vehicleCardList';
 import reportWebVitals from './reportWebVitals';
 
@@ -63,7 +58,7 @@ class SearchForm extends React.Component {
                     src={
                       './images/vehicles/cards/' + vehicle.idNum + '/' + (i + 1).toString().padStart(3, '0') + '.jpg'
                     }
-                    />
+                  />
                 );
               })}
             </div>

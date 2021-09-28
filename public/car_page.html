@@ -1,106 +1,120 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Beep!</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+  <title>Beep!</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 </head>
+
 <body>
 
-<!-- Sidebar on small screens when clicking the menu icon -->
-<nav class="mobile-menu" id="mySidebar">
-  <a class="mobile-menu-close" onclick="mobileClose()">X</a>
-  <div class="mobile-menu_container">
-    <a href="search.html" class="mobile-menu-link"><p class="">New</p></a>
-    <a href="#" class="mobile-menu-link"><p class="">Used</p></a>
-    <a href="#" class="mobile-menu-link"><p class="">Sell</p></a>
-    <a href="#" class="mobile-menu-link"><p class="">About</p></a>
-  </div>
-</nav>
-
-<!-- TOP MENU BAR -->
-<div class="top-bar">
-  <div class="logo">
-    <a href="#" class="menu-link">Beep!</a>
-  </div>
-  <!-- right-sided menu links -->
-  <div class="hide-small">
-    <a href="#" class="menu-link">New</a>
-    <a href="#" class="menu-link">Used</a>
-    <a href="#" class="menu-link">Sell</a>
-    <a href="#" class="menu-link">About</a>
-  </div>
-
-  <div class="hide-small">
-    <a href="#" class="menu-link">Sign up</a>
-    <a href="#" class="menu-link">Log in</a>
-  </div>
-
-  <!-- menu button that shows on small screens -->
-  <a href="javascript:void(0)" class="menu-open hide-medium hide-large" onclick="mobileOpen()">
-    <i class="fa fa-bars"></i>
-  </a>
-</div>
-
-
-<div id="vehicle_display"></div>
-
-<footer>
-  <div class="social hide-small">
-    <div class="number"><i class="fas fa-phone-alt"></i> (123) 555-1234</div>
-    <div></div>
-    <div>
-      <a href="https://www.facebook.com/"><i class="fab fa-facebook-square"></i></a>
-      <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-      <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.linkedin.com/"><i class="fab fa-linkedin"></i></a>
-      <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
-      <a href="https://www.pinterest.com/"><i class="fab fa-pinterest"></i></a>
+  <!-- Sidebar on small screens when clicking the menu icon -->
+  <nav class="mobile-menu" id="mySidebar">
+    <a class="mobile-menu-close" onclick="mobileClose()">X</a>
+    <div class="mobile-menu_container">
+      <a href="search.html" class="mobile-menu-link">
+        <p class="">New</p>
+      </a>
+      <a href="#" class="mobile-menu-link">
+        <p class="">Used</p>
+      </a>
+      <a href="#" class="mobile-menu-link">
+        <p class="">Sell</p>
+      </a>
+      <a href="#" class="mobile-menu-link">
+        <p class="">About</p>
+      </a>
     </div>
-  </div>
-  <div class="social-small hide-medium hide-large">
-    <div class="number"><i class="fas fa-phone-alt"></i> (123) 555-1234</div>
-    <div>
-      <a href="https://www.facebook.com/"><i class="fab fa-facebook-square"></i></a>
-      <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-      <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.linkedin.com/"><i class="fab fa-linkedin"></i></a>
-      <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
-      <a href="https://www.pinterest.com/"><i class="fab fa-pinterest"></i></a>
+  </nav>
+
+  <!-- TOP MENU BAR -->
+  <div class="top-bar">
+    <div class="logo">
+      <a href="#" class="menu-link">Beep!</a>
     </div>
+    <!-- right-sided menu links -->
+    <div class="hide-small">
+      <a href="#" class="menu-link">New</a>
+      <a href="#" class="menu-link">Used</a>
+      <a href="#" class="menu-link">Sell</a>
+      <a href="#" class="menu-link">About</a>
+    </div>
+
+    <div class="hide-small">
+      <a href="#" class="menu-link">Sign up</a>
+      <a href="#" class="menu-link">Log in</a>
+    </div>
+
+    <!-- menu button that shows on small screens -->
+    <a href="javascript:void(0)" class="menu-open hide-medium hide-large" onclick="mobileOpen()">
+      <i class="fa fa-bars"></i>
+    </a>
   </div>
-  <p>
-    <a href="#">Shop</a>|<a href="#">Sell</a>|<a href="#">About</a>
-  </p>
-  <div class="my-plug">
-    <a href="https://ideck802.github.io/my_site/" class="hide-small"><i class="fas fa-less-than"></i>Go back to my portfolio</a>
-    <p>This site was made by <a href="https://ideck802.github.io/my_site/">Isaac</a></p>
-    <a href="https://ideck802.github.io/construction-site/" class="hide-small">More of my work<i class="fas fa-greater-than"></i></a>
-  </div>
-</footer>
 
-<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script>
-<!-- <script type="module" src="../src/index.js"></script> -->
-<script>
-// Toggle between showing and hiding the sidebar when clicking the menu icon
-var mySidebar = document.getElementById('mySidebar');
 
-function mobileOpen() {
-  if (mySidebar.style.display === 'flex') {
-    mySidebar.style.display = 'none';
-  } else {
-    mySidebar.style.display = 'flex';
-  }
-}
+  <div id="vehicle_display"></div>
 
-// Close the sidebar with the close button
-function mobileClose() {
-  mySidebar.style.display = 'none';
-}
-</script>
+  <footer>
+    <div class="social hide-small">
+      <div class="number"><i class="fas fa-phone-alt"></i> (123) 555-1234</div>
+      <div></div>
+      <div>
+        <a href="https://www.facebook.com/"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.pinterest.com/"><i class="fab fa-pinterest"></i></a>
+      </div>
+    </div>
+    <div class="social-small hide-medium hide-large">
+      <div class="number"><i class="fas fa-phone-alt"></i> (123) 555-1234</div>
+      <div>
+        <a href="https://www.facebook.com/"><i class="fab fa-facebook-square"></i></a>
+        <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.linkedin.com/"><i class="fab fa-linkedin"></i></a>
+        <a href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.pinterest.com/"><i class="fab fa-pinterest"></i></a>
+      </div>
+    </div>
+    <p>
+      <a href="#">Shop</a>|<a href="#">Sell</a>|<a href="#">About</a>
+    </p>
+    <div class="my-plug">
+      <a href="https://ideck802.github.io/my_site/" class="hide-small"><i class="fas fa-less-than"></i>Go back to my
+        portfolio</a>
+      <p>This site was made by <a href="https://ideck802.github.io/my_site/">Isaac</a></p>
+      <a href="https://ideck802.github.io/construction-site/" class="hide-small">More of my work<i
+          class="fas fa-greater-than"></i></a>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/ScrollTrigger.min.js"></script>
+  <!-- <script type="module" src="../src/index.js"></script> -->
+  <script>
+    // Toggle between showing and hiding the sidebar when clicking the menu icon
+    var mySidebar = document.getElementById('mySidebar');
+
+    function mobileOpen() {
+      if (mySidebar.style.display === 'flex') {
+        mySidebar.style.display = 'none';
+      } else {
+        mySidebar.style.display = 'flex';
+      }
+    }
+
+    // Close the sidebar with the close button
+    function mobileClose() {
+      mySidebar.style.display = 'none';
+    }
+  </script>
 </body>
+
 </html>

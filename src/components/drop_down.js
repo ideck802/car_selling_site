@@ -104,16 +104,17 @@ class DropDown extends React.Component {
           {(this.state.open === true ? (<div className={this.state.aniOpen ? 'dd-content opening' :
             this.state.aniClose ? 'dd-content closing' : 'dd-content'}
           onAnimationEnd={() => {
-              if (this.state.aniOpen) {this.setState({aniOpen: false});}
-            }}>
+            if (this.state.aniOpen) {this.setState({aniOpen: false});}
+          }}>
             {this.props.children.map((child, index) =>
               <div
-                  className={child.props.className}
-                  onClick={() => {
-                    this.changeSelectedNum(index);
-                    this.changeVisible();
-                    child.props.changeDis(index, this.props.his);
-                  }}>
+                key={child.props.className + index}
+                className={child.props.className}
+                onClick={() => {
+                  this.changeSelectedNum(index);
+                  this.changeVisible();
+                  child.props.changeDis(index, this.props.his);
+                }}>
                 {child.props.display}
               </div>
             )}
@@ -130,8 +131,8 @@ class DropDown extends React.Component {
           {(this.state.open === true ? (<div className={this.state.aniOpen ? 'dd-content opening' :
             this.state.aniClose ? 'dd-content closing' : 'dd-content'}
           onAnimationEnd={() => {
-              if (this.state.aniOpen) {this.setState({aniOpen: false});}
-            }}>
+            if (this.state.aniOpen) {this.setState({aniOpen: false});}
+          }}>
             {Array.from(Array(this.props.extraModalBtns), (e, i) => {
               return <div className={'extra-modal-bar' + (i + 1)}>
                 <button onClick={this.changeVisible}></button>
@@ -146,6 +147,13 @@ class DropDown extends React.Component {
 }
 
 DropDown.propTypes = {
-    children: PropTypes.element.isRequired,
-  };
+  children: PropTypes.element.isRequired,
+  startValue: PropTypes.any,
+  isChanging: PropTypes.any,
+  his: PropTypes.any,
+  className: PropTypes.string,
+  btnText: PropTypes.string,
+  extraModalBtns: PropTypes.any
+};
+
 export default DropDown;

@@ -16,8 +16,8 @@ class HomeForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      check_suv: false, check_truck: false, check_sedan: false, check_crossover: false,
-      check_coupe: false, check_convertible: false, check_sport: false, check_van: false, check_wagon: false,
+      checkSuv: false, checkTruck: false, checkSedan: false, checkCrossover: false,
+      checkCoupe: false, checkConvertible: false, checkSport: false, checkVan: false, checkWagon: false,
       priceBoxes: [0, 100],
       values: [0, 100],
       downFinanceSlider: [5],
@@ -158,75 +158,75 @@ class HomeForm extends React.Component {
             pagination={false}
             className='checkboxes'>
             <div className='slide'>
-              {this.labelCreator('check_suv', images.suv, 'SUVs')}
+              {this.labelCreator('checkSuv', images.suv, 'SUVs')}
               <input
-                name='check_suv'
+                name='checkSuv'
                 type='checkbox'
-                id='check_suv'
-                checked={this.state.check_suv}
+                id='checkSuv'
+                checked={this.state.checkSuv}
                 onChange={this.handleInputChange} />
             </div>
             <div className='slide'>
-              {this.labelCreator('check_truck', images.pickup, 'Trucks')}
+              {this.labelCreator('checkTruck', images.pickup, 'Trucks')}
               <input
-                name='check_truck'
+                name='checkTruck'
                 type='checkbox'
-                id='check_truck'
-                checked={this.state.check_truck}
+                id='checkTruck'
+                checked={this.state.checkTruck}
                 onChange={this.handleInputChange} />
             </div>
             <div className='slide'>
-              {this.labelCreator('check_sedan', images.sedan, 'Sedans')}
+              {this.labelCreator('checkSedan', images.sedan, 'Sedans')}
               <input
-                name='check_sedan'
+                name='checkSedan'
                 type='checkbox'
-                id='check_sedan'
-                checked={this.state.check_sedan}
+                id='checkSedan'
+                checked={this.state.checkSedan}
                 onChange={this.handleInputChange} />
             </div>
             <div className='slide'>
-              {this.labelCreator('check_crossover', images.crossover, 'Crossovers')}
+              {this.labelCreator('checkCrossover', images.crossover, 'Crossovers')}
               <input
-                name='check_crossover'
+                name='checkCrossover'
                 type='checkbox'
-                id='check_crossover'
-                checked={this.state.check_crossover}
+                id='checkCrossover'
+                checked={this.state.checkCrossover}
                 onChange={this.handleInputChange} />
             </div>
             <div className='slide'>
-              {this.labelCreator('check_coupe', images.coupe, 'Coupes')}
+              {this.labelCreator('checkCoupe', images.coupe, 'Coupes')}
               <input
-                name='check_coupe'
+                name='checkCoupe'
                 type='checkbox'
-                id='check_coupe'
-                checked={this.state.check_coupe}
+                id='checkCoupe'
+                checked={this.state.checkCoupe}
                 onChange={this.handleInputChange} />
             </div>
             <div className='slide'>
-              {this.labelCreator('check_convertible', images.convertible, 'Convertibles')}
+              {this.labelCreator('checkConvertible', images.convertible, 'Convertibles')}
               <input
-                name='check_convertible'
+                name='checkConvertible'
                 type='checkbox'
-                id='check_convertible'
-                checked={this.state.check_convertible}
+                id='checkConvertible'
+                checked={this.state.checkConvertible}
                 onChange={this.handleInputChange} />
             </div>
             <div className='slide'>
-              {this.labelCreator('check_van', images.van, 'Vans')}
+              {this.labelCreator('checkVan', images.van, 'Vans')}
               <input
-                name='check_van'
+                name='checkVan'
                 type='checkbox'
-                id='check_van'
-                checked={this.state.check_van}
+                id='checkVan'
+                checked={this.state.checkVan}
                 onChange={this.handleInputChange} />
             </div>
             <div className='slide'>
-              {this.labelCreator('check_wagon', images.wagon, 'Wagons')}
+              {this.labelCreator('checkWagon', images.wagon, 'Wagons')}
               <input
-                name='check_wagon'
+                name='checkWagon'
                 type='checkbox'
-                id='check_wagon'
-                checked={this.state.check_wagon}
+                id='checkWagon'
+                checked={this.state.checkWagon}
                 onChange={this.handleInputChange} />
             </div>
           </Carousel>
@@ -330,15 +330,15 @@ class HomeForm extends React.Component {
               <div className='inputs'>
                 <label htmlFor='monthlyFinanceBox'>Monthly Payment</label>
                 <span className='input-number'>$
-                <input
-                  name='monthlyFinanceBox'
-                  type='number'
-                  id='price2'
-                  min='0'
-                  max='100'
-                  value={this.state.monthlyFinanceBox}
-                  onChange={this.onNumberChange.bind(this, 'monthlyFinanceBox', 'monthlyFinanceSlider', 0)}
-                  onKeyDown={this.enterPressed.bind(this, 'monthlyFinanceSlider', 0)} />
+                  <input
+                    name='monthlyFinanceBox'
+                    type='number'
+                    id='price2'
+                    min='0'
+                    max='100'
+                    value={this.state.monthlyFinanceBox}
+                    onChange={this.onNumberChange.bind(this, 'monthlyFinanceBox', 'monthlyFinanceSlider', 0)}
+                    onKeyDown={this.enterPressed.bind(this, 'monthlyFinanceSlider', 0)} />
                 </span>
               </div>
               <div className='slider'>

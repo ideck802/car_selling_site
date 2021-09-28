@@ -1,0 +1,14 @@
+{
+    "workbench.colorTheme": "Default Dark+",
+    "liveSassCompile.settings.formats": [
+
+        {
+            "format": "compressed",
+            "extensionName": ".css",
+            "savePath": "/src/css"
+        }
+    ],
+    "[html]": {
+        "editor.formatOnSave": true
+    },
+}

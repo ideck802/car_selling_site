@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import SimpleBar from 'simplebar';
+import SimpleBar from 'simplebar'; // eslint-disable-line no-unused-vars
 
 import { makesList, modelsList } from './makes_models';
 import 'simplebar/dist/simplebar.min.css';
@@ -54,8 +54,8 @@ class Search extends React.Component {
   // filter records by search text
   filterData(value) {
     const lowercasedValue = value.toLowerCase().trim().replace('chevy', 'chevrolet').replace('vw', 'volkswagen')
-    .replace('caddy', 'cadillac').replace('cadd', 'cadillac').replace('lr', 'land rover')
-    .replace('mbz', 'mercedes-benz');
+      .replace('caddy', 'cadillac').replace('cadd', 'cadillac').replace('lr', 'land rover')
+      .replace('mbz', 'mercedes-benz');
     if (lowercasedValue === '') {
       this.setState({
         makesSearch: makesList,
@@ -129,8 +129,8 @@ class Search extends React.Component {
                 <button onClick={this.openMake.bind(this, i)}>
                   {make.name}
                 </button>
-                {this.state.isOpen === i && <div className={this.state.isClosing === true ? 'models-bar is-closing'
-                  : 'models-bar'}>
+                {this.state.isOpen === i && <div className={this.state.isClosing === true ? 'models-bar is-closing' :
+                  'models-bar'}>
                   <button className='left-spacer' onClick={this.openMake.bind(this, '')}></button>
                   <div className='container'>
                     <p>
@@ -156,9 +156,9 @@ class Search extends React.Component {
                             name={make.id}
                             id={'modelBox' + j}
                             checked={this.props.value[make.id + 'ModelBoxes'][j] || ''}
-                            onChange={(e) =>
+                            onChange={() =>
                               this.props.handleBoxChange(make.id, j, this.props.history, make.name, model
-                            )} />
+                              )} />
                         </li>
                       )}
                     </ul>
@@ -185,7 +185,7 @@ class Search extends React.Component {
                   checked={this.props.value[
                     makesList[getIndex(model, makesList, 'name')].id + 'ModelBoxes'
                   ][getModelsIndex(model, makesList, 'models')] || ''}
-                  onChange={(e) => this.props.handleBoxChange(
+                  onChange={() => this.props.handleBoxChange(
                     makesList[getIndex(model, makesList, 'name')].id, getModelsIndex(model, makesList, 'models')
                     , this.props.history, makesList[getIndex(model, makesList, 'name')].name, model)} />
               </li>;
@@ -196,5 +196,11 @@ class Search extends React.Component {
     );
   }
 }
+
+Search.propTypes = {
+  handleBoxChange: PropTypes.func,
+  history: PropTypes.any,
+  value: PropTypes.any
+};
 
 export default Search;

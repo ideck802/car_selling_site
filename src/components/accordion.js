@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Accordion extends React.Component {
   constructor(props) {
@@ -51,13 +52,19 @@ class Accordion extends React.Component {
         {(this.state.open === true ? (<div className={this.state.aniOpen ? 'accordion-content opening' :
           this.state.aniClose ? 'accordion-content closing' : 'accordion-content'}
         onAnimationEnd={() => {
-            if (this.state.aniOpen) {this.setState({aniOpen: false});}
-          }}>
+          if (this.state.aniOpen) {this.setState({aniOpen: false});}
+        }}>
           {this.props.children}
         </div>) : (''))}
       </div>
     );
   }
 }
+
+Accordion.propTypes = {
+  children: PropTypes.node,
+  btnText: PropTypes.string,
+  className: PropTypes.string
+};
 
 export default Accordion;

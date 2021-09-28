@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Tabs extends React.Component {
   constructor(props) {
@@ -32,9 +33,9 @@ class Tabs extends React.Component {
   _renderLabels() {
     return this.props.children.map((child, index) => (
       <div
-          className={'tab-button tab-button' + index + (index === this.state.selected ? (' active') : (''))}
-          key={child.props.label}
-          onClick={() => { this.changeTabStuff(index); }}>
+        className={'tab-button tab-button' + index + (index === this.state.selected ? (' active') : (''))}
+        key={child.props.label}
+        onClick={() => { this.changeTabStuff(index); }}>
         {child.props.label}
       </div>
     ));
@@ -51,5 +52,12 @@ class Tabs extends React.Component {
     );
   }
 }
+
+
+Tabs.propTypes = {
+  startTab: PropTypes.any,
+  changeTabValue: PropTypes.func,
+  children: PropTypes.array
+};
 
 export default Tabs;

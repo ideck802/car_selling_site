@@ -5,1123 +5,1124 @@ $light-blue: #3a85ff;
 $blue: #2778ff;
 $dark-blue: #133d7f;
 
-
 /*! for on phone screen */
-@media (max-width: 600px) {
-  .survey {
-    display: flex;
+@media ( max-width: 600px ) {
+	.survey {
+		display: flex;
 
-    flex-direction: column;
-    justify-content: center;
+		flex-direction: column;
+		justify-content: center;
 
-    width: 100%;
+		width: 100%;
 
-    background: $white;
+		overflow-x: hidden;
 
-    overflow-x: hidden;
-  }
+		background: $white;
+	}
 
-  .survey > p {
-    display: flex;
+	.survey > p {
+		display: flex;
 
-    flex-direction: row;
-    justify-content: center;
+		flex-direction: row;
+		justify-content: center;
 
-    margin-right: auto;
-    margin-left: 20%;
-  }
+		margin-right: auto;
+		margin-left: 20%;
+	}
 
-  #react_form {
-    display: flex;
+	#react_form {
+		display: flex;
 
-    flex-direction: row;
+		flex-direction: row;
 
-    margin: 10px;
+		margin: 10px;
 
-    border-radius: 5px;
+		border-radius: 5px;
 
-    background: $dark-blue;
-  }
+		background: $dark-blue;
+	}
 
-  #react_form > form {
-    display: flex;
+	#react_form > form {
+		display: flex;
 
-    flex-direction: column;
-    justify-content: center;
+		flex-direction: column;
+		justify-content: center;
 
-    width: 100%;
-  }
+		width: 100%;
+	}
 
-  #react_form .vehicles {
-    display: flex;
+	#react_form .vehicles {
+		display: flex;
 
-    flex-direction: column;
+		flex-direction: column;
 
-    width: auto;
+		width: auto;
 
-    padding: 10px;
-  }
+		padding: 10px;
+	}
 
-  #react_form .vehicles > .checkboxes .slide {
-    display: flex;
+	#react_form .vehicles > .checkboxes .slide {
+		display: flex;
 
-    width: 100%;
-    height: 100%;
-  }
+		width: 100%;
+		height: 100%;
+	}
 
-  #react_form .vehicles > .checkboxes input {
-    display: none;
-  }
+	#react_form .vehicles > .checkboxes input {
+		display: none;
+	}
 
-  #react_form .vehicles > .checkboxes label {
-    width: 100%;
-    height: 100%;
+	#react_form .vehicles > .checkboxes label {
+		width: 100%;
+		height: 100%;
 
-    margin: 8px;
+		margin: 8px;
+		overflow: hidden;
 
-    border: 2px solid transparent;
-    border-radius: 3px;
+		border: 2px solid transparent;
+		border-radius: 3px;
 
-    background: $gray;
+		background: $gray;
 
-    text-align: center;
+		text-align: center;
 
-    cursor: pointer;
-    overflow: hidden;
-  }
+		cursor: pointer;
+	}
 
-  #react_form .vehicles > .checkboxes label .checkmark {
-    padding-top: 1px;
+	#react_form .vehicles > .checkboxes label .checkmark {
+		padding-top: 1px;
 
-    background: transparent;
-    color: transparent;
-  }
+		background: transparent;
 
-  #react_form .vehicles > .checkboxes label:hover {
-    border: 2px solid $blue;
-  }
+		color: transparent;
+	}
 
-  #react_form .vehicles > .checkboxes label.selected {
-    border: 2px solid $blue;
-  }
+	#react_form .vehicles > .checkboxes label:hover {
+		border: 2px solid $blue;
+	}
 
-  #react_form .vehicles > .checkboxes label.selected .checkmark {
-    width: 100%;
+	#react_form .vehicles > .checkboxes label.selected {
+		border: 2px solid $blue;
+	}
 
-    background: $blue;
+	#react_form .vehicles > .checkboxes label.selected .checkmark {
+		width: 100%;
 
-    color: $black;
+		background: $blue;
 
-    text-align: center;
-  }
+		color: $black;
 
-  #react_form .vehicles > .checkboxes label img {
-    max-height: 80px;
+		text-align: center;
+	}
 
-    margin: 10px;
-  }
+	#react_form .vehicles > .checkboxes label img {
+		max-height: 80px;
 
-  #react_form .vehicles > .checkboxes label p {
-    margin: 0;
-  }
+		margin: 10px;
+	}
 
-  .rec.rec-slider-container {
-    overflow: visible;
-  }
+	#react_form .vehicles > .checkboxes label p {
+		margin: 0;
+	}
 
-  .rec.rec-arrow {
-    display: none;
+	.rec.rec-slider-container {
+		overflow: visible;
+	}
 
-    min-width: 25px;
-    max-width: 25px;
-    height: 100%;
+	.rec.rec-arrow {
+		display: none;
+		z-index: 1;
 
-    border: 0;
-    border-radius: 3px;
+		min-width: 25px;
+		max-width: 25px;
+		height: 100%;
 
-    background: $gray;
+		border: 0;
+		border-radius: 3px;
 
-    font-size: .8rem;
+		background: $gray;
 
-    box-shadow: none;
-    z-index: 1;
-  }
+		box-shadow: none;
 
-  .rec.rec-arrow:hover:enabled,
-  .rec.rec-arrow:focus:enabled {
-    background: $blue;
-  }
+		font-size: 0.8em;
+	}
 
-  #react_form .tabs {
-    display: flex;
+	.rec.rec-arrow:hover:enabled,
+	.rec.rec-arrow:focus:enabled {
+		background: $blue;
+	}
 
-    flex-direction: column;
+	#react_form .tabs {
+		display: flex;
 
-    height: 200px;
+		flex-direction: column;
 
-    padding: 10px;
-  }
+		height: 200px;
 
-  #react_form .tabs > .tab-buttons {
-    display: flex;
+		padding: 10px;
+	}
 
-    flex-direction: row;
-  }
+	#react_form .tabs > .tab-buttons {
+		display: flex;
 
-  #react_form .tabs > .tab-buttons > .tab-button {
-    display: flex;
+		flex-direction: row;
+	}
 
-    align-items: center;
-    justify-content: center;
+	#react_form .tabs > .tab-buttons > .tab-button {
+		display: flex;
 
-    width: 50%;
-    height: 30px;
+		align-items: center;
+		justify-content: center;
 
-    padding: 2px;
+		width: 50%;
+		height: 30px;
 
-    border-radius: 10px 10px 0 0;
+		padding: 2px;
 
-    background: $blue;
+		border-radius: 10px 10px 0 0;
 
-    cursor: pointer;
-  }
+		background: $blue;
 
-  #react_form .tabs > .tab-buttons > .tab-button:hover {
-    filter: grayscale(25%);
-  }
+		cursor: pointer;
+	}
 
-  #react_form .tabs > .tab-buttons > .tab-button.active {
-    background: $gray;
-  }
+	#react_form .tabs > .tab-buttons > .tab-button:hover {
+		filter: grayscale( 25% );
+	}
 
-  #react_form .tabs > .tab-content {
-    height: 100%;
-    padding: 10px;
+	#react_form .tabs > .tab-buttons > .tab-button.active {
+		background: $gray;
+	}
 
-    background: $gray;
-  }
+	#react_form .tabs > .tab-content {
+		height: 100%;
+		padding: 10px;
 
-  #react_form .tabs .tab .slider-content {
-    display: flex;
+		background: $gray;
+	}
 
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+	#react_form .tabs .tab .slider-content {
+		display: flex;
 
-    width: 100%;
-    height: 100%;
-  }
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
 
-  #react_form .tabs .tab .slider-content > label {
-    display: none;
-  }
+		width: 100%;
+		height: 100%;
+	}
 
-  #react_form .tabs .tab .slider-content > .inputs {
-    display: flex;
+	#react_form .tabs .tab .slider-content > label {
+		display: none;
+	}
 
-    flex-direction: row;
-    align-items: center;
+	#react_form .tabs .tab .slider-content > .inputs {
+		display: flex;
 
-    width: 100%;
+		flex-direction: row;
+		align-items: center;
 
-    margin-top: -10px;
-  }
+		width: 100%;
 
-  #react_form .tabs .tab .slider-content > .inputs > span {
-    height: 25px;
-  }
+		margin-top: -10px;
+	}
 
-  #react_form .tabs .tab .slider-content > .inputs > p {
-    margin-right: 5px;
-    margin-left: 5px;
-  }
+	#react_form .tabs .tab .slider-content > .inputs > span {
+		height: 25px;
+	}
 
-  #react_form .tabs .tab .slider-content > .slider-container {
-    display: flex;
+	#react_form .tabs .tab .slider-content > .inputs > p {
+		margin-right: 5px;
+		margin-left: 5px;
+	}
 
-    flex-direction: column;
+	#react_form .tabs .tab .slider-content > .slider-container {
+		display: flex;
 
-    width: calc(100% - 20px);
-  }
+		flex-direction: column;
 
-  #react_form .tabs .tab .slider-content > .slider-container > div {
-    height: 10px;
+		width: calc( 100% - 20px );
+	}
 
-    border-radius: 5px;
+	#react_form .tabs .tab .slider-content > .slider-container > div {
+		height: 10px;
 
-    background-color: $dark-blue;
-  }
+		border-radius: 5px;
 
-  #react_form .tabs .tab .slider-content > .slider-container > div > div {
-    width: 20px;
-    height: 20px;
+		background-color: $dark-blue;
+	}
 
-    border-radius: 100%;
+	#react_form .tabs .tab .slider-content > .slider-container > div > div {
+		width: 20px;
+		height: 20px;
 
-    background-color: $blue;
-  }
+		border-radius: 100%;
 
-  #react_form .tabs .tab {
-    display: flex;
+		background-color: $blue;
+	}
 
-    flex-direction: column;
-    align-items: center;
+	#react_form .tabs .tab {
+		display: flex;
 
-    height: 100%;
-  }
+		flex-direction: column;
+		align-items: center;
 
-  #react_form .tabs .tab > div > div {
-    display: flex;
+		height: 100%;
+	}
 
-    flex-direction: row;
-  }
+	#react_form .tabs .tab > div > div {
+		display: flex;
 
-  #react_form .tabs .tab div {
-    height: 50%;
-  }
+		flex-direction: row;
+	}
 
-  #react_form .tabs .tab label {
-    display: flex;
+	#react_form .tabs .tab div {
+		height: 50%;
+	}
 
-    align-items: center;
+	#react_form .tabs .tab label {
+		display: flex;
 
-    width: 100%;
-  }
+		align-items: center;
 
-  #react_form .tabs .tab .input-number {
-    display: flex;
+		width: 100%;
+	}
 
-    align-items: center;
+	#react_form .tabs .tab .input-number {
+		display: flex;
 
-    height: 25px;
+		align-items: center;
 
-    border: 1px solid $blue;
-    border-radius: 5px;
+		height: 25px;
 
-    background: $white;
-  }
+		border: 1px solid $blue;
+		border-radius: 5px;
 
-  #react_form .tabs .tab .input-number input {
-    width: 80px;
+		background: $white;
+	}
 
-    border: 0;
-    border-radius: 5px;
+	#react_form .tabs .tab .input-number input {
+		width: 80px;
 
-    outline: none;
+		border: 0;
+		border-radius: 5px;
 
-    background: $white;
+		outline: 0;
 
-    text-align: right;
+		background: $white;
 
-    -moz-appearance: textfield;
-  }
+		text-align: right;
 
-  #react_form .tabs .tab > .slider-container {
-    display: flex;
+		-moz-appearance: textfield;
+	}
 
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+	#react_form .tabs .tab > .slider-container {
+		display: flex;
 
-    width: 100%;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 
-    margin: 15px;
-  }
+		width: 100%;
 
-  #react_form .tabs .tab .inputs {
-    width: 100%;
-  }
+		margin: 15px;
+	}
 
-  #react_form .tabs .tab .slider {
-    display: flex;
+	#react_form .tabs .tab .inputs {
+		width: 100%;
+	}
 
-    flex-direction: column;
-    justify-content: center;
+	#react_form .tabs .tab .slider {
+		display: flex;
 
-    width: calc(100% - 10px);
+		flex-direction: column;
+		justify-content: center;
 
-    margin-top: 10px;
-  }
+		width: calc( 100% - 10px );
 
-  #react_form .tabs .tab .slider > div {
-    height: 10px;
+		margin-top: 10px;
+	}
 
-    border-radius: 5px;
+	#react_form .tabs .tab .slider > div {
+		height: 10px;
 
-    background-color: $dark-blue;
-  }
+		border-radius: 5px;
 
-  #react_form .tabs .tab .slider > div > div {
-    width: 20px;
-    height: 20px;
+		background-color: $dark-blue;
+	}
 
-    border-radius: 100%;
+	#react_form .tabs .tab .slider > div > div {
+		width: 20px;
+		height: 20px;
 
-    background-color: $blue;
-  }
+		border-radius: 100%;
 
-  /*! submit button */
-  #react_form .submit-btn {
-    align-self: center;
+		background-color: $blue;
+	}
 
-    width: min-content;
-    height: min-content;
+	/*! submit button */
+	#react_form .submit-btn {
+		align-self: center;
 
-    margin: 10px;
+		width: min-content;
+		height: min-content;
 
-    padding: 10px;
+		margin: 10px;
 
-    border: 0;
-    border-radius: 5px;
+		padding: 10px;
 
-    background: $blue;
+		border: 0;
+		border-radius: 5px;
 
-    cursor: pointer;
-  }
+		background: $blue;
 
-  #react_form .submit-btn:hover {
-    filter: grayscale(25%);
-  }
+		cursor: pointer;
+	}
+
+	#react_form .submit-btn:hover {
+		filter: grayscale( 25% );
+	}
 }
 
-
 /*! on medium screens */
-@media (max-width: 780px) and (min-width: 601px) {
-  .survey {
-    display: flex;
+@media ( max-width: 780px ) and ( min-width: 601px ) {
+	.survey {
+		display: flex;
 
-    flex-direction: column;
-    justify-content: center;
+		flex-direction: column;
+		justify-content: center;
 
-    width: 100%;
+		width: 100%;
 
-    background: $white;
+		overflow-x: hidden;
 
-    overflow-x: hidden;
-  }
+		background: $white;
+	}
 
-  .survey > p {
-    display: flex;
+	.survey > p {
+		display: flex;
 
-    flex-direction: row;
-    justify-content: center;
+		flex-direction: row;
+		justify-content: center;
 
-    margin-right: auto;
-    margin-left: 20%;
-  }
+		margin-right: auto;
+		margin-left: 20%;
+	}
 
-  #react_form {
-    display: flex;
+	#react_form {
+		display: flex;
 
-    flex-direction: row;
+		flex-direction: row;
 
-    margin: 10px;
+		margin: 10px;
 
-    border-radius: 5px;
+		border-radius: 5px;
 
-    background: $dark-blue;
-  }
+		background: $dark-blue;
+	}
 
-  #react_form > form {
-    display: flex;
+	#react_form > form {
+		display: flex;
 
-    flex-direction: column;
-    justify-content: center;
+		flex-direction: column;
+		justify-content: center;
 
-    width: 100%;
-  }
+		width: 100%;
+	}
 
-  #react_form .vehicles {
-    display: flex;
+	#react_form .vehicles {
+		display: flex;
 
-    flex-direction: column;
+		flex-direction: column;
 
-    padding: 10px;
-  }
+		padding: 10px;
+	}
 
-  #react_form .vehicles > .checkboxes .slide {
-    display: flex;
+	#react_form .vehicles > .checkboxes .slide {
+		display: flex;
 
-    width: 100%;
-    height: 100%;
-  }
+		width: 100%;
+		height: 100%;
+	}
 
-  #react_form .vehicles > .checkboxes input {
-    display: none;
-  }
+	#react_form .vehicles > .checkboxes input {
+		display: none;
+	}
 
-  #react_form .vehicles > .checkboxes label {
-    width: 100%;
-    height: 100%;
+	#react_form .vehicles > .checkboxes label {
+		width: 100%;
+		height: 100%;
 
-    margin: 8px;
+		margin: 8px;
+		overflow: hidden;
 
-    border: 2px solid transparent;
-    border-radius: 3px;
+		border: 2px solid transparent;
+		border-radius: 3px;
 
-    background: $gray;
+		background: $gray;
 
-    text-align: center;
+		text-align: center;
 
-    cursor: pointer;
-    overflow: hidden;
-  }
+		cursor: pointer;
+	}
 
-  #react_form .vehicles > .checkboxes label .checkmark {
-    padding-top: 1px;
+	#react_form .vehicles > .checkboxes label .checkmark {
+		padding-top: 1px;
 
-    background: transparent;
+		background: transparent;
 
-    color: transparent;
-  }
+		color: transparent;
+	}
 
-  #react_form .vehicles > .checkboxes label:hover {
-    border: 2px solid $blue;
-  }
+	#react_form .vehicles > .checkboxes label:hover {
+		border: 2px solid $blue;
+	}
 
-  #react_form .vehicles > .checkboxes label.selected {
-    border: 2px solid $blue;
-  }
+	#react_form .vehicles > .checkboxes label.selected {
+		border: 2px solid $blue;
+	}
 
-  #react_form .vehicles > .checkboxes label.selected .checkmark {
-    width: 100%;
+	#react_form .vehicles > .checkboxes label.selected .checkmark {
+		width: 100%;
 
-    background: $blue;
+		background: $blue;
 
-    color: $black;
+		color: $black;
 
-    text-align: center;
-  }
+		text-align: center;
+	}
 
-  #react_form .vehicles > .checkboxes label img {
-    margin: 10px;
-  }
+	#react_form .vehicles > .checkboxes label img {
+		margin: 10px;
+	}
 
-  #react_form .vehicles > .checkboxes label p {
-    margin: 0;
-  }
+	#react_form .vehicles > .checkboxes label p {
+		margin: 0;
+	}
 
-  .rec.rec-slider-container {
-    overflow: hidden;
-  }
+	.rec.rec-slider-container {
+		overflow: hidden;
+	}
 
-  .rec.rec-arrow {
-    min-width: 25px;
-    max-width: 25px;
-    height: 100%;
+	.rec.rec-arrow {
+		z-index: 2;
+		min-width: 25px;
+		max-width: 25px;
+		height: 100%;
 
-    border: 0;
-    border-radius: 3px;
+		border: 0;
+		border-radius: 3px;
 
-    background: $gray;
+		background: $gray;
 
-    font-size: .8rem;
+		box-shadow: none;
 
-    box-shadow: none;
-    z-index: 2;
-  }
+		font-size: 0.8em;
+	}
 
-  .rec.rec-arrow:hover:enabled,
-  .rec.rec-arrow:focus:enabled {
-    background: $blue;
-  }
+	.rec.rec-arrow:hover:enabled,
+	.rec.rec-arrow:focus:enabled {
+		background: $blue;
+	}
 
-  #react_form .tabs {
-    display: flex;
+	#react_form .tabs {
+		display: flex;
 
-    flex-direction: column;
+		flex-direction: column;
 
-    height: 200px;
+		height: 200px;
 
-    padding: 10px;
-  }
+		padding: 10px;
+	}
 
-  #react_form .tabs > .tab-buttons {
-    display: flex;
+	#react_form .tabs > .tab-buttons {
+		display: flex;
 
-    flex-direction: row;
-  }
+		flex-direction: row;
+	}
 
-  #react_form .tabs > .tab-buttons > .tab-button {
-    display: flex;
+	#react_form .tabs > .tab-buttons > .tab-button {
+		display: flex;
 
-    align-items: center;
-    justify-content: center;
+		align-items: center;
+		justify-content: center;
 
-    width: 50%;
-    height: 30px;
+		width: 50%;
+		height: 30px;
 
-    padding: 2px;
+		padding: 2px;
 
-    border-radius: 10px 10px 0 0;
+		border-radius: 10px 10px 0 0;
 
-    background: $blue;
+		background: $blue;
 
-    cursor: pointer;
-  }
+		cursor: pointer;
+	}
 
-  #react_form .tabs > .tab-buttons > .tab-button:hover {
-    filter: grayscale(25%);
-  }
+	#react_form .tabs > .tab-buttons > .tab-button:hover {
+		filter: grayscale( 25% );
+	}
 
-  #react_form .tabs > .tab-buttons > .tab-button.active {
-    background: $gray;
-  }
+	#react_form .tabs > .tab-buttons > .tab-button.active {
+		background: $gray;
+	}
 
-  #react_form .tabs > .tab-content {
-    height: 100%;
+	#react_form .tabs > .tab-content {
+		height: 100%;
 
-    padding: 10px;
+		padding: 10px;
 
-    background: $gray;
-  }
+		background: $gray;
+	}
 
-  #react_form .tabs .tab .slider-content {
-    display: flex;
+	#react_form .tabs .tab .slider-content {
+		display: flex;
 
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
 
-    width: 100%;
-    height: 100%;
-  }
+		width: 100%;
+		height: 100%;
+	}
 
-  #react_form .tabs .tab .slider-content > label {
-    display: none;
-  }
+	#react_form .tabs .tab .slider-content > label {
+		display: none;
+	}
 
-  #react_form .tabs .tab .slider-content > .inputs {
-    display: flex;
+	#react_form .tabs .tab .slider-content > .inputs {
+		display: flex;
 
-    flex-direction: row;
-    align-items: center;
+		flex-direction: row;
+		align-items: center;
 
-    width: 100%;
+		width: 100%;
 
-    margin-top: -10px;
-  }
+		margin-top: -10px;
+	}
 
-  #react_form .tabs .tab .slider-content > .inputs > span {
-    height: 25px;
-  }
+	#react_form .tabs .tab .slider-content > .inputs > span {
+		height: 25px;
+	}
 
-  #react_form .tabs .tab .slider-content > .inputs > p {
-    margin-right: 5px;
-    margin-left: 5px;
-  }
+	#react_form .tabs .tab .slider-content > .inputs > p {
+		margin-right: 5px;
+		margin-left: 5px;
+	}
 
-  #react_form .tabs .tab .slider-content > .slider-container {
-    display: flex;
+	#react_form .tabs .tab .slider-content > .slider-container {
+		display: flex;
 
-    flex-direction: column;
+		flex-direction: column;
 
-    width: calc(100% - 20px);
-  }
+		width: calc( 100% - 20px );
+	}
 
-  #react_form .tabs .tab .slider-content > .slider-container > div {
-    height: 10px;
+	#react_form .tabs .tab .slider-content > .slider-container > div {
+		height: 10px;
 
-    border-radius: 5px;
+		border-radius: 5px;
 
-    background-color: $dark-blue;
-  }
+		background-color: $dark-blue;
+	}
 
-  #react_form .tabs .tab .slider-content > .slider-container > div > div {
-    width: 20px;
-    height: 20px;
+	#react_form .tabs .tab .slider-content > .slider-container > div > div {
+		width: 20px;
+		height: 20px;
 
-    border-radius: 100%;
+		border-radius: 100%;
 
-    background-color: $blue;
-  }
+		background-color: $blue;
+	}
 
-  #react_form .tabs .tab {
-    display: flex;
+	#react_form .tabs .tab {
+		display: flex;
 
-    flex-direction: column;
-    align-items: center;
+		flex-direction: column;
+		align-items: center;
 
-    height: 100%;
-  }
+		height: 100%;
+	}
 
-  #react_form .tabs .tab > div > div {
-    display: flex;
+	#react_form .tabs .tab > div > div {
+		display: flex;
 
-    flex-direction: row;
-  }
+		flex-direction: row;
+	}
 
-  #react_form .tabs .tab div {
-    height: 50%;
-  }
+	#react_form .tabs .tab div {
+		height: 50%;
+	}
 
-  #react_form .tabs .tab label {
-    display: flex;
+	#react_form .tabs .tab label {
+		display: flex;
 
-    align-items: center;
+		align-items: center;
 
-    width: 100%;
-  }
+		width: 100%;
+	}
 
-  #react_form .tabs .tab .input-number {
-    display: flex;
+	#react_form .tabs .tab .input-number {
+		display: flex;
 
-    align-items: center;
+		align-items: center;
 
-    height: 25px;
+		height: 25px;
 
-    border: 1px solid $blue;
-    border-radius: 5px;
+		border: 1px solid $blue;
+		border-radius: 5px;
 
-    background: $white;
-  }
+		background: $white;
+	}
 
-  #react_form .tabs .tab .input-number input {
-    width: 80px;
+	#react_form .tabs .tab .input-number input {
+		width: 80px;
 
-    border: 0;
-    border-radius: 5px;
+		border: 0;
+		border-radius: 5px;
 
-    outline: none;
+		outline: 0;
 
-    background: $white;
+		background: $white;
 
-    text-align: right;
+		text-align: right;
 
-    -moz-appearance: textfield;
-  }
+		-moz-appearance: textfield;
+	}
 
-  #react_form .tabs .tab > .slider-container {
-    display: flex;
+	#react_form .tabs .tab > .slider-container {
+		display: flex;
 
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 
-    width: 100%;
-    margin: 15px;
-  }
+		width: 100%;
+		margin: 15px;
+	}
 
-  #react_form .tabs .tab .inputs {
-    width: 100%;
-  }
+	#react_form .tabs .tab .inputs {
+		width: 100%;
+	}
 
-  #react_form .tabs .tab .slider {
-    display: flex;
+	#react_form .tabs .tab .slider {
+		display: flex;
 
-    flex-direction: column;
-    justify-content: center;
+		flex-direction: column;
+		justify-content: center;
 
-    width: calc(100% - 10px);
+		width: calc( 100% - 10px );
 
-    margin-top: 10px;
-  }
+		margin-top: 10px;
+	}
 
-  #react_form .tabs .tab .slider > div {
-    height: 10px;
+	#react_form .tabs .tab .slider > div {
+		height: 10px;
 
-    border-radius: 5px;
+		border-radius: 5px;
 
-    background-color: $dark-blue;
-  }
+		background-color: $dark-blue;
+	}
 
-  #react_form .tabs .tab .slider > div > div {
-    width: 20px;
-    height: 20px;
+	#react_form .tabs .tab .slider > div > div {
+		width: 20px;
+		height: 20px;
 
-    border-radius: 100%;
+		border-radius: 100%;
 
-    background-color: $blue;
-  }
+		background-color: $blue;
+	}
 
-  /*! submit button */
-  #react_form .submit-btn {
-    align-self: center;
+	/*! submit button */
+	#react_form .submit-btn {
+		align-self: center;
 
-    width: min-content;
-    height: min-content;
+		width: min-content;
+		height: min-content;
 
-    margin: 10px;
+		margin: 10px;
 
-    padding: 10px;
+		padding: 10px;
 
-    border: 0;
-    border-radius: 5px;
+		border: 0;
+		border-radius: 5px;
 
-    background: $blue;
+		background: $blue;
 
-    cursor: pointer;
-  }
+		cursor: pointer;
+	}
 
-  #react_form .submit-btn:hover {
-    filter: grayscale(25%);
-  }
+	#react_form .submit-btn:hover {
+		filter: grayscale( 25% );
+	}
 }
 
 /*! on large screens */
-@media (min-width: 781px) {
-  .survey {
-    display: flex;
+@media ( min-width: 781px ) {
+	.survey {
+		display: flex;
 
-    flex-direction: column;
-    justify-content: center;
+		flex-direction: column;
+		justify-content: center;
 
-    width: 100%;
+		width: 100%;
 
-    background: $white;
+		overflow-x: hidden;
 
-    overflow-x: hidden;
-  }
+		background: $white;
+	}
 
-  .survey > p {
-    display: flex;
+	.survey > p {
+		display: flex;
 
-    flex-direction: row;
-    justify-content: center;
+		flex-direction: row;
+		justify-content: center;
 
-    margin-right: auto;
-    margin-left: 20%;
-  }
+		margin-right: auto;
+		margin-left: 20%;
+	}
 
-  #react_form {
-    display: flex;
+	#react_form {
+		display: flex;
 
-    flex-direction: row;
+		flex-direction: row;
 
-    margin: 10px;
+		margin: 10px;
 
-    border-radius: 5px;
+		border-radius: 5px;
 
-    background: $dark-blue;
-  }
+		background: $dark-blue;
+	}
 
-  #react_form > form {
-    display: flex;
+	#react_form > form {
+		display: flex;
 
-    flex-direction: row;
-    justify-content: center;
+		flex-direction: row;
+		justify-content: center;
 
-    width: 100%;
-  }
+		width: 100%;
+	}
 
-  #react_form .vehicles {
-    display: flex;
+	#react_form .vehicles {
+		display: flex;
 
-    flex-direction: column;
+		flex-direction: column;
 
-    width: 50%;
+		width: 50%;
 
-    padding: 10px;
-  }
+		padding: 10px;
+	}
 
-  #react_form .vehicles > .checkboxes .slide {
-    display: flex;
+	#react_form .vehicles > .checkboxes .slide {
+		display: flex;
 
-    width: 100%;
-    height: 100%;
-  }
+		width: 100%;
+		height: 100%;
+	}
 
-  #react_form .vehicles > .checkboxes input {
-    display: none;
-  }
+	#react_form .vehicles > .checkboxes input {
+		display: none;
+	}
 
-  #react_form .vehicles > .checkboxes label {
-    width: 100%;
-    height: 100%;
+	#react_form .vehicles > .checkboxes label {
+		width: 100%;
+		height: 100%;
 
-    margin: 8px;
+		margin: 8px;
+		overflow: hidden;
 
-    border: 2px solid transparent;
-    border-radius: 3px;
+		border: 2px solid transparent;
+		border-radius: 3px;
 
-    background: $gray;
+		background: $gray;
 
-    text-align: center;
+		text-align: center;
 
-    cursor: pointer;
-    overflow: hidden;
-  }
+		cursor: pointer;
+	}
 
-  #react_form .vehicles > .checkboxes label .checkmark {
-    padding-top: 1px;
+	#react_form .vehicles > .checkboxes label .checkmark {
+		padding-top: 1px;
 
-    background: transparent;
+		background: transparent;
 
-    color: transparent;
-  }
+		color: transparent;
+	}
 
-  #react_form .vehicles > .checkboxes label:hover {
-    border: 2px solid $blue;
-  }
+	#react_form .vehicles > .checkboxes label:hover {
+		border: 2px solid $blue;
+	}
 
-  #react_form .vehicles > .checkboxes label.selected {
-    border: 2px solid $blue;
-  }
+	#react_form .vehicles > .checkboxes label.selected {
+		border: 2px solid $blue;
+	}
 
-  #react_form .vehicles > .checkboxes label.selected .checkmark {
-    width: 100%;
+	#react_form .vehicles > .checkboxes label.selected .checkmark {
+		width: 100%;
 
-    background: $blue;
+		background: $blue;
 
-    color: $black;
+		color: $black;
 
-    text-align: center;
-  }
+		text-align: center;
+	}
 
-  #react_form .vehicles > .checkboxes label img {
-    margin: 10px;
-  }
+	#react_form .vehicles > .checkboxes label img {
+		margin: 10px;
+	}
 
-  #react_form .vehicles > .checkboxes label p {
-    margin: 0;
-  }
+	#react_form .vehicles > .checkboxes label p {
+		margin: 0;
+	}
 
-  .rec.rec-arrow {
-    min-width: 25px;
-    max-width: 25px;
-    height: 100%;
+	.rec.rec-arrow {
+		min-width: 25px;
+		max-width: 25px;
+		height: 100%;
 
-    border: 0;
-    border-radius: 3px;
+		border: 0;
+		border-radius: 3px;
 
-    background: $gray;
+		background: $gray;
 
-    font-size: .8rem;
+		box-shadow: none;
 
-    box-shadow: none;
-  }
+		font-size: 0.8em;
+	}
 
-  .rec.rec-arrow:hover:enabled,
-  .rec.rec-arrow:focus:enabled {
-    background: $blue;
-  }
+	.rec.rec-arrow:hover:enabled,
+	.rec.rec-arrow:focus:enabled {
+		background: $blue;
+	}
 
-  #react_form .tabs {
-    display: flex;
+	#react_form .tabs {
+		display: flex;
 
-    flex-direction: column;
-    flex-grow: 1;
-    align-self: flex-end;
+		flex-direction: column;
+		flex-grow: 1;
+		align-self: flex-end;
 
-    width: 30%;
-    height: 100%;
+		width: 30%;
+		height: 100%;
 
-    padding: 10px;
-  }
+		padding: 10px;
+	}
 
-  #react_form .tabs > .tab-buttons {
-    display: flex;
+	#react_form .tabs > .tab-buttons {
+		display: flex;
 
-    flex-direction: row;
-  }
+		flex-direction: row;
+	}
 
-  #react_form .tabs > .tab-buttons > .tab-button {
-    display: flex;
+	#react_form .tabs > .tab-buttons > .tab-button {
+		display: flex;
 
-    align-items: center;
-    justify-content: center;
+		align-items: center;
+		justify-content: center;
 
-    width: 50%;
-    height: 30px;
+		width: 50%;
+		height: 30px;
 
-    padding: 2px;
+		padding: 2px;
 
-    border-radius: 10px 10px 0 0;
+		border-radius: 10px 10px 0 0;
 
-    background: $blue;
+		background: $blue;
 
-    cursor: pointer;
-  }
+		cursor: pointer;
+	}
 
-  #react_form .tabs > .tab-buttons > .tab-button:hover {
-    filter: grayscale(25%);
-  }
+	#react_form .tabs > .tab-buttons > .tab-button:hover {
+		filter: grayscale( 25% );
+	}
 
-  #react_form .tabs > .tab-buttons > .tab-button.active {
-    background: $gray;
-  }
+	#react_form .tabs > .tab-buttons > .tab-button.active {
+		background: $gray;
+	}
 
-  #react_form .tabs > .tab-content {
-    height: 100%;
-    padding: 10px;
+	#react_form .tabs > .tab-content {
+		height: 100%;
+		padding: 10px;
 
-    background: $gray;
-  }
+		background: $gray;
+	}
 
-  #react_form .tabs .tab .slider-content {
-    display: flex;
+	#react_form .tabs .tab .slider-content {
+		display: flex;
 
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
 
-    width: 100%;
-    height: 100%;
-  }
+		width: 100%;
+		height: 100%;
+	}
 
-  #react_form .tabs .tab .slider-content > label {
-    margin-top: 10px;
-  }
+	#react_form .tabs .tab .slider-content > label {
+		margin-top: 10px;
+	}
 
-  #react_form .tabs .tab .slider-content > .inputs {
-    display: flex;
+	#react_form .tabs .tab .slider-content > .inputs {
+		display: flex;
 
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
 
-    margin-top: -10px;
-  }
+		margin-top: -10px;
+	}
 
-  #react_form .tabs .tab .slider-content > .inputs > span {
-    height: 25px;
-  }
+	#react_form .tabs .tab .slider-content > .inputs > span {
+		height: 25px;
+	}
 
-  #react_form .tabs .tab .slider-content > .inputs > p {
-    margin-right: 5px;
-    margin-left: 5px;
-  }
+	#react_form .tabs .tab .slider-content > .inputs > p {
+		margin-right: 5px;
+		margin-left: 5px;
+	}
 
-  #react_form .tabs .tab .slider-content > .inputs > label {
-    display: none;
-  }
+	#react_form .tabs .tab .slider-content > .inputs > label {
+		display: none;
+	}
 
-  #react_form .tabs .tab .slider-content > .slider-container {
-    display: flex;
+	#react_form .tabs .tab .slider-content > .slider-container {
+		display: flex;
 
-    flex-direction: column;
+		flex-direction: column;
 
-    width: calc(100% - 20px);
-  }
+		width: calc( 100% - 20px );
+	}
 
-  #react_form .tabs .tab .slider-content > .slider-container > div {
-    height: 10px;
-    border-radius: 5px;
+	#react_form .tabs .tab .slider-content > .slider-container > div {
+		height: 10px;
 
-    background-color: $dark-blue;
-  }
+		border-radius: 5px;
 
-  #react_form .tabs .tab .slider-content > .slider-container > div > div {
-    width: 20px;
-    height: 20px;
+		background-color: $dark-blue;
+	}
 
-    border-radius: 100%;
+	#react_form .tabs .tab .slider-content > .slider-container > div > div {
+		width: 20px;
+		height: 20px;
 
-    background-color: $blue;
-  }
+		border-radius: 100%;
 
-  #react_form .tabs .tab {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-  }
+		background-color: $blue;
+	}
 
-  #react_form .tabs .tab > div > div {
-    display: flex;
-    flex-direction: row;
-  }
+	#react_form .tabs .tab {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		height: 100%;
+	}
 
-  #react_form .tabs .tab div {
-    height: 50%;
-  }
+	#react_form .tabs .tab > div > div {
+		display: flex;
+		flex-direction: row;
+	}
 
-  #react_form .tabs .tab label {
-    display: flex;
-    align-items: center;
-    width: 100%;
-  }
+	#react_form .tabs .tab div {
+		height: 50%;
+	}
 
-  #react_form .tabs .tab .input-number {
-    display: flex;
+	#react_form .tabs .tab label {
+		display: flex;
+		align-items: center;
+		width: 100%;
+	}
 
-    align-items: center;
+	#react_form .tabs .tab .input-number {
+		display: flex;
 
-    height: 25px;
+		align-items: center;
 
-    border: 1px solid $blue;
-    border-radius: 5px;
+		height: 25px;
 
-    background: $white;
-  }
+		border: 1px solid $blue;
+		border-radius: 5px;
 
-  #react_form .tabs .tab .input-number input {
-    width: 80px;
+		background: $white;
+	}
 
-    border: 0;
-    border-radius: 5px;
+	#react_form .tabs .tab .input-number input {
+		width: 80px;
 
-    outline: none;
+		border: 0;
+		border-radius: 5px;
 
-    background: $white;
+		outline: 0;
 
-    text-align: right;
+		background: $white;
 
-    -moz-appearance: textfield;
-  }
+		text-align: right;
 
-  #react_form .tabs .tab > .slider-container {
-    display: flex;
+		-moz-appearance: textfield;
+	}
 
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+	#react_form .tabs .tab > .slider-container {
+		display: flex;
 
-    width: 100%;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 
-    margin: 15px;
-  }
+		width: 100%;
 
-  #react_form .tabs .tab .inputs {
-    width: 100%;
-  }
+		margin: 15px;
+	}
 
-  #react_form .tabs .tab .slider {
-    display: flex;
+	#react_form .tabs .tab .inputs {
+		width: 100%;
+	}
 
-    flex-direction: column;
-    justify-content: center;
+	#react_form .tabs .tab .slider {
+		display: flex;
 
-    width: calc(100% - 10px);
-  }
+		flex-direction: column;
+		justify-content: center;
 
-  #react_form .tabs .tab .slider > div {
-    height: 10px;
-    border-radius: 5px;
+		width: calc( 100% - 10px );
+	}
 
-    background-color: $dark-blue;
-  }
+	#react_form .tabs .tab .slider > div {
+		height: 10px;
 
-  #react_form .tabs .tab .slider > div > div {
-    width: 20px;
-    height: 20px;
+		border-radius: 5px;
 
-    border-radius: 100%;
+		background-color: $dark-blue;
+	}
 
-    background-color: $blue;
-  }
+	#react_form .tabs .tab .slider > div > div {
+		width: 20px;
+		height: 20px;
 
-  /*! submit button */
-  #react_form .submit-btn {
-    align-self: center;
+		border-radius: 100%;
 
-    width: min-content;
-    height: min-content;
+		background-color: $blue;
+	}
 
-    margin: 10px;
-    margin-right: 20px;
+	/*! submit button */
+	#react_form .submit-btn {
+		align-self: center;
 
-    padding: 10px;
+		width: min-content;
+		height: min-content;
 
-    border: 0;
-    border-radius: 5px;
+		margin: 10px;
+		margin-right: 20px;
 
-    background: $blue;
+		padding: 10px;
 
-    cursor: pointer;
-  }
+		border: 0;
+		border-radius: 5px;
 
-  #react_form .submit-btn:hover {
-    filter: grayscale(25%);
-  }
+		background: $blue;
+
+		cursor: pointer;
+	}
+
+	#react_form .submit-btn:hover {
+		filter: grayscale( 25% );
+	}
 }

@@ -1,16 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, useHistory, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './css/search.css';
-import images from './images';
-import DropDown from './components/drop_down';
-import Tabs from './components/tabs';
-import Accordion from './components/accordion';
-import Search from './components/search';
 import { makesList } from './components/makes_models';
 import vehicles from './vehicleCardList';
 import Filters from './filters';
-import { Range, getTrackBackground } from 'react-range';
 import reportWebVitals from './reportWebVitals';
 
 class SearchForm extends React.Component {
@@ -27,9 +22,11 @@ class SearchForm extends React.Component {
     var extor = searchParam.get('extor').toLowerCase();
     var intor = searchParam.get('intor').toLowerCase();
 
+    console.log(ftr);
+
     super(props);
     this.state = {
-      search_tag: '',
+      searchTag: '',
       zipCode: searchParam.getAll('zip')[0],
       distance: distancesArray.indexOf(searchParam.getAll('distance').toString() || '0'),
       distances: distancesArray,
@@ -58,45 +55,45 @@ class SearchForm extends React.Component {
         teslaModelBoxes: [], toyotaModelBoxes: [], volksModelBoxes: [], volvoModelBoxes: []
       },
       bodyType: bt,
-      check_suv: bt.includes('suv'), check_truck: bt.includes('truck'), check_sedan: bt.includes('sedan'),
-      check_crossover: bt.includes('crossover'), check_coupe: bt.includes('coupe'),
-      check_convertible: bt.includes('convertible'), check_sport: bt.includes('sport'), check_van: bt.includes('van'),
-      check_wagon: bt.includes('wagon'),
+      checkSuv: bt.includes('suv'), checkTruck: bt.includes('truck'), checkSedan: bt.includes('sedan'),
+      checkCrossover: bt.includes('crossover'), checkCoupe: bt.includes('coupe'),
+      checkConvertible: bt.includes('convertible'), checkSport: bt.includes('sport'), checkVan: bt.includes('van'),
+      checkWagon: bt.includes('wagon'),
 
       features: ftr,
-      cooled_seats: ftr.includes('cooled_seats'),heated_seats: ftr.includes('heated_seats'),
-      heated_steering: ftr.includes('heated_steering'),leather_seats: ftr.includes('leather_seats'),
-      climate_control: ftr.includes('climate_control'),sun_roof: ftr.includes('sun_roof'),
-      dvd_player: ftr.includes('dvd_player'),prem_sound: ftr.includes('prem_sound'),
-      rear_system: ftr.includes('rear_system'),satillite_radio: ftr.includes('satillite_radio'),
-      auto_brake: ftr.includes('auto_brake'),back_cam: ftr.includes('back_cam'),
-      blind_sensor: ftr.includes('blind_sensor'),lane_depart: ftr.includes('lane_depart'),
-      park_sense: ftr.includes('park_sense'),secure_alarm: ftr.includes('secure_alarm'),
-      adapt_cruise: ftr.includes('adapt_cruise'),android_auto: ftr.includes('android_auto'),
-      apple_carplay: ftr.includes('apple_carplay'),aux_port: ftr.includes('aux_port'),
-      bluetooth: ftr.includes('bluetooth'),gps_nav: ftr.includes('gps_nav'),hud: ftr.includes('hud'),
-      keyless_start: ftr.includes('keyless_start'),mobile_net: ftr.includes('mobile_net'),
-      power_seats: ftr.includes('power_seats'),trip_pc: ftr.includes('trip_pc'),
-      turn_mirrors: ftr.includes('turn_mirrors'),adjust_steering: ftr.includes('adjust_steering'),
-      auto_park: ftr.includes('auto_park'),disability: ftr.includes('disability'),
-      heat_mirror: ftr.includes('heat_mirror'),power_doors: ftr.includes('power_doors'),
-      power_trunk: ftr.includes('power_trunk'),rain_sense: ftr.includes('rain_sense'),
-      roof_rack: ftr.includes('roof_rack'),stability: ftr.includes('stability'),
-      third_row: ftr.includes('third_row'),tire_sense: ftr.includes('tire_sense'),tow_hitch: ftr.includes('tow_hitch'),
+      cooledSeats: ftr.includes('cooledseats'),heatedSeats: ftr.includes('heatedseats'),
+      heatedSteering: ftr.includes('heatedsteering'),leatherSeats: ftr.includes('leatherseats'),
+      climateControl: ftr.includes('climatecontrol'),sunRoof: ftr.includes('sunroof'),
+      dvdPlayer: ftr.includes('dvdplayer'),premSound: ftr.includes('premsound'),
+      rearSystem: ftr.includes('rearsystem'),satilliteRadio: ftr.includes('satilliteradio'),
+      autoBrake: ftr.includes('autobrake'),backCam: ftr.includes('backcam'),
+      blindSensor: ftr.includes('blindsensor'),laneDepart: ftr.includes('lanedepart'),
+      parkSense: ftr.includes('parksense'),secureAlarm: ftr.includes('securealarm'),
+      adaptCruise: ftr.includes('adaptcruise'),androidAuto: ftr.includes('androidauto'),
+      appleCarplay: ftr.includes('applecarplay'),auxPort: ftr.includes('auxport'),
+      bluetooth: ftr.includes('bluetooth'),gpsNav: ftr.includes('gpsnav'),hud: ftr.includes('hud'),
+      keylessStart: ftr.includes('keylessstart'),mobileNet: ftr.includes('mobilenet'),
+      powerSeats: ftr.includes('powerseats'),tripPc: ftr.includes('trippc'),
+      turnMirrors: ftr.includes('turnmirrors'),adjustSteering: ftr.includes('adjuststeering'),
+      autoPark: ftr.includes('autopark'),disability: ftr.includes('disability'),
+      heatMirror: ftr.includes('heatmirror'),powerDoors: ftr.includes('powerdoors'),
+      powerTrunk: ftr.includes('powertrunk'),rainSense: ftr.includes('rainsense'),
+      roofRack: ftr.includes('roofrack'),stability: ftr.includes('stability'),
+      thirdRow: ftr.includes('thirdrow'),tireSense: ftr.includes('tiresense'),towHitch: ftr.includes('towhitch'),
 
       exterior: extor,
-      exterior_black: extor.includes('black'), exterior_silver: extor.includes('silver'),
-      exterior_white: extor.includes('white'), exterior_gray: extor.includes('gray'),
-      exterior_red: extor.includes('red'), exterior_blue: extor.includes('blue'), exterior_gold: extor.includes('gold'),
-      exterior_orange: extor.includes('orange'), exterior_green: extor.includes('green'),
-      exterior_tan: extor.includes('tan'), exterior_other: extor.includes('other'),
+      exteriorBlack: extor.includes('black'), exteriorSilver: extor.includes('silver'),
+      exteriorWhite: extor.includes('white'), exteriorGray: extor.includes('gray'),
+      exteriorRed: extor.includes('red'), exteriorBlue: extor.includes('blue'), exteriorGold: extor.includes('gold'),
+      exteriorOrange: extor.includes('orange'), exteriorGreen: extor.includes('green'),
+      exteriorTan: extor.includes('tan'), exteriorOther: extor.includes('other'),
 
       interior: intor,
-      interior_black: intor.includes('black'), interior_silver: intor.includes('silver'),
-      interior_white: intor.includes('white'), interior_gray: intor.includes('gray'),
-      interior_red: intor.includes('red'), interior_blue: intor.includes('blue'), interior_gold: intor.includes('gold'),
-      interior_orange: intor.includes('orange'), interior_green: intor.includes('green'),
-      interior_tan: intor.includes('tan'), interior_other: intor.includes('other'),
+      interiorBlack: intor.includes('black'), interiorSilver: intor.includes('silver'),
+      interiorWhite: intor.includes('white'), interiorGray: intor.includes('gray'),
+      interiorRed: intor.includes('red'), interiorBlue: intor.includes('blue'), interiorGold: intor.includes('gold'),
+      interiorOrange: intor.includes('orange'), interiorGreen: intor.includes('green'),
+      interiorTan: intor.includes('tan'), interiorOther: intor.includes('other'),
 
       mpgSlider: searchParam.getAll('mpg'),
       mpgBoxes: searchParam.getAll('mpg'),
@@ -141,7 +138,7 @@ class SearchForm extends React.Component {
   }
 
   init() {
-    makesList.map((make, i) => {
+    makesList.map((make) => {
       make.models.map((model, j) => (
         ('|' + this.state.modelParam.toLowerCase()).includes('|' + model.toLowerCase() + '|') ?
           this.handleModelBoxChange(make.id, j, this.props.history, make, model, true) : ''
@@ -163,14 +160,14 @@ class SearchForm extends React.Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
-    if (name.includes('check_')) {
+    if (name.includes('check')) {
       var tempBtypeParam = this.btypeGlobal;
-      var varName = name.replace('check_', '');
+      var varName = name.replace('check', '');
 
       if (value === true) {
-        tempBtypeParam = tempBtypeParam + (varName + '|');
+        tempBtypeParam = tempBtypeParam + (varName.toLowerCase() + '|');
       } else {
-        tempBtypeParam = tempBtypeParam.replace(varName + '|', '');
+        tempBtypeParam = tempBtypeParam.replace(varName.toLowerCase() + '|', '');
       }
 
       this.btypeGlobal = tempBtypeParam;
@@ -181,16 +178,16 @@ class SearchForm extends React.Component {
         this.updateURL(history);
       });
     } else if (name.includes('feature_') && !name.includes('fuel') && !name.includes('Wheel') &&
-      !name.includes('Trans') && !name.includes('Cylinder') && !name.includes('exterior_') &&
-      !name.includes('interior_')
+      !name.includes('Trans') && !name.includes('Cylinder') && !name.includes('exterior') &&
+      !name.includes('interior')
     ) {
       var tempFtrParam = this.ftrGlobal;
       var varName = name.replace('feature_', '');
 
       if (value === true) {
-        tempFtrParam = tempFtrParam + (varName + '|');
+        tempFtrParam = tempFtrParam + (varName.toLowerCase() + '|');
       } else {
-        tempFtrParam = tempFtrParam.replace(varName + '|', '');
+        tempFtrParam = tempFtrParam.replace(varName.toLowerCase() + '|', '');
       }
 
       this.ftrGlobal = tempFtrParam;
@@ -268,36 +265,36 @@ class SearchForm extends React.Component {
       }, () => {
         this.updateURL(history);
       });
-    } else if (name.includes('exterior_')) {
+    } else if (name.includes('exterior')) {
       var tempExtorParam = this.extorGlobal;
-      var varName = name.replace('exterior_', '');
+      var varName = name.replace('exterior', '');
 
       if (value === true) {
-        tempExtorParam = tempExtorParam + (varName + '|');
+        tempExtorParam = tempExtorParam + (varName.toLowerCase() + '|');
       } else {
-        tempExtorParam = tempExtorParam.replace(varName + '|', '');
+        tempExtorParam = tempExtorParam.replace(varName.toLowerCase() + '|', '');
       }
 
       this.extorGlobal = tempExtorParam;
       this.setState({
-        ['exterior_' + varName]: value,
+        ['exterior' + varName]: value,
         exterior: tempExtorParam
       }, () => {
         this.updateURL(history);
       });
-    } else if (name.includes('interior_')) {
+    } else if (name.includes('interior')) {
       var tempIntorParam = this.intorGlobal;
-      var varName = name.replace('interior_', '');
+      var varName = name.replace('interior', '');
 
       if (value === true) {
-        tempIntorParam = tempIntorParam + (varName + '|');
+        tempIntorParam = tempIntorParam + (varName.toLowerCase() + '|');
       } else {
-        tempIntorParam = tempIntorParam.replace(varName + '|', '');
+        tempIntorParam = tempIntorParam.replace(varName.toLowerCase() + '|', '');
       }
 
       this.intorGlobal = tempIntorParam;
       this.setState({
-        ['interior_' + varName]: value,
+        ['interior' + varName]: value,
         interior: tempIntorParam
       }, () => {
         this.updateURL(history);
@@ -460,13 +457,13 @@ class SearchForm extends React.Component {
         id={value}
         checked={this.state[value]}
         onChange={(e) => this.handleInputChange(e, history)}
-        />
+      />
     </label>;
   }
 
   colorCreator(name, color, value, history, classname) {
     return <label htmlFor={value} className={(this.state[value] === true ?
-        ('color checked ' + classname) : ('color ' + classname))}>
+      ('color checked ' + classname) : ('color ' + classname))}>
       <div className='color-circle' style={{background: color}}>
         <i className='checkmark fas fa-check'></i>
       </div>
@@ -477,7 +474,7 @@ class SearchForm extends React.Component {
         id={value}
         checked={this.state[value]}
         onChange={(e) => this.handleInputChange(e, history)}
-        />
+      />
     </label>;
   }
 
@@ -530,7 +527,7 @@ class SearchForm extends React.Component {
         vehicle.year >= this.state.yearSlider[0] && vehicle.year <= this.state.yearSlider[1] &&
         vehicle.miles >= this.state.mileageSlider[0] && vehicle.miles <= this.state.mileageSlider[1] &&
         this.state.features.slice(0, -1).split('|').every(
-          item => vehicle.features.includes(item) || this.state.features === ''
+          item => vehicle.features.toLowerCase().includes(item.toLowerCase()) || this.state.features === ''
         ) &&
         vehicle.mpg <= this.state.mpgSlider &&
         (this.state.fuelType.toLowerCase().includes(vehicle.fuel.toLowerCase()) || this.state.fuelType === '') &&
@@ -569,7 +566,7 @@ class SearchForm extends React.Component {
               <span>
                 <p>{vehicle.intColor.charAt(0).toUpperCase() + vehicle.intColor.slice(1)} interior</p>
                 <p>{vehicle.owners >= 2 ?
-                    vehicle.owners + ' owners' : vehicle.owners === 1 ?
+                  vehicle.owners + ' owners' : vehicle.owners === 1 ?
                     vehicle.owners + ' owner' : ' New'}</p>
               </span>
             </div>
@@ -579,7 +576,7 @@ class SearchForm extends React.Component {
     });
   }
 
-  getParams(location) {
+  getParams() {
     const searchParams = new URLSearchParams(window.location.search);
     return {
       make: searchParams.get('make') || '',
@@ -588,8 +585,9 @@ class SearchForm extends React.Component {
   }
 
   setParams({
-    owners='', price='', pr=['', ''], down='', pay='', make='', model='', btype='', year=['', ''], miles=['', ''],
-    ftr='', mpg='', fuel='', drive='', trans='', cyl='', extor='', intor='', zip='', distance='',
+    owners = '', price = '', pr = ['', ''], down = '', pay = '', make = '', model = '', btype = '', year = ['', ''],
+    miles = ['', ''], ftr = '', mpg = '', fuel = '', drive = '', trans = '', cyl = '', extor = '', intor = '',
+    zip = '', distance = '',
   }) {
     const searchParams = new URLSearchParams();
     searchParams.set('own', owners);
@@ -620,7 +618,7 @@ class SearchForm extends React.Component {
 
   updateInputValue = e => this.setState({modelParam: e.target.value});
 
-  updateURL = (history, isTextbox, event) => {
+  updateURL = (history) => {
     //if (isTextbox === true) {
     //  if (event.keyCode === 13) {
     //    const url = this.setParams({make: this.state.makeParam, model: this.state.modelParam});
@@ -656,11 +654,11 @@ class SearchForm extends React.Component {
     history.push(`?${url}`);
   };
 
-  // red api key is only for localhost. must change for builds
-  // red Q6a4aY87oakQI2BA7YMUIwrqHux0j0BtEV6VAk2egIh5gbzooIdBEcLjoOBpLqsY
+  // api key is only for localhost. must change for builds
+  // Q6a4aY87oakQI2BA7YMUIwrqHux0j0BtEV6VAk2egIh5gbzooIdBEcLjoOBpLqsY
   fetchZips = (centerZip, distance, history) => {
-      this.setState({isFetching: true});
-      fetch('https://www.zipcodeapi.com/rest/' +
+    this.setState({isFetching: true});
+    fetch('https://www.zipcodeapi.com/rest/' +
         'js-PM7I8cxEjfxbX05xYqOa46UXb93zWmxX4amPH8agb5IDqnv3LhwcijDk5Tag3nnc/radius.json/' +
         centerZip + '/' + distance + '/mile?minimal')
       .then(response => response.json())
@@ -676,7 +674,7 @@ class SearchForm extends React.Component {
         console.log(exception);
         this.setState({isFetching: false});
       });
-    };
+  };
 
   updateUrlFromTimeout(history) {
     if (this.state.updateUrlTimeout !== 0) {
@@ -695,9 +693,9 @@ class SearchForm extends React.Component {
       <div>
         <Router>
           <Route path='/'
-          render={(props) => (
-            <Filters {...props} th={this} />
-          )}/>
+            render={(props) => (
+              <Filters {...props} th={this} />
+            )}/>
         </Router>
         {this.state.isFetching ? <div className='loading-ani'><i className='fas fa-car-side'></i></div> : ''}
         <div className='vehicle-cards'>
@@ -707,6 +705,10 @@ class SearchForm extends React.Component {
     );
   }
 }
+
+SearchForm.propTypes = {
+  history: PropTypes.any
+};
 
 ReactDOM.render(<SearchForm />, document.getElementById('search_form'));
 

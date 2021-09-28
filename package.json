@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
     "car-makes-icons": "^1.0.0",
+    "eslint-config-grunt": "^2.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-elastic-carousel": "^0.10.0",
@@ -45,7 +46,21 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/eslint-parser": "^7.15.7",
+    "@babel/preset-react": "^7.14.5",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-only-warn": "^1.0.3",
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-react": "^7.26.0",
     "react-app-rewire-multiple-entry": "^2.2.1",
-    "react-app-rewired": "^2.1.8"
+    "react-app-rewired": "^2.1.8",
+    "stylelint": "^13.13.1",
+    "stylelint-config-property-sort-order-smacss": "^7.1.0",
+    "stylelint-config-sass-guidelines": "^8.0.0",
+    "stylelint-config-wikimedia": "^0.11.1"
   }
 }

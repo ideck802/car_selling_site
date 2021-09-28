@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import SimpleBar from 'simplebar';
 
 import { makesList, modelsList } from './makes_models';
 import DropDown from './drop_down';
@@ -26,52 +25,6 @@ function getModelsIndex(value, arr, prop) {
   return -1; //to handle the case where the value doesn't exist
 }
 
-function GetZips(props) {
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [zips, setZips] = useState([]);
-
-  console.log('getzips');
-
-  // Note: the empty deps array [] means
-  // this useEffect will run once
-  // similar to componentDidMount()
-
-  // red js-PM......3nnc is the key only for localhost testing. must change for builds
-  // red to Q6a4aY87oakQI2BA7YMUIwrqHux0j0BtEV6VAk2egIh5gbzooIdBEcLjoOBpLqsY
-  useEffect(() => {
-    fetch('https://www.zipcodeapi.com/rest/' +
-    'js-PM7I8cxEjfxbX05xYqOa46UXb93zWmxX4amPH8agb5IDqnv3LhwcijDk5Tag3nnc/radius.json/' +
-    props.centerZip + '/' + props.distance + '/mile?minimal')
-      .then(res => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setZips(result);
-        },
-        // Note: it's important to handle errors here
-        // instead of a catch() block so that we don't swallow
-        // exceptions from actual bugs in components.
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
-  }, []);
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
-    return <div>Loading...</div>;
-  } else {
-    console.log(zips.zip_codes);
-    return (
-      <ul>
-      </ul>
-    );
-  }
-}
-
 class AddTags extends React.Component {
 
   constructor(props) {
@@ -81,9 +34,9 @@ class AddTags extends React.Component {
       modelsSearch: [],
       tagsSearch: [],
       tagsList: [
-        ['SUVs', 'check_suv'], ['Trucks', 'check_truck'], ['Sedans', 'check_sedan'], ['Crossovers', 'check_crossover'],
-        ['Coupes', 'check_coupe'], ['Convertibles', 'check_convertible'], ['Vans', 'check_van'],
-        ['Wagons', 'check_wagon'],
+        ['SUVs', 'check_suv'], ['Trucks', 'checkTruck'], ['Sedans', 'checkSedan'], ['Crossovers', 'checkCrossover'],
+        ['Coupes', 'checkCoupe'], ['Convertibles', 'checkConvertible'], ['Vans', 'checkVan'],
+        ['Wagons', 'checkWagon'],
       ],
       searchText: '',
       displayResults: true,
@@ -113,8 +66,8 @@ class AddTags extends React.Component {
   // filter records by search text
   filterData(value) {
     const lowercasedValue = value.toLowerCase().trim().replace('chevy', 'chevrolet').replace('vw', 'volkswagen')
-    .replace('caddy', 'cadillac').replace('cadd', 'cadillac').replace('lr', 'land rover')
-    .replace('mbz', 'mercedes-benz');
+      .replace('caddy', 'cadillac').replace('cadd', 'cadillac').replace('lr', 'land rover')
+      .replace('mbz', 'mercedes-benz');
 
     const filteredModels = modelsList.filter(item =>
       item.toString().toLowerCase().includes(lowercasedValue)
@@ -172,7 +125,7 @@ class AddTags extends React.Component {
     }
   }
 
-  changeNumbers(isYear=false, down=false, monthly=false, miles=false) {
+  changeNumbers(isYear = false, down = false, monthly = false, miles = false) {
     if (isYear) {
       if (this.state.thst.state.yearSlider.every(e => e === this.state.thst.state.yearSlider[0])) {
         this.state.thst.setState({
@@ -249,7 +202,7 @@ class AddTags extends React.Component {
             checked={this.props.modlBoxes[
               makesList[getIndex(model, makesList, 'name')].id + 'ModelBoxes'
             ][getModelsIndex(model, makesList, 'models')] || ''}
-            onChange={(e) => this.props.handleBoxChange(
+            onChange={() => this.props.handleBoxChange(
               makesList[getIndex(model, makesList, 'name')].id, getModelsIndex(model, makesList, 'models')
               , this.props.history, makesList[getIndex(model, makesList, 'name')].name, model)} />
         </li>;
@@ -284,8 +237,8 @@ class AddTags extends React.Component {
             onChange={this.handleChange}
             ref={this.textBoxRef}
           />
-        {
-          (!modelsToRender.every((item) => {return item === undefined;}) ||
+          {
+            (!modelsToRender.every((item) => {return item === undefined;}) ||
           !tagsToRender.every((item) => {return item === undefined;}) ||
           this.state.thst.state.yearSlider.every(e => e === this.state.thst.state.yearSlider[0])) &&
           <DropDown btnText='Change Tags' isChanging={false} className='tags-dd'>
@@ -306,29 +259,29 @@ class AddTags extends React.Component {
               {tagsToRender}
             </ul>
           </DropDown>
-        }
+          }
         </div>
 
         {(this.state.modelsSearch.length > 0 || this.state.tagsSearch.length > 0 || this.state.renderNumOptns) &&
           this.state.searchText != '' && this.state.displayResults && <div className='box-container'>
           <ul>
             {this.state.renderNumOptns && <li>
-              <button onClick={(e) => this.changeNumbers()}>
+              <button onClick={() => this.changeNumbers()}>
                 <p>Vehicles less than ${this.state.inputNum}</p>
               </button>
             </li>}
             {this.state.renderNumOptns && <li>
-              <button onClick={(e) => this.changeNumbers(false, true)}>
+              <button onClick={() => this.changeNumbers(false, true)}>
                 <p>Cash down at ${this.state.inputNum}</p>
               </button>
             </li>}
             {this.state.renderNumOptns && <li>
-              <button onClick={(e) => this.changeNumbers(false, false, true)}>
+              <button onClick={() => this.changeNumbers(false, false, true)}>
                 <p>Monthly payment at ${this.state.inputNum}</p>
               </button>
             </li>}
             {this.state.renderNumOptns && <li>
-              <button onClick={(e) => this.changeNumbers(false, false, false, true)}>
+              <button onClick={() => this.changeNumbers(false, false, false, true)}>
                 <p>Vehicles with less than {this.state.inputNum} miles</p>
               </button>
             </li>}
@@ -343,7 +296,7 @@ class AddTags extends React.Component {
                 name={this.state.inputNum}
                 id='setYear'
                 checked={this.state.thst.state.yearSlider.every(e => e === this.state.inputNum) || ''}
-                onChange={(e) => this.changeNumbers(true)} />
+                onChange={() => this.changeNumbers(true)} />
             </li>}
             {this.state.modelsSearch.map((model, i) => {
               return <li key={i}>
@@ -360,7 +313,7 @@ class AddTags extends React.Component {
                   checked={this.props.modlBoxes[
                     makesList[getIndex(model, makesList, 'name')].id + 'ModelBoxes'
                   ][getModelsIndex(model, makesList, 'models')] || ''}
-                  onChange={(e) => this.props.handleBoxChange(
+                  onChange={() => this.props.handleBoxChange(
                     makesList[getIndex(model, makesList, 'name')].id, getModelsIndex(model, makesList, 'models')
                     , this.props.history, makesList[getIndex(model, makesList, 'name')].name, model)} />
               </li>;
@@ -385,5 +338,13 @@ class AddTags extends React.Component {
     );
   }
 }
+
+AddTags.propTypes = {
+  th: PropTypes.any,
+  history: PropTypes.any,
+  modlBoxes: PropTypes.any,
+  handleBoxChange: PropTypes.func,
+  handleInputChange: PropTypes.func
+};
 
 export default AddTags;
