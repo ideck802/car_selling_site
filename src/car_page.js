@@ -32,6 +32,7 @@ class SearchForm extends React.Component {
 
   vehiclePage(vehicle) {
     var pics = [];
+
     for (var i = 0; i < vehicle.picsNum; i++) {
       pics.push(
         <img
@@ -39,9 +40,23 @@ class SearchForm extends React.Component {
           src={'./images/vehicles/cards/' + vehicle.idNum + '/' + (i + 1).toString().padStart(3, '0') + '.jpg'} />
       );
     }
+
+    const onNextStart = (currentItem, nextItem) => {
+      if (currentItem.index === nextItem.index) {
+        // we hit the last item, go to first item
+        this.carousel.goTo(0);
+      }
+    };
+    const onPrevStart = (currentItem, nextItem) => {
+      if (currentItem.index === nextItem.index) {
+        // we hit the first item, go to last item
+        this.carousel.goTo(pics.length);
+      }
+    };
+
     return <div className='main-page'>
-      {vehicle.model}
       <Carousel
+        ref={ref => (this.carousel = ref)}
         className='img-carousel'
         itemsToShow={1}
         itemsToScroll={1}
@@ -63,9 +78,15 @@ class SearchForm extends React.Component {
               })}
             </div>
           );
-        }}>
+        }}
+        onPrevStart={onPrevStart}
+        onNextStart={onNextStart}
+        disableArrowsOnEnd={false}>
         {pics}
       </Carousel>
+      <div className='vehicle-info'>
+        {vehicle.model}
+      </div>
     </div>;
   }
 
