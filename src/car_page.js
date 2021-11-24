@@ -14,6 +14,7 @@ class SearchForm extends React.Component {
     super(props);
     this.state = {
       carID: searchParam.getAll('id')[0],
+      displayImgsPopup: false,
       breakpoints: [
         {width: 1, itemsToShow: 1.5, itemsToScroll: 1},
         {width: 300, itemsToShow: 2, itemsToScroll: 1},
@@ -28,15 +29,30 @@ class SearchForm extends React.Component {
     };
 
     this.vehiclePage = this.vehiclePage.bind(this);
+    this.showImgPopup = this.showImgPopup.bind(this);
+  }
+
+  showImgPopup() {
+    this.setState({
+      displayImgsPopup: !this.state.displayImgsPopup
+    });
   }
 
   vehiclePage(vehicle) {
     var pics = [];
+    var imgClickDisabled = false;
+
+    const testFunc = (page, onClick) => {
+      imgClickDisabled ? null : onClick(page);
+      imgClickDisabled = false;
+    };
 
     for (var i = 0; i < vehicle.picsNum; i++) {
       pics.push(
         <img
           key={i}
+          onMouseUp={() => testFunc(null, this.showImgPopup)}
+          onDragStart={(e) => { e.preventDefault(); imgClickDisabled = true; }}
           src={'./images/vehicles/cards/' + vehicle.idNum + '/' + (i + 1).toString().padStart(3, '0') + '.jpg'} />
       );
     }
@@ -55,28 +71,98 @@ class SearchForm extends React.Component {
     };
 
     return <div className='main-page'>
+      {this.state.displayImgsPopup ?
+        <div className='img-popup'>
+          <button onClick={() => testFunc(null, this.showImgPopup)}>X</button>
+          <Carousel
+            ref={ref => (this.carousel = ref)}
+            className='img-carousel'
+            itemsToShow={1}
+            itemsToScroll={1}
+            onChange={() => { imgClickDisabled = false; }}
+            renderPagination={({pages, activePage, onClick}) => {
+              return (
+                <>
+                  <Carousel
+                    className='img-list'
+                    itemsToShow={5}
+                    itemsToScroll={2}
+                    pagination={false}
+                    onChange={() => { imgClickDisabled = false; }}
+                  >
+                    {pages.map((page, i) => {
+                      const isActivePage = activePage === page;
+                      return (
+                        <img
+                          key={page}
+                          onMouseUp={() => testFunc(page, onClick)}
+                          active={isActivePage}
+                          onDragStart={(e) => { e.preventDefault(); imgClickDisabled = true; }}
+                          src={
+                            './images/vehicles/cards/' +
+                            vehicle.idNum + '/' + (i + 1).toString().padStart(3,'0') + '.jpg'
+                          }
+                        />
+                      );
+                    })}
+                  </Carousel>
+                  <div className='mobile-img-list'>
+                    {pages.map((page, i) => {
+                      const isActivePage = activePage === page;
+                      return (
+                        <img
+                          key={page}
+                          onMouseUp={() => testFunc(page, onClick)}
+                          active={isActivePage}
+                          onDragStart={(e) => { e.preventDefault(); imgClickDisabled = true; }}
+                          src={
+                            './images/vehicles/cards/' +
+                            vehicle.idNum + '/' + (i + 1).toString().padStart(3,'0') + '.jpg'
+                          }
+                        />
+                      );
+                    })}
+                  </div>
+                </>
+              );
+            }}
+            onPrevStart={onPrevStart}
+            onNextStart={onNextStart}
+            disableArrowsOnEnd={false}>
+            {pics}
+          </Carousel>
+        </div> : ''
+      }
       <Carousel
         ref={ref => (this.carousel = ref)}
         className='img-carousel'
         itemsToShow={1}
         itemsToScroll={1}
+        onChange={() => { imgClickDisabled = false; }}
         renderPagination={({pages, activePage, onClick}) => {
           return (
-            <div className='img-list'>
+            <Carousel
+              className='img-list'
+              itemsToShow={5}
+              itemsToScroll={2}
+              pagination={false}
+              onChange={() => { imgClickDisabled = false; }}
+            >
               {pages.map((page, i) => {
                 const isActivePage = activePage === page;
                 return (
                   <img
                     key={page}
-                    onClick={() => onClick(page)}
+                    onMouseUp={() => testFunc(page, onClick)}
                     active={isActivePage}
+                    onDragStart={(e) => { e.preventDefault(); imgClickDisabled = true; }}
                     src={
                       './images/vehicles/cards/' + vehicle.idNum + '/' + (i + 1).toString().padStart(3, '0') + '.jpg'
                     }
                   />
                 );
               })}
-            </div>
+            </Carousel>
           );
         }}
         onPrevStart={onPrevStart}

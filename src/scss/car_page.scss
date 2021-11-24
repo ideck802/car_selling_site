@@ -51,7 +51,7 @@ input[ type='number' ]::-webkit-outer-spin-button {
 	display: flex;
 
 	position: fixed;
-	z-index: 1;
+	z-index: 2;
 	top: 0;
 	left: 0;
 
@@ -187,7 +187,7 @@ input[ type='number' ]::-webkit-outer-spin-button {
 		flex-direction: column;
 	}
 
-	#vehicle_display .main-page .img-carousel {
+	#vehicle_display .main-page > .img-carousel {
 		width: 100%;
 	}
 }
@@ -198,7 +198,7 @@ input[ type='number' ]::-webkit-outer-spin-button {
 		flex-direction: row;
 	}
 
-	#vehicle_display .main-page .img-carousel {
+	#vehicle_display .main-page > .img-carousel {
 		width: 66.6%;
 	}
 }
@@ -209,13 +209,69 @@ input[ type='number' ]::-webkit-outer-spin-button {
 		flex-direction: row;
 	}
 
-	#vehicle_display .main-page .img-carousel {
+	#vehicle_display .main-page > .img-carousel {
 		width: 66.6%;
 	}
 }
 
+// image popup that shows when clicking a large image
+#vehicle_display .main-page .img-popup {
+	display: flex;
+
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	left: 0;
+
+	flex-direction: column;
+
+	width: 100%;
+	height: 100%;
+
+	overflow-y: scroll;
+
+	background: $white;
+}
+
+#vehicle_display .main-page .img-popup img {
+	height: 100%;
+
+	object-fit: contain;
+}
+
+#vehicle_display .main-page .img-popup .rec-arrow {
+	position: absolute;
+
+	top: 33.3%;
+	bottom: 33.3%;
+
+	min-width: 30px;
+	max-width: 30px;
+	height: 33.3%;
+
+	background: $gray;
+	box-shadow: 0 0 0 0 transparent;
+
+	color: $black;
+
+	font-size: 1.5em;
+}
+
+#vehicle_display .main-page .img-popup .img-list .rec-arrow {
+	display: none;
+}
+
+#vehicle_display .main-page .img-popup .mobile-img-list {
+	width: 100%;
+}
+
+#vehicle_display .main-page .img-popup .mobile-img-list img {
+	width: 50%;
+	height: auto;
+}
+
 // image carousel section
-#vehicle_display .main-page .img-carousel {
+#vehicle_display .main-page > .img-carousel {
 	display: flex;
 
 	position: relative;
@@ -223,13 +279,13 @@ input[ type='number' ]::-webkit-outer-spin-button {
 	flex-direction: column;
 }
 
-#vehicle_display .main-page .img-carousel > div {
+#vehicle_display .main-page > .img-carousel > div {
 	display: block;
 
 	position: relative;
 }
 
-#vehicle_display .main-page .img-carousel .rec-arrow {
+#vehicle_display .main-page > .img-carousel .rec-arrow {
 	position: absolute;
 
 	top: 33.3%;
@@ -266,6 +322,8 @@ input[ type='number' ]::-webkit-outer-spin-button {
 }
 
 #vehicle_display .main-page .img-carousel > div .rec-arrow-left {
+	z-index: 1;
+
 	left: 0;
 
 	border: 1px solid $black;
@@ -281,17 +339,17 @@ input[ type='number' ]::-webkit-outer-spin-button {
 	border-radius: 5px 0 0 5px;
 }
 
-#vehicle_display .main-page .img-carousel .rec-slider-container {
-	z-index: -1;
-
+#vehicle_display .main-page > .img-carousel .rec-slider-container {
 	width: 100%;
 	height: 100%;
 
 	margin: 0;
 }
 
-#vehicle_display .main-page .img-carousel .rec-slider-container img {
+#vehicle_display .main-page > .img-carousel .rec-slider-container img {
 	width: 100%;
+
+	object-fit: contain;
 }
 
 #vehicle_display .main-page .img-carousel .img-list {
@@ -310,12 +368,26 @@ input[ type='number' ]::-webkit-outer-spin-button {
 // vehicle info section
 #vehicle_display .main-page .vehicle-info {
 	display: flex;
+
+	border-left: 1px solid $blue;
 }
 
 // small screens
 @media ( max-width: 750px ) {
 	#vehicle_display .main-page .vehicle-info {
 		width: 100%;
+	}
+
+	#vehicle_display .main-page > .img-carousel .img-list {
+		display: none;
+	}
+
+	#vehicle_display .main-page .img-popup img {
+		width: 90%;
+	}
+
+	#vehicle_display .main-page .img-popup .img-list {
+		display: none;
 	}
 }
 
@@ -324,12 +396,28 @@ input[ type='number' ]::-webkit-outer-spin-button {
 	#vehicle_display .main-page .vehicle-info {
 		width: 33.3%;
 	}
+
+	#vehicle_display .main-page .img-popup img {
+		width: 90%;
+	}
+
+	#vehicle_display .main-page .img-popup .mobile-img-list {
+		display: none;
+	}
 }
 
 // large screens
 @media ( min-width: 993px ) {
 	#vehicle_display .main-page .vehicle-info {
 		width: 33.3%;
+	}
+
+	#vehicle_display .main-page .img-popup img {
+		width: 50%;
+	}
+
+	#vehicle_display .main-page .img-popup .mobile-img-list {
+		display: none;
 	}
 }
 
